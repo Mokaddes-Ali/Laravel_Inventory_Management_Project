@@ -11,6 +11,7 @@ use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\CategoriesController;
 
 
 
@@ -39,9 +40,6 @@ Route::middleware('auth')->group(function () {
 });
 
 
-use App\Http\Controllers\SettingsController;
-use App\Http\Controllers\CategoriesController;
-
 
 Route::middleware('auth')->group(function () {
 Route::get('/brands', [BrandsController::class, 'index'])->name('brands.index');
@@ -53,14 +51,14 @@ Route::put('/brands/{id}', [BrandsController::class, 'update'])->name('brands.up
 Route::delete('/brands/{id}', [BrandsController::class, 'destroy'])->name('brands.destroy');
 });
 
-Route::middleware('auth')->group(function () {
-    Route::get('/client', [ClientController::class, 'index'])->name('index');
-    Route::post('/client/submit', [ClientController::class, 'store'])->name('store');
-    Route::get('/client/show', [ClientController::class, 'show'])->name('show');
-    Route::get('/client/edit/{id}', [ClientController::class, 'edit']);
-    Route::post('/client/update', [ClientController::class, 'update']);
-    Route::get('/delete/{id}', [ClientController::class, 'destroy']);
-});
+// Route::middleware('auth')->group(function () {
+//     Route::get('/client', [ClientController::class, 'index'])->name('index');
+//     Route::post('/client/submit', [ClientController::class, 'store'])->name('store');
+//     Route::get('/client/show', [ClientController::class, 'show'])->name('show');
+//     Route::get('/client/edit/{id}', [ClientController::class, 'edit']);
+//     Route::post('/client/update', [ClientController::class, 'update']);
+//     Route::get('/delete/{id}', [ClientController::class, 'destroy']);
+// });
 
 
 

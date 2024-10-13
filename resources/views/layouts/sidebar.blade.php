@@ -73,13 +73,13 @@
                             <li>
                                 <a href="#sidebarEmail" data-bs-toggle="collapse">
                                     <i data-feather="mail"></i>
-                                    <span> Client </span>
+                                    <span> Customer </span>
                                     <span class="menu-arrow"></span>
                                 </a>
                                 <div class="collapse" id="sidebarEmail">
                                     <ul class="nav-second-level">
-                                        <li><a href="/client">Add Client</a></li>
-                                        <li><a href="/show/client">Manage Client</a></li>
+                                        <li><a href="/customer">Add Customer</a></li>
+                                        <li><a href="/customer/show">Manage Customer</a></li>
                                     </ul>
                                 </div>
                             </li>

@@ -1,20 +1,22 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Client;
+
+use App\Models\Customer;
 use Illuminate\Http\Request;
 
-
-class ClientController extends Controller
+class CustomerController extends Controller
 {
     public function index(){
-        return view('admin.client.add');
+        return view('admin.customer.add');
     }
 
     public function show(){
-        $all = Client::all();
-        return view('admin.client.show', compact('all'));
+        $all = Customer::all();
+        return view('admin.customer.show', compact('all'));
     }
+
+
     public function create(Request $request){
             $request->validate([
             'name' => 'required|max:40',
@@ -32,7 +34,7 @@ class ClientController extends Controller
             $image->move(public_path('images'), $image_rename);
         }
 
-        $insert = Client::insertGetId([
+        $insert = Customer::insertGetId([
             'name' => $request['name'],
             'email' => $request['email'],
             'number' => $request['number'],
@@ -49,8 +51,8 @@ class ClientController extends Controller
     }
 
     public function edit($id){
-        $record = Client::findOrFail($id);
-        return view('admin.client.edit', compact('record'));
+        $record = Customer::findOrFail($id);
+        return view('admin.customer.edit', compact('record'));
     }
 
     public function update(Request $request){
@@ -64,7 +66,7 @@ class ClientController extends Controller
             'pic' => 'nullable|mimes:jpeg,png,gif|max:2048',
         ]);
 
-        $oldimg = Client::findOrFail($id);
+        $oldimg = Customer::findOrFail($id);
         $deleteimg=public_path('images/'.$oldimg['pic']);
         $image_rename = '';
 
@@ -83,7 +85,7 @@ class ClientController extends Controller
                 $image_rename=$oldimg['pic'];
             }
 
-        $update = Client::where('id',$id)->update([
+        $update = Customer::where('id',$id)->update([
             'name' => $request->name,
             'email' => $request->email,
             'number' => $request->number,
@@ -99,13 +101,13 @@ class ClientController extends Controller
     }
     public function destroy($id){
         $id=intval($id);
-        $client = Client::find($id);
-        if ($client) {
-            $imagePath = public_path('images/' . $client->pic);
+        $customer = Customer::find($id);
+        if ($customer) {
+            $imagePath = public_path('images/' . $customer->pic);
             if (file_exists($imagePath)) { // Check if it's a file
                 unlink($imagePath);
             }
-            $client->delete();
+            $customer->delete();
             return back()->with('success', 'Data deleted successfully');
         }
     }

@@ -8,6 +8,7 @@ use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\SettingsController;
 
 Route::get('/dashboard', function () {
@@ -16,12 +17,12 @@ Route::get('/dashboard', function () {
 
 
 Route::middleware('auth')->group(function () {
-    Route::get('/client', [ClientController::class, 'index'])->name('index');
-    Route::post('/client/submit', [ClientController::class, 'create'])->name('create');
-    Route::get('/show/client', [ClientController::class, 'show']) -> name('show');
-    Route::get('/edit/client/{id}', [ClientController::class, 'edit']);
-    Route::post('/client/update', [ClientController::class, 'update']);
-    Route::get('/delete/{id}', [ClientController::class, 'destroy']);
+    Route::get('/customer', [CustomerController::class, 'index'])->name('index');
+    Route::post('/customer/submit', [CustomerController::class, 'create'])->name('create');
+    Route::get('/customer/show', [CustomerController::class, 'show']) -> name('show');
+    Route::get('/customer/edit/{id}', [CustomerController::class, 'edit']);
+    Route::post('/customer/update', [CustomerController::class, 'update']);
+    Route::get('/delete/{id}', [CustomerController::class, 'destroy']);
 });
 
 Route::middleware('auth')->group(function () {

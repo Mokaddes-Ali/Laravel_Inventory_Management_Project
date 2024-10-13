@@ -28,7 +28,7 @@
         </div>
     @endif
 
-    <form method="POST" action="{{ url('/client/update') }}" enctype="multipart/form-data">
+    <form method="POST" action="{{ url('/customer/update') }}" enctype="multipart/form-data">
         @csrf
         <input type="hidden" value="{{ $record->id }}" name="id">
 

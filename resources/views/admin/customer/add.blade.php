@@ -10,7 +10,7 @@
         {{ session()->get('success') }}
     </div>
 @endif
-        <form method = "POST" action = "{{ url('/client/submit') }}"  enctype="multipart/form-data">
+        <form method = "POST" action = "{{ url('/customer/submit') }}"  enctype="multipart/form-data">
             @csrf
             <div class="form-group">
               <label for="exampleInputEmail1">Name</label>

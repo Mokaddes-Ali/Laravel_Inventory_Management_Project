@@ -46,22 +46,18 @@ class CategoriesController extends Controller
         if ($insert) {
             $flasher->addSuccess('Data Inserted Successfully.', [
 
-                'position' => 'top-center',  // Set the position (e.g., top-right, bottom-left, etc.)
+                'position' => 'left-center',  // Set the position (e.g., top-right, bottom-left, etc.)
                 'timeout' => 2000,             // Set duration in milliseconds (5 seconds)
             ]);
             return redirect()->back();
         } else {
             return back()->with('fail', 'Data insertion failed');
         }
-
     }
 
 
 
-    public function edit(Category $category)
-    {
-        return view('categories.edit', compact('category'));
-    }
+  
 
     public function update(Request $request)
     {
@@ -83,9 +79,9 @@ class CategoriesController extends Controller
         return redirect()->route('categories.index')->with('success', 'Category updated successfully.');
     }
 
-    public function destroy(Category $category)
+    public function destroy(Request $request)
     {
-        $category->delete();
-        return redirect()->route('categories.index')->with('success', 'Category deleted successfully.');
+        $request->delete();
+        return back()->with('success', 'Data deleted successfully');
     }
 }

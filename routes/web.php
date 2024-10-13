@@ -30,12 +30,12 @@ Route::middleware('auth')->group(function () {
 
 
 Route::middleware('auth')->group(function () {
-    Route::get('/categories', [CategoriesController::class, 'index'])->name('index');
+    Route::get('/categories', [CategoriesController::class, 'index'])->name('categories.index');
     Route::post('/categories/submit', [CategoriesController::class, 'store'])->name('categories.store');
     Route::get('/categories/show', [CategoriesController::class, 'show']);
-    Route::get('/categories/edit/{id}', [CategoriesController::class, 'edit']);
+    Route::get('/categories/edit/{id}', [CategoriesController::class, 'edit'])->name('categories.edit');
     Route::post('/categories/update', [CategoriesController::class, 'update']);
-    Route::get('/delete/{id}', [CategoriesController::class, 'destroy']);
+    Route::get('/categories/delete/{id}', [CategoriesController::class, 'destroy']);
 });
 
 Route::middleware('auth')->group(function () {

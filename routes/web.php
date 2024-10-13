@@ -10,6 +10,9 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\SettingsController;
+use App\Http\Controllers\CategoriesController;
+
+
 
 Route::get('/dashboard', function () {
     return view('layouts.master');
@@ -24,6 +27,17 @@ Route::middleware('auth')->group(function () {
     Route::post('/customer/update', [CustomerController::class, 'update']);
     Route::get('/delete/{id}', [CustomerController::class, 'destroy']);
 });
+
+Route::middleware('auth')->group(function () {
+    Route::get('/client', [ClientController::class, 'index'])->name('index');
+    Route::post('/client/submit', [ClientController::class, 'store'])->name('store');
+    Route::get('/client/show', [ClientController::class, 'show'])->name('show');
+    Route::get('/client/edit/{id}', [ClientController::class, 'edit']);
+    Route::post('/client/update', [ClientController::class, 'update']);
+    Route::get('/delete/{id}', [ClientController::class, 'destroy']);
+});
+
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/project', [ProjectController::class, 'index'])->name('index');

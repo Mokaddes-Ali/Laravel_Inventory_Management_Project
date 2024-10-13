@@ -27,6 +27,7 @@
 		<!-- icons -->
 		<link href="{{asset('admin')}}/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     </head>
 
 

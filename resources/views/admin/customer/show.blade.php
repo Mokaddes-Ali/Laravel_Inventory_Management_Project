@@ -41,6 +41,6 @@
       @endforeach
     </tbody>
   </table>
-
+  
 @endsection
 

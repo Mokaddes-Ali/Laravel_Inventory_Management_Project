@@ -32,6 +32,7 @@ class BrandsController extends Controller
     $request->validate([
         'brandName' => 'required|max:50',
         'brandImg' => 'nullable|string|max:300',
+        'creator' => 1,
     ]);
 
     Brands::create($request->all());

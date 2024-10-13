@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BrandController;
 use App\Http\Controllers\BackupController;
+use App\Http\Controllers\BrandsController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\IncomeController;
 use App\Http\Controllers\ExpenseController;
@@ -9,8 +11,6 @@ use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\CustomerController;
-use App\Http\Controllers\SettingsController;
-use App\Http\Controllers\CategoriesController;
 
 
 
@@ -36,6 +36,21 @@ Route::middleware('auth')->group(function () {
     Route::get('/categories/edit/{id}', [CategoriesController::class, 'edit'])->name('categories.edit');
     Route::post('/categories/update', [CategoriesController::class, 'update']);
     Route::get('/categories/delete/{id}', [CategoriesController::class, 'destroy']);
+});
+
+
+use App\Http\Controllers\SettingsController;
+use App\Http\Controllers\CategoriesController;
+
+
+Route::middleware('auth')->group(function () {
+Route::get('/brands', [BrandsController::class, 'index'])->name('brands.index');
+Route::get('/brands/create', [BrandsController::class, 'create'])->name('brands.create');
+Route::post('/brands', [BrandsController::class, 'store'])->name('brands.store');
+Route::get('/brands/show', [BrandsController::class, 'show'])->name('brands.show');
+Route::get('/brands/{id}/edit', [BrandsController::class, 'edit'])->name('brands.edit');
+Route::put('/brands/{id}', [BrandsController::class, 'update'])->name('brands.update');
+Route::delete('/brands/{id}', [BrandsController::class, 'destroy'])->name('brands.destroy');
 });
 
 Route::middleware('auth')->group(function () {

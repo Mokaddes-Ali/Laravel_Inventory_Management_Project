@@ -96,6 +96,19 @@
                                     </ul>
                                 </div>
                             </li>
+                            <li>
+                                <a href="#sidebarEmail" data-bs-toggle="collapse">
+                                    <i data-feather="mail"></i>
+                                    <span> Brands </span>
+                                    <span class="menu-arrow"></span>
+                                </a>
+                                <div class="collapse" id="sidebarEmail">
+                                    <ul class="nav-second-level">
+                                        <li><a href="/brands">Add Brands</a></li>
+                                        <li><a href="/brands/show">List Brands</a></li>
+                                    </ul>
+                                </div>
+                            </li>
 
 
                             <li>

@@ -45,12 +45,9 @@ class CategoriesController extends Controller
 
         if ($insert) {
             $flasher->addSuccess('Data Inserted Successfully.', [
-                'position' => 'top-right',  // Set the position (e.g., top-right, bottom-left, etc.)
-                'time' => 5000,             // Set duration in milliseconds (5 seconds)
-                'css' => [
-                    'z-index' => 9999,      // Set z-index for the message
-                    'opacity' => 0.8,       // Set opacity (0 is fully transparent, 1 is fully opaque)
-                ],
+
+                'position' => 'top-center',  // Set the position (e.g., top-right, bottom-left, etc.)
+                'timeout' => 2000,             // Set duration in milliseconds (5 seconds)
             ]);
             return redirect()->back();
         } else {

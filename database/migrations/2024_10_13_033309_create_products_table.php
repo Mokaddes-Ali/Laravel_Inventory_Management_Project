@@ -13,24 +13,24 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
 
-            
+
             $table->id();
-            $table->unsignedBigInteger('creator');
-            $table->unsignedBigInteger('editor')->nullable();
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('brand_id');
-
-
+            $table->unsignedBigInteger('creator');
+            $table->unsignedBigInteger('editor')->nullable();
+            // Foreign key constraints with cascadeOnUpdate and restrictOnDelete
             $table->foreign('creator')->references('id')->on('users')
-                ->cascadeOnUpdate()->restrictOnDelete();
-                $table->foreign('editor')->references('id')->on('users')
-                ->cascadeOnUpdate()->restrictOnDelete();
-            $table->foreign('category_id')->references('id')->on('categories')
-                ->cascadeOnUpdate()->restrictOnDelete();
+            ->cascadeOnUpdate()->restrictOnDelete();
+        $table->foreign('editor')->references('id')->on('users')
+            ->cascadeOnUpdate()->restrictOnDelete();
+        $table->foreign('category_id')->references('id')->on('categories')
+            ->cascadeOnUpdate()->restrictOnDelete();
 
-            $table->foreign('brand_id')->references('id')->on('brands')
-                ->restrictOnDelete()
-                ->cascadeOnUpdate();
+        $table->foreign('brand_id')->references('id')->on('brands')
+            ->restrictOnDelete()
+            ->cascadeOnUpdate();
+
             $table->string('name',100);
             $table->string('code')->nullable()->unique();
             $table->string('price',50);
@@ -43,6 +43,8 @@ return new class extends Migration
 
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
+
+
 
         });
     }

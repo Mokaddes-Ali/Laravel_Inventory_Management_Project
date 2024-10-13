@@ -28,6 +28,16 @@ Route::middleware('auth')->group(function () {
     Route::get('/delete/{id}', [CustomerController::class, 'destroy']);
 });
 
+
+Route::middleware('auth')->group(function () {
+    Route::get('/categories', [CategoriesController::class, 'index'])->name('index');
+    Route::post('/categories/submit', [CategoriesController::class, 'store'])->name('categories.store');
+    Route::get('/categories/show', [CategoriesController::class, 'show']);
+    Route::get('/categories/edit/{id}', [CategoriesController::class, 'edit']);
+    Route::post('/categories/update', [CategoriesController::class, 'update']);
+    Route::get('/delete/{id}', [CategoriesController::class, 'destroy']);
+});
+
 Route::middleware('auth')->group(function () {
     Route::get('/client', [ClientController::class, 'index'])->name('index');
     Route::post('/client/submit', [ClientController::class, 'store'])->name('store');

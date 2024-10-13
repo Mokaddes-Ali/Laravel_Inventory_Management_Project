@@ -1,40 +1,39 @@
-
-
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <h2>Category Details</h2>
+    <h1>Categories</h1>
 
-    <table class="table table-bordered mt-4">
+    <a href="{{ route('categories.create') }}" class="btn btn-primary">Add New Category</a>
+
+    <table class="min-w-full border-collapse border border-gray-300 mt-4">
         <thead>
             <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Remarks</th>
-                <th>Slug</th>
-                <th>Status</th>
+                <th class="border border-gray-300 px-4 py-2">ID</th>
+                <th class="border border-gray-300 px-4 py-2">Name</th>
+                <th class="border border-gray-300 px-4 py-2">Remarks</th>
+                <th class="border border-gray-300 px-4 py-2">Status</th>
+                <th class="border border-gray-300 px-4 py-2">Actions</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>{{ $category->id }}</td>
-                <td>{{ $category->name }}</td>
-                <td>{{ $category->remarks }}</td>
-                <td>{{ $category->slug }}</td>
-                <td>{{ $category->status }}</td>
-            </tr>
+            @foreach ($categories as $category)
+                <tr>
+                    <td class="border border-gray-300 px-4 py-2">{{ $category->id }}</td>
+                    <td class="border border-gray-300 px-4 py-2">{{ $category->name }}</td>
+                    <td class="border border-gray-300 px-4 py-2">{{ $category->remarks }}</td>
+                    <td class="border border-gray-300 px-4 py-2">{{ $category->status ? 'Active' : 'Inactive' }}</td>
+                    <td class="border border-gray-300 px-4 py-2">
+                        <a href="{{ route('categories.show', $category->id) }}" class="text-blue-500">View</a>
+                        <a href="{{ route('categories.edit', $category->id) }}" class="text-yellow-500">Edit</a>
+                        <form action="{{ route('categories.destroy', $category->id) }}" method="POST" style="display:inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="text-red-500">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            @endforeach
         </tbody>
     </table>
-
-    <div class="mt-4">
-        <a href="{{ route('categories.index') }}" class="btn btn-secondary">Back to List</a>
-        <a href="{{ route('categories.edit', $category->id) }}" class="btn btn-warning">Edit</a>
-        <form action="{{ route('categories.destroy', $category->id) }}" method="POST" style="display:inline;">
-            @csrf
-            @method('DELETE')
-            <button type="submit" class="btn btn-danger">Delete</button>
-        </form>
-    </div>
-</div>
 @endsection
+

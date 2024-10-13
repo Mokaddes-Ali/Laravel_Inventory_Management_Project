@@ -79,10 +79,24 @@
                                 <div class="collapse" id="sidebarEmail">
                                     <ul class="nav-second-level">
                                         <li><a href="/customer">Add Customer</a></li>
-                                        <li><a href="/customer/show">Manage Customer</a></li>
+                                        <li><a href="/customer/show">List Customer</a></li>
                                     </ul>
                                 </div>
                             </li>
+                            <li>
+                                <a href="#sidebarEmail" data-bs-toggle="collapse">
+                                    <i data-feather="mail"></i>
+                                    <span> Categories </span>
+                                    <span class="menu-arrow"></span>
+                                </a>
+                                <div class="collapse" id="sidebarEmail">
+                                    <ul class="nav-second-level">
+                                        <li><a href="/categories">Add Categories</a></li>
+                                        <li><a href="/categories/show">List Categories</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+
 
                             <li>
                                 <a href="#sidebarProjects" data-bs-toggle="collapse">

@@ -20,7 +20,7 @@ class CategoriesController extends Controller
 
     public function show()
     {
-        $all = Categories::paginate(5);
+        $all = Categories::orderBy('id', 'asc')->paginate(15);
         return view('admin.category.show', compact('all'));
     }
 

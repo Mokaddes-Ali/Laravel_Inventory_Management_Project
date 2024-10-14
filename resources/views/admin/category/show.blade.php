@@ -101,31 +101,9 @@
         display: flex;
         justify-content: center;
         padding: 1rem 0;
-        background-color: #000;
         height: 10px;
     }
-    .pagination .page-link {
-        padding: 0.5rem 1rem;
-        margin: 0 0.25rem;
-        border: 1px solid #ccc;
-        border-radius: 0.25rem;
-        color: #555;
-        background-color: #fff;
-        transition: background-color 0.3s ease, color 0.3s ease;
-    }
-    .pagination .page-link:hover {
-        background-color: #f5f5f5;
-        color: #000;
-    }
-    .pagination .active .page-link {
-        background-color: #007bff;
-        border-color: #007bff;
-        color: #fff;
-    }
-    .pagination .disabled .page-link {
-        opacity: 0.6;
-        pointer-events: none;
-    }
+
 
 
      </style>
@@ -176,9 +154,9 @@
                          </tbody>
                      </table>
 
-                     <div class="pagination">
+                 
                         {{ $all->links() }}
-                    </div>
+
                  </div>
                  </div>
              </div>

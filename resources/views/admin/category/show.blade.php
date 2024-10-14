@@ -1,37 +1,4 @@
-{{-- @extends('layouts.master')
 
-@section('content')
-    <h1>Categories</h1>
-
-    <a href="{{ route('categories.index') }}" class="btn btn-primary">Add New Category</a>
-
-    <table class="min-w-full border-collapse border border-gray-300 mt-4">
-        <thead>
-            <tr>
-                <th class="border border-gray-300 px-4 py-2">ID</th>
-                <th class="border border-gray-300 px-4 py-2">Name</th>
-                <th class="border border-gray-300 px-4 py-2">Remarks</th>
-                <th class="border border-gray-300 px-4 py-2">Status</th>
-                <th class="border border-gray-300 px-4 py-2">Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($all as $category)
-                <tr>
-                    <td class="border border-gray-300 px-4 py-2">{{ $category->id }}</td>
-                    <td class="border border-gray-300 px-4 py-2">{{ $category->name }}</td>
-                    <td class="border border-gray-300 px-4 py-2">{{ $category->remarks }}</td>
-                    <td class="border border-gray-300 px-4 py-2">{{ $category->status ? 'Active' : 'Inactive' }}</td>
-                    <td class="border border-gray-300 px-4 py-2">
-                        <a href="{{ route('categories.edit', $category->id) }}" class="text-yellow-500">Edit</a>
-                        <a class="btn btn-danger btn-lg" onclick="return confirm('Are You Sure Delete!')" href="{{ url('/categories/delete', $category->id)}}">delete</a>
-                    </td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
-@endsection
- --}}
  @extends('layouts.master')
 
 @section('content')
@@ -40,10 +7,10 @@
              font-family: 'Raleway', sans-serif;
              padding: 0;
              border: none;
-             box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+
          }
          .panel .panel-heading {
-             background: #535353;
+
              padding: 15px;
              border-radius: 0;
          }
@@ -86,8 +53,9 @@
              background: #8D8D8D;
              font-size: 17px;
              font-weight: 700;
+             position: relative;
              padding: 12px;
-             border-bottom: none;
+             border-bottom:cadetblue;
          }
          .panel .panel-body .table thead tr th:nth-of-type(1) { width: 120px; }
          .panel .panel-body .table thead tr th:nth-of-type(3) { width: 50%; }
@@ -96,7 +64,7 @@
              background: #fff;
              font-size: 15px;
              font-weight: 500;
-             padding: 13px;
+             padding: 10px;
              vertical-align: middle;
              border-color: #e7e7e7;
          }
@@ -112,7 +80,8 @@
              font-size: 13px;
              line-height: 28px;
              height: 28px;
-             width: 33px;
+             width: 25px;
+             border-radius: 100%;
              padding: 0;
              border-radius: 0;
              transition: all 0.3s ease 0s;
@@ -147,7 +116,7 @@
      </style>
  </head>
  <body>
- <div class="container">
+ <div class="">
      <div class="row">
          <div class="col-md-offset-1 col-md-10">
              <div class="panel">
@@ -163,26 +132,29 @@
                          <thead>
                              <tr>
                                 <tr>
-                                    <th class="border border-gray-300 px-4 py-2">ID</th>
-                                    <th class="border border-gray-300 px-4 py-2">Name</th>
-                                    <th class="border border-gray-300 px-4 py-2">Remarks</th>
-                                    <th class="border border-gray-300 px-4 py-2">Status</th>
-                                    <th class="border border-gray-300 px-4 py-2">Actions</th>
+                                    <th class="border px-2 py-1">ID</th>
+                                    <th class="border px-2 py-1">Name</th>
+                                    <th class="border px-2 py-1">Remarks</th>
+                                    <th class="border  px-2 py-1">Status</th>
+                                    <th class="border px-2 py-1">Actions</th>
+                                    <th class="border px-2 py-1">View</th>
                                 </tr>
                              </tr>
                          </thead>
                          <tbody>
                             @foreach ($all as $category)
                              <tr>
+
+                                 <td class="border  px-2 py-1">{{ $category->id }}</td>
+                                 <td class="border  px-2 py-1">{{ $category->name }}</td>
+                                 <td class="border  px-2 py-1">{{ $category->remarks }}</td>
+                                 <td class="border border-gray-300 px-2 py-1">{{ $category->status ? 'Active' : 'Inactive' }}</td>
                                  <td>
-                                     <ul class="action-list">
-                                         <li><a href="#" class="btn btn-primary"><i class="fa fa-pencil-alt"></i></a></li>
-                                         <li><a href="#" class="btn btn-danger"><i class="fa fa-times"></i></a></li>
-                                     </ul>
-                                 </td>
-                                 <td class="border border-gray-300 px-4 py-2">{{ $category->id }}</td>
-                                 <td class="border border-gray-300 px-4 py-2">{{ $category->name }}</td>
-                                 <td class="border border-gray-300 px-4 py-2">{{ $category->remarks }}</td>
+                                    <ul class="action-list">
+                                        <li><a href="#" class="btn btn-primary"><i class="fa fa-pencil-alt"></i></a></li>
+                                        <li><a href="#" class="btn btn-danger"><i class="fa fa-times"></i></a></li>
+                                    </ul>
+                                </td>
                                  <td><a href="#" class="btn btn-sm btn-success"><i class="fa fa-search"></i></a></td>
                              </tr>
                                 @endforeach

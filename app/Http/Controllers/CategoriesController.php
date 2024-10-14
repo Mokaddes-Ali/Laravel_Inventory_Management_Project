@@ -71,13 +71,13 @@ class CategoriesController extends Controller
     {
         dd($request->all());
 
-        $id = $request->id;
+
 
         // Validate the input
         $request->validate([
             'name' => 'required|string|max:50',
             'remarks' => 'nullable|string|max:200',
-            
+
         ]);
 
 

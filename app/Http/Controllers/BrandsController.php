@@ -18,34 +18,40 @@ public function show(){
 }
 
 
-public function create(Request $request){
-    // dd($request->all());
-        $request->validate([
+public function create(Request $request) {
+    // Validate the incoming request
+    $request->validate([
         'name' => 'required|max:40',
         'brandImg' => 'required|image|mimes:jpeg,png,gif|max:2048',
-        'creator' => Auth::user()->id,
     ]);
 
     $image_rename = '';
+
+    // Check if an image file has been uploaded
     if ($request->hasFile('brandImg')) {
         $image = $request->file('brandImg');
         $ext = $image->getClientOriginalExtension();
         $image_rename = time() . '_' . rand(100000, 10000000) . '.' . $ext;
+
+        // Move the uploaded image to the public path
         $image->move(public_path('BrandImage'), $image_rename);
     }
 
-    $insert = Brands::insertGetId([
-        'name' => $request['name'],
-        'brandImg' => $image_rename ,
+    // Attempt to insert the brand data into the database
+    $insert = Brands::create([
+        'name' => $request->name, // Use $request->name for better readability
+        'brandImg' => $image_rename,
+        'creator' => Auth::user()->id, // Add the creator directly here
     ]);
 
+    // Redirect based on whether the insertion was successful
     if ($insert) {
-        return redirect()-> route('show')->with('success', 'Data inserted successfully');
-
+        return redirect()->route('show')->with('success', 'Data inserted successfully');
     } else {
         return back()->with('fail', 'Data insertion failed');
     }
 }
+
 
 public function edit($id){
     $record = Brands::findOrFail($id);

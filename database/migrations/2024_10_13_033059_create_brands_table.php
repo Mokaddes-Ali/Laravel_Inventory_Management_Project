@@ -12,10 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('brands', function (Blueprint $table) {
-            
+
             $table->id();
             $table->string('brandName',50);
-            $table->string('brandImg',300)->nullable();
+            $table->string('brandImg')->nullable();
             $table->unsignedBigInteger('creator');
             $table->unsignedBigInteger('editor')->nullable();
 

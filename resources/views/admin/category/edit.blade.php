@@ -6,9 +6,8 @@
 
         <div class="row">
             <div class="col-md-8">
-                <form action="{{ route('categories.update', $category->id) }}" method="POST">
+                <form action="{{ route('categories.update') }}" method="POST">
                     @csrf
-                    @method('PUT')
 
                     <!-- Name Field -->
                     <div class="form-group mb-3">

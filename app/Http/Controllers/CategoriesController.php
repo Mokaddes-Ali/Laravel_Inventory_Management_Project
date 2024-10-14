@@ -70,26 +70,23 @@ class CategoriesController extends Controller
     public function update(Request $request)
     {
         dd($request->all());
+        $id = $request->id;
 
-
-
-        // Validate the input
         $request->validate([
             'name' => 'required|string|max:50',
             'remarks' => 'nullable|string|max:200',
-
         ]);
 
-
-
-        $updated = $category->update([
+        $update = Categories::where('id',$id)->update([
             'name' => $request->name,
             'remarks' => $request->remarks,
-            'editor' => Auth::user()->id,
+            'slug' => uniqid().rand(10000, 10000000),
+            'status'=> 1,
+            'editor' =>Auth:: user()->id,
         ]);
 
 
-        if ($updated) {
+        if ($update) {
             return redirect()->route('categories.index')->with('success', 'Category updated successfully.');
         } else {
             return back()->with('fail', 'Failed to update category.');

@@ -112,8 +112,6 @@
                                 </div>
                             </li>
 
-
-
                             <li>
                                 <a href="#sidebarProjects" data-bs-toggle="collapse">
                                     <i data-feather="briefcase"></i>

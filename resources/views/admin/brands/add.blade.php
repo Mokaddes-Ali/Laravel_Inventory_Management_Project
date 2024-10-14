@@ -1,35 +1,28 @@
 @extends('layouts.master')
 
 @section('content')
-    <div class="container">
-        <h1>Add New Brand</h1>
-
-        <!-- Show Validation Errors -->
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-
-        <form action="{{ route('brands.store') }}" method="POST">
+<div class="card ">
+    <div class="card-header w-36 h-11">
+        Client Manage
+    </div>
+    @if(session()->has('success'))
+    <div class="alert alert-success">
+        {{ session()->get('success') }}
+    </div>
+@endif
+        <form method = "POST" action = "{{ url('/brands/submit') }}"  enctype="multipart/form-data">
             @csrf
             <div class="form-group">
-                <label for="brandName">Brand Name:</label>
-                <input type="text" name="brandName" id="brandName" class="form-control" value="{{ old('brandName') }}" required>
+              <label for="exampleInputEmail1">Name</label>
+              <input type="text" name = "name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Name">
             </div>
 
             <div class="form-group">
-                <label for="brandImg">Brand Image URL (Optional):</label>
-                <input type="text" name="brandImg" id="brandImg" class="form-control" value="{{ old('brandImg') }}">
-            </div>
+                <label for="exampleInputPassword1">BrandsImage</label>
+                <input type="file"  name = "brandImg"  class="form-control" id="exampleInputPassword1" placeholder="Input a Image">
+              </div>
+            <button type="submit" class="btn btn-primary mt-3">Submit</button>
+          </form>
+  </div>
 
-           
-
-            <button type="submit" class="btn btn-primary">Add Brand</button>
-        </form>
-    </div>
 @endsection

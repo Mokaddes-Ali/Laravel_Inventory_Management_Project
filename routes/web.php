@@ -43,13 +43,12 @@ Route::middleware('auth')->group(function () {
 
 
 Route::middleware('auth')->group(function () {
-Route::get('/brands', [BrandsController::class, 'index'])->name('brands.index');
-Route::get('/brands/create', [BrandsController::class, 'create'])->name('brands.create');
-Route::post('/brands', [BrandsController::class, 'store'])->name('brands.store');
-Route::get('/brands/show', [BrandsController::class, 'show'])->name('brands.show');
-Route::get('/brands/{id}/edit', [BrandsController::class, 'edit'])->name('brands.edit');
-Route::put('/brands/{id}', [BrandsController::class, 'update'])->name('brands.update');
-Route::delete('/brands/{id}', [BrandsController::class, 'destroy'])->name('brands.destroy');
+    Route::get('/brands', [BrandsController::class, 'index'])->name('index');
+    Route::post('/brands/submit', [BrandsController::class, 'create'])->name('create');
+    Route::get('/brands/show', [BrandsController::class, 'show']) -> name('show');
+    Route::get('/brands/edit/{id}', [BrandsController::class, 'edit']);
+    Route::post('/brands/update', [BrandsController::class, 'update']);
+    Route::get('/delete/{id}', [BrandsController::class, 'destroy']);
 });
 
 // Route::middleware('auth')->group(function () {

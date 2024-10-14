@@ -36,7 +36,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/categories/submit', [CategoriesController::class, 'store'])->name('categories.store');
     Route::get('/categories/show', [CategoriesController::class, 'show']);
     Route::get('/categories/edit/{id}', [CategoriesController::class, 'edit'])->name('categories.edit');
-    Route::post('/categories/update', [CategoriesController::class, 'update']);
+    Route::put('/categories/update', [CategoriesController::class, 'update'])->name('categories.update');
     Route::get('/categories/delete/{id}', [CategoriesController::class, 'destroy']);
 });
 

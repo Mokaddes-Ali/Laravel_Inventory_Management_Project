@@ -20,7 +20,7 @@ class CategoriesController extends Controller
 
     public function show()
     {
-        $all = Categories::orderBy('id', 'asc')->paginate(7);
+        $all = Categories::orderBy('id', 'asc')->paginate(9);
         return view('admin.category.show', compact('all'));
     }
 
@@ -59,28 +59,43 @@ class CategoriesController extends Controller
     }
 
 
+    public function edit($id)
+    {
+        $category = Categories::findOrFail($id);
+        return view('admin.category.edit', compact('category'));
+    }
 
 
 
     public function update(Request $request)
     {
+        dd($request->all());
+
+        $id = $request->id;
+
+        // Validate the input
         $request->validate([
             'name' => 'required|string|max:50',
-           'remarks' => 'nullable|string|max:200',
-           'slug' => 'nullable|string|max:50|unique:categories,slug,' . $id,
-           'status' => 'required|integer|in:0,1',
+            'remarks' => 'nullable|string|max:200',
+            
         ]);
 
-        $category->update([
+
+
+        $updated = $category->update([
             'name' => $request->name,
             'remarks' => $request->remarks,
-            'slug' => $request->slug,
-            'status' => $request->status,
-            'editor' => auth()->id(),
+            'editor' => Auth::user()->id,
         ]);
 
-        return redirect()->route('categories.index')->with('success', 'Category updated successfully.');
+
+        if ($updated) {
+            return redirect()->route('categories.index')->with('success', 'Category updated successfully.');
+        } else {
+            return back()->with('fail', 'Failed to update category.');
+        }
     }
+
 
     public function destroy(Request $request)
     {

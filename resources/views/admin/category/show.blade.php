@@ -11,7 +11,7 @@
          }
          .panel .panel-heading {
 
-             padding: 15px;
+             padding: 5px;
              border-radius: 0;
          }
          .panel .panel-heading .btn {
@@ -32,11 +32,11 @@
          }
          .panel .panel-heading .form-horizontal label {
              color: #fff;
-             margin-right: 10px;
+             margin-right: 4px;
          }
          .panel .panel-heading .form-horizontal .form-control {
              display: inline-block;
-             width: 80px;
+             width: 20px;
              border: none;
              border-radius: 0;
          }
@@ -53,10 +53,8 @@
          .panel .panel-body .table thead tr th {
              color: #fff;
              background: #8D8D8D;
-             font-size: 17px;
-             font-weight: 700;
-             position: relative;
-             padding: 12px;
+             font-size: 15px;
+             font-weight: 600;
              border-bottom:cadetblue;
          }
          .panel .panel-body .table thead tr th:nth-of-type(1) { width: 50px; }
@@ -67,7 +65,7 @@
              background: #fff;
              font-size: 15px;
              font-weight: 500;
-             padding: 10px;
+             padding: 4px;
              vertical-align: middle;
              border-color: #e7e7e7;
          }
@@ -89,15 +87,7 @@
              border-radius: 0;
              transition: all 0.3s ease 0s;
          }
-         .panel .panel-body .table tbody .action-list li a:hover { box-shadow: 0 0 5px #ddd; }
-         .panel .panel-footer {
-             color: #fff;
-             background: #535353;
-             font-size: 16px;
-             line-height: 33px;
-             padding: 25px 15px;
-             border-radius: 0;
-         }
+
 
     .pagination {
         display: flex;
@@ -117,21 +107,21 @@
                  <div class="panel-heading">
                      <div class="row">
                          <div class="col-sm-12 col-xs-12">
-                             <a href="#" class="btn btn-sm btn-primary pull-left"><i class="fa fa-plus-circle"></i> Add New</a>
+                             <a href="#" class="btn mt-3 mb-3  btn-sm btn-primary pull-left"><i class="fa fa-plus-circle"></i> Add New</a>
                          </div>
                      </div>
                  </div>
-                 <div class="panel-body table-responsive">
+                 <div class="panel-body ">
                      <table class="table">
                          <thead>
                              <tr>
                                 <tr>
                                     <th class="border">ID</th>
-                                    <th class="border px-2 py-1">Name</th>
-                                    <th class="border px-2 py-1">Remarks</th>
-                                    <th class="border  px-2 py-1">Status</th>
-                                    <th class="border px-2 py-1">Actions</th>
-                                    <th class="border px-2 py-1">View</th>
+                                    <th class="border">Name</th>
+                                    <th class="border ">Remarks</th>
+                                    <th class="border  ">Status</th>
+                                    <th class="border ">Actions</th>
+                                    <th class="border ">View</th>
                                 </tr>
                              </tr>
                          </thead>
@@ -145,7 +135,7 @@
                                  <td class="border border-gray-300 px-2 py-1">{{ $category->status ? 'Active' : 'Inactive' }}</td>
                                  <td>
                                     <ul class="action-list">
-                                        <li><a href="#" class="btn btn-primary"><i class="fa fa-pencil-alt"></i></a></li>
+                                        <li><a href="{{ url('/categories/edit' , $category-> id) }}" class="btn btn-primary"><i class="fa fa-pencil-alt"></i></a></li>
                                         <li><a href="#" class="btn btn-danger"><i class="fa fa-times"></i></a></li>
                                     </ul>
                                 </td>

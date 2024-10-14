@@ -99,6 +99,8 @@ class CustomerController extends Controller
             return back()->with('fail', 'Data update failed');
         }
     }
+
+
     public function destroy($id){
         $id=intval($id);
         $customer = Customer::find($id);

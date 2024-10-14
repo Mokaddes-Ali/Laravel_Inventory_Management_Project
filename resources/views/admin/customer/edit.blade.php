@@ -3,7 +3,7 @@
 @section('content')
 <div class="card">
     <div class="card-header w-36 h-11">
-        Edit Client
+        Edit Customer
     </div>
 
     @if(session()->has('success'))

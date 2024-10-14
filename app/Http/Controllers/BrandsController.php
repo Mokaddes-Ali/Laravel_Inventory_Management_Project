@@ -103,7 +103,7 @@ public function destroy($id){
     $id=intval($id);
     $customer =Brands::find($id);
     if ($customer) {
-        $imagePath = public_path('BrandImage/' . $customer->pic);
+        $imagePath = public_path('BrandImage/' . $customer->brandImg);
         if (file_exists($imagePath)) { // Check if it's a file
             unlink($imagePath);
         }

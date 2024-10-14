@@ -2,14 +2,14 @@
 
 @section('content')
 <div class="card ">
-    <div class="card-header w-36 h-11">
-        Show Client
-</div>
-@if(session()->has('success'))
-<div class="alert alert-success">
-    {{ session()->get('success') }}
-</div>
-@endif
+    <div class="card-header d-flex w-36 h-11 ">
+        <div class="mx-5 mt-2">
+        <a href="{{ url('/customer') }}" class=""><button type="button" class="btn btn-success display-4">Add Customer</button></a>
+      </div>
+        <div class="mx-5 mt-2 text-center display-6">
+        List of Customer
+    </div>
+    </div>
 <table class="table table-striped table-responsive table-dark">
     <thead>
       <tr>

@@ -2,14 +2,15 @@
 
 @section('content')
 <div class="card ">
-    <div class="card-header w-36 h-11">
-        Client Manage
+    <div class="card-header d-flex w-36 h-11 ">
+        <div class="mx-5 mt-2">
+        <a href="{{ url('/customer/show') }}" class=""><button type="button" class="btn btn-info display-4">Go To List</button></a>
+      </div>
+        <div class="mx-5 mt-2 text-center display-6">
+        Add Cuitomer
     </div>
-    @if(session()->has('success'))
-    <div class="alert alert-success">
-        {{ session()->get('success') }}
     </div>
-@endif
+
         <form method = "POST" action = "{{ url('/customer/submit') }}"  enctype="multipart/form-data">
             @csrf
             <div class="form-group">

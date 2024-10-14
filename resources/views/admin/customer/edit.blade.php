@@ -2,31 +2,18 @@
 
 @section('content')
 <div class="card">
-    <div class="card-header w-36 h-11">
-        Edit Customer
+    <div class="card-header d-flex w-36 h-11 ">
+        <div class="mx-5 mt-2">
+        <a href="{{ url('/customer/show') }}" class=""><button type="button" class="btn btn-secondary">Back To List</button></a>
+      </div>
+        <div class="mx-5 mt-2 text-center display-6">
+        Customer Edit
+    </div>
     </div>
 
-    @if(session()->has('success'))
-        <div class="alert alert-success">
-            {{ session()->get('success') }}
-        </div>
-    @endif
 
-    @if(session()->has('fail'))
-        <div class="alert alert-danger">
-            {{ session()->get('fail') }}
-        </div>
-    @endif
 
-    @if($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
+
 
     <form method="POST" action="{{ url('/customer/update') }}" enctype="multipart/form-data">
         @csrf

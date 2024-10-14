@@ -44,6 +44,8 @@
              box-shadow: none;
              border: none;
          }
+
+
          .panel .panel-body {
              padding: 0;
              border-radius: 0;
@@ -154,7 +156,7 @@
                          </tbody>
                      </table>
 
-                 
+
                         {{ $all->links() }}
 
                  </div>

@@ -71,44 +71,47 @@
                             </li>
 
                             <li>
-                                <a href="#sidebarEmail" data-bs-toggle="collapse">
+                                <a href="#sidebarCustomer" data-bs-toggle="collapse">
                                     <i data-feather="mail"></i>
                                     <span> Customer </span>
                                     <span class="menu-arrow"></span>
                                 </a>
-                                <div class="collapse" id="sidebarEmail">
+                                <div class="collapse" id="sidebarCustomer">
                                     <ul class="nav-second-level">
                                         <li><a href="/customer">Add Customer</a></li>
                                         <li><a href="/customer/show">List Customer</a></li>
                                     </ul>
                                 </div>
                             </li>
+
                             <li>
-                                <a href="#sidebarEmail" data-bs-toggle="collapse">
+                                <a href="#sidebarCategories" data-bs-toggle="collapse">
                                     <i data-feather="mail"></i>
                                     <span> Categories </span>
                                     <span class="menu-arrow"></span>
                                 </a>
-                                <div class="collapse" id="sidebarEmail">
+                                <div class="collapse" id="sidebarCategories">
                                     <ul class="nav-second-level">
                                         <li><a href="/categories">Add Categories</a></li>
                                         <li><a href="/categories/show">List Categories</a></li>
                                     </ul>
                                 </div>
                             </li>
+
                             <li>
-                                <a href="#sidebarEmail" data-bs-toggle="collapse">
+                                <a href="#sidebarBrands" data-bs-toggle="collapse">
                                     <i data-feather="mail"></i>
                                     <span> Brands </span>
                                     <span class="menu-arrow"></span>
                                 </a>
-                                <div class="collapse" id="sidebarEmail">
+                                <div class="collapse" id="sidebarBrands">
                                     <ul class="nav-second-level">
                                         <li><a href="/brands">Add Brands</a></li>
                                         <li><a href="/brands/show">List Brands</a></li>
                                     </ul>
                                 </div>
                             </li>
+
 
 
                             <li>

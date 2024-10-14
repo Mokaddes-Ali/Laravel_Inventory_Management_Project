@@ -69,7 +69,7 @@ class CategoriesController extends Controller
 
     public function update(Request $request)
     {
-        dd($request->all());
+        // dd($request->all());
         $id = $request->id;
 
         $request->validate([
@@ -80,8 +80,7 @@ class CategoriesController extends Controller
         $update = Categories::where('id',$id)->update([
             'name' => $request->name,
             'remarks' => $request->remarks,
-            'slug' => uniqid().rand(10000, 10000000),
-            'status'=> 1,
+
             'editor' =>Auth:: user()->id,
         ]);
 

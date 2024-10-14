@@ -13,8 +13,7 @@ use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\CategoriesController;
-
-
+use App\Http\Controllers\ProductsController;
 
 Route::get('/dashboard', function () {
     return view('layouts.master');
@@ -50,6 +49,21 @@ Route::middleware('auth')->group(function () {
     Route::post('/brands/update', [BrandsController::class, 'update']);
     Route::get('/delete/{id}', [BrandsController::class, 'destroy']);
 });
+
+
+Route::middleware('auth')->group(function () {
+
+Route::get('/product/list', [ProductsController::class, 'index'])->name('product.list');
+Route::get('/product/add', [ProductsController::class, 'add'])->name('product.add');
+Route::post('/product/submit', [ProductsController::class, 'store'])->name('product.store');
+Route::get('/product/edit/{id}', [ProductsController::class, 'edit'])->name('product.edit');
+Route::post('/product/update', [ProductsController::class, 'update'])->name('product.update');
+Route::get('/product/delete/{id}', [ProductsController::class, 'delete'])->name('product.delete');
+
+
+
+});
+
 
 // Route::middleware('auth')->group(function () {
 //     Route::get('/client', [ClientController::class, 'index'])->name('index');

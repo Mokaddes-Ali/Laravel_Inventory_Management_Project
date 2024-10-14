@@ -120,8 +120,8 @@
                                 </a>
                                 <div class="collapse" id="sidebarProjects">
                                     <ul class="nav-second-level">
-                                        <li><a href="/project">Add Project</a></li>
-                                        <li><a href="/show/project">All Projects</a></li>
+                                        <li><a href="/product/add">Add Project</a></li>
+                                        <li><a href="/product/list">All Projects</a></li>
                                     </ul>
                                 </div>
                             </li>

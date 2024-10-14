@@ -48,7 +48,6 @@
                     <img src="{{ asset('images/' . $record->pic) }}" alt="Customer Image" width="30" height="40" class="img-thumbnail">
                 </div>
             </div>
-
             <!-- Submit Button -->
             <button type="submit" class="btn btn-primary mt-1">Update</button>
         </form>

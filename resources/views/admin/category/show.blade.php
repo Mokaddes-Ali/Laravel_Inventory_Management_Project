@@ -57,8 +57,9 @@
              padding: 12px;
              border-bottom:cadetblue;
          }
-         .panel .panel-body .table thead tr th:nth-of-type(1) { width: 120px; }
-         .panel .panel-body .table thead tr th:nth-of-type(3) { width: 50%; }
+         .panel .panel-body .table thead tr th:nth-of-type(1) { width: 50px; }
+         .panel .panel-body .table thead tr th:nth-of-type(2) { width: 20%; }
+         .panel .panel-body .table thead tr th:nth-of-type(3) { width: 40%; }
          .panel .panel-body .table tbody tr td {
              color: #555;
              background: #fff;
@@ -77,10 +78,10 @@
          .panel .panel-body .table tbody .action-list li { display: inline-block; }
          .panel .panel-body .table tbody .action-list li a {
              color: #fff;
-             font-size: 13px;
+             font-size: 20px;
              line-height: 28px;
              height: 28px;
-             width: 25px;
+             width: 32px;
              border-radius: 100%;
              padding: 0;
              border-radius: 0;
@@ -95,30 +96,43 @@
              padding: 25px 15px;
              border-radius: 0;
          }
-         .pagination { margin: 0; }
-         .pagination li a {
-             color: #fff;
-             background-color: rgba(0, 0, 0, 0.3);
-             font-size: 15px;
-             font-weight: 700;
-             margin: 0 2px;
-             border: none;
-             border-radius: 0;
-             transition: all 0.3s ease 0s;
-         }
-         .pagination li a:hover,
-         .pagination li a:focus,
-         .pagination li.active a {
-             color: #fff;
-             background-color: #000;
-             box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
-         }
+
+    .pagination {
+        display: flex;
+        justify-content: center;
+        padding: 1rem 0;
+        background-color: #000;
+        height: 10px;
+    }
+    .pagination .page-link {
+        padding: 0.5rem 1rem;
+        margin: 0 0.25rem;
+        border: 1px solid #ccc;
+        border-radius: 0.25rem;
+        color: #555;
+        background-color: #fff;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    .pagination .page-link:hover {
+        background-color: #f5f5f5;
+        color: #000;
+    }
+    .pagination .active .page-link {
+        background-color: #007bff;
+        border-color: #007bff;
+        color: #fff;
+    }
+    .pagination .disabled .page-link {
+        opacity: 0.6;
+        pointer-events: none;
+    }
+
+
      </style>
- </head>
- <body>
+
  <div class="">
      <div class="row">
-         <div class="col-md-offset-1 col-md-10">
+         <div class="col-md-offset-1 col-md-11">
              <div class="panel">
                  <div class="panel-heading">
                      <div class="row">
@@ -132,7 +146,7 @@
                          <thead>
                              <tr>
                                 <tr>
-                                    <th class="border px-2 py-1">ID</th>
+                                    <th class="border">ID</th>
                                     <th class="border px-2 py-1">Name</th>
                                     <th class="border px-2 py-1">Remarks</th>
                                     <th class="border  px-2 py-1">Status</th>
@@ -145,7 +159,7 @@
                             @foreach ($all as $category)
                              <tr>
 
-                                 <td class="border  px-2 py-1">{{ $category->id }}</td>
+                                 <td class="border ">{{ $category->id }}</td>
                                  <td class="border  px-2 py-1">{{ $category->name }}</td>
                                  <td class="border  px-2 py-1">{{ $category->remarks }}</td>
                                  <td class="border border-gray-300 px-2 py-1">{{ $category->status ? 'Active' : 'Inactive' }}</td>
@@ -155,28 +169,17 @@
                                         <li><a href="#" class="btn btn-danger"><i class="fa fa-times"></i></a></li>
                                     </ul>
                                 </td>
-                                 <td><a href="#" class="btn btn-sm btn-success"><i class="fa fa-search"></i></a></td>
+                                 <td><a href="#" class="btn btn-sm btn-success"><i class="fa fa-eye"></i></a></td>
                              </tr>
                                 @endforeach
                              <tr>
                          </tbody>
                      </table>
+
+                     <div class="pagination">
+                        {{ $all->links() }}
+                    </div>
                  </div>
-                 <div class="panel-footer">
-                     <div class="row">
-                         <div class="col-sm-6 col-xs-6">showing <b>5</b> out of <b>50</b> records</div>
-                         <div class="col-sm-6 col-xs-6 text-right">
-                             <ul class="pagination">
-                                 <li><a href="#">&laquo;</a></li>
-                                 <li class="active"><a href="#">1</a></li>
-                                 <li><a href="#">2</a></li>
-                                 <li><a href="#">3</a></li>
-                                 <li><a href="#">4</a></li>
-                                 <li><a href="#">5</a></li>
-                                 <li><a href="#">&raquo;</a></li>
-                             </ul>
-                         </div>
-                     </div>
                  </div>
              </div>
          </div>

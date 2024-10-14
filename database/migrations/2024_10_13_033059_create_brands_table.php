@@ -15,7 +15,7 @@ return new class extends Migration
 
             $table->id();
             $table->string('brandName',50);
-            $table->string('brandImg')->nullable();
+            $table->string('brandImg, 300')->nullable();
             $table->unsignedBigInteger('creator');
             $table->unsignedBigInteger('editor')->nullable();
 

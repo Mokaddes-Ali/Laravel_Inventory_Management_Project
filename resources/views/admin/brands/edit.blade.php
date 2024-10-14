@@ -33,13 +33,13 @@
         <input type="hidden" value="{{ $record->id }}" name="id">
 
         <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" value="{{ $record->name }}" name="name" class="form-control" id="name" placeholder="Enter Name">
+            <label for="name">BrandName</label>
+            <input type="text" value="{{ $record->brandName }}" name="brandName" class="form-control" id="name" placeholder="Enter Name">
         </div>
         <div class="form-group">
-            <label for="pic">BrandImage</label>
-            <input type="file" name="brandImg" class="form-control" id="pic" placeholder="Input an Image">
-            <img src="{{ asset('BrandImage/' . $record->pic) }}" alt="img" width="50" height="50">
+            <label for="brandImg">BrandImage</label>
+            <input type="file" name="brandImg" class="form-control" id="brandImg" placeholder="Input an Image">
+            <img src="{{ asset('BrandImage/' . $record->brandImg) }}" alt="img" width="50" height="50">
         </div>
         <button type="submit" class="btn btn-primary mt-3">Update</button>
     </form>

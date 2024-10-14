@@ -24,7 +24,7 @@ Route::get('/dashboard', function () {
 Route::middleware('auth')->group(function () {
     Route::get('/customer', [CustomerController::class, 'index'])->name('index');
     Route::post('/customer/submit', [CustomerController::class, 'create'])->name('create');
-    Route::get('/customer/show', [CustomerController::class, 'show']) -> name('show');
+    Route::get('/customer/show', [CustomerController::class, 'show']) -> name('customer.show');
     Route::get('/customer/edit/{id}', [CustomerController::class, 'edit']);
     Route::post('/customer/update', [CustomerController::class, 'update']);
     Route::get('/delete/{id}', [CustomerController::class, 'destroy']);
@@ -45,7 +45,7 @@ Route::middleware('auth')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('/brands', [BrandsController::class, 'index'])->name('index');
     Route::post('/brands/submit', [BrandsController::class, 'create'])->name('create');
-    Route::get('/brands/show', [BrandsController::class, 'show']) -> name('show');
+    Route::get('/brands/show', [BrandsController::class, 'show']) -> name('brands.show');
     Route::get('/brands/edit/{id}', [BrandsController::class, 'edit']);
     Route::post('/brands/update', [BrandsController::class, 'update']);
     Route::get('/delete/{id}', [BrandsController::class, 'destroy']);

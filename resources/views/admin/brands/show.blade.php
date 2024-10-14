@@ -14,7 +14,7 @@
     <thead>
       <tr>
         <th scope="col">Id</th>
-        <th scope="col">Name</th>
+        <th scope="col">BrandName</th>
         <th scope="col">BrandImage</th>
         <th scope="col">Action</th>
       </tr>
@@ -23,7 +23,7 @@
         @foreach ($all as $row)
       <tr>
         <th scope="row">{{ $row['id'] }}</th>
-        <td>{{ $row['name'] }}</td>
+        <td>{{ $row['brandName'] }}</td>
         <td>
             <img src="{{ asset('BrandImage/'.$row['brandImg']) }}" alt="img" width="50" height="50">
         </td>

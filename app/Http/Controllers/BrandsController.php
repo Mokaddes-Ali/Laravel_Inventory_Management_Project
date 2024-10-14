@@ -21,7 +21,7 @@ public function show(){
 public function create(Request $request) {
     // Validate the incoming request
     $request->validate([
-        'name' => 'required|max:40',
+        'brandName' => 'required|max:40',
         'brandImg' => 'required|image|mimes:jpeg,png,gif|max:2048',
     ]);
 
@@ -39,14 +39,14 @@ public function create(Request $request) {
 
     // Attempt to insert the brand data into the database
     $insert = Brands::create([
-        'name' => $request->name, // Use $request->name for better readability
+        'brandName' => $request->brandName, // Use $request->name for better readability
         'brandImg' => $image_rename,
         'creator' => Auth::user()->id, // Add the creator directly here
     ]);
 
     // Redirect based on whether the insertion was successful
     if ($insert) {
-        return redirect()->route('show')->with('success', 'Data inserted successfully');
+        return redirect()->route('brands.show')->with('success', 'Data inserted successfully');
     } else {
         return back()->with('fail', 'Data insertion failed');
     }
@@ -62,7 +62,7 @@ public function update(Request $request){
      //dd($request->all());
     $id = $request->id;
      $request->validate([
-        'name' => 'required|max:40',
+        'brandName' => 'required|max:40',
         'brandImg' => 'nullable|mimes:jpeg,png,gif|max:2048',
     ]);
 
@@ -86,7 +86,7 @@ public function update(Request $request){
         }
 
     $update = Brands::where('id',$id)->update([
-        'name' => $request->name,
+        'brandName' => $request->brandName,
         'brandImg' => $image_rename,
         'editor' => Auth::user()->id,
     ]);

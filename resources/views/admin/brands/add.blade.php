@@ -13,8 +13,8 @@
         <form method = "POST" action = "{{ url('/brands/submit') }}"  enctype="multipart/form-data">
             @csrf
             <div class="form-group">
-              <label for="exampleInputEmail1">Name</label>
-              <input type="text" name = "name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Name">
+              <label for="exampleInputEmail1">BrandName</label>
+              <input type="text" name = "brandName" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Name">
             </div>
 
             <div class="form-group">

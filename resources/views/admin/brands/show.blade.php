@@ -28,8 +28,8 @@
             <img src="{{ asset('BrandImage/'.$row['brandImg']) }}" alt="img" width="50" height="50">
         </td>
         <td>
-            <a class="btn btn-primary btn-sm," href="{{ url('/brands/edit' , $row -> id) }}">edit</a>
-            <a class="btn btn-danger btn-lg" onclick="return confirm('Are You Sure Delete!')" href="{{ url('/delete', $row -> id)}}">delete</a>
+            <a class="btn btn-primary btn-sm," href="{{ url('/brands/edit' , $row -> id) }}"><i class="fa fa-pencil-alt"></i></a>
+            <a class="btn btn-danger btn-lg" onclick="return confirm('Are You Sure Delete!')" href="{{ url('/delete', $row -> id)}}"><i class="fa fa-times"></i></a>
         </td>
       </tr>
       @endforeach

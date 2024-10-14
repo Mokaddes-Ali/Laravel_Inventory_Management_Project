@@ -1,19 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\BrandController;
 use App\Http\Controllers\BackupController;
 use App\Http\Controllers\BrandsController;
-use App\Http\Controllers\ClientController;
-use App\Http\Controllers\IncomeController;
-use App\Http\Controllers\ExpenseController;
-use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\CategoriesController;
-use App\Http\Controllers\ProductsController;
+
 
 Route::get('/dashboard', function () {
     return view('layouts.master');
@@ -51,18 +45,6 @@ Route::middleware('auth')->group(function () {
 });
 
 
-Route::middleware('auth')->group(function () {
-
-Route::get('/product/list', [ProductsController::class, 'index'])->name('product.list');
-Route::get('/product/add', [ProductsController::class, 'add'])->name('product.add');
-Route::post('/product/submit', [ProductsController::class, 'store'])->name('product.store');
-Route::get('/product/edit/{id}', [ProductsController::class, 'edit'])->name('product.edit');
-Route::post('/product/update', [ProductsController::class, 'update'])->name('product.update');
-Route::get('/product/delete/{id}', [ProductsController::class, 'delete'])->name('product.delete');
-
-
-
-});
 
 
 // Route::middleware('auth')->group(function () {

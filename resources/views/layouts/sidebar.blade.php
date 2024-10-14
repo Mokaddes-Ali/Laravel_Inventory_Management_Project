@@ -113,15 +113,17 @@
                             </li>
 
                             <li>
-                                <a href="#sidebarProjects" data-bs-toggle="collapse">
-                                    <i data-feather="briefcase"></i>
-                                 <span> Projects </span>
-                                    <span class="menu-arrow"></span>
+                                <a href="#sidebarProducts" data-bs-toggle="collapse">
+                                    <i data-feather="mail"></i>
+                                    <span> Products </span>
+                                    <span class="menu-arrow
+                                    "></span>
                                 </a>
-                                <div class="collapse" id="sidebarProjects">
-                                    <ul class="nav-second-level">
-                                        <li><a href="/product/add">Add Project</a></li>
-                                        <li><a href="/product/list">All Projects</a></li>
+                                <div class="collapse" id="sidebarProducts">
+                                    <ul class="nav-second
+                                    -level">
+                                        <li><a href="/product">Add Products</a></li>
+                                        <li><a href="/product/show">List Products</a></li>
                                     </ul>
                                 </div>
                             </li>
@@ -134,7 +136,7 @@
                                 </a>
                                 <div class="collapse" id="sidebarIncome"> <!-- Changed id here -->
                                     <ul class="nav-second-level">
-                                        <li><a href="/income">Add Income</a></li>
+                                        <li><a href="/product/add">Add Income</a></li>
                                         <li><a href="/show/income">List Income</a></li>
                                     </ul>
                                 </div>

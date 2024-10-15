@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Customer;
 use Illuminate\Http\Request;
 use Flasher\Prime\FlasherInterface;
+use Illuminate\Support\Facades\Auth;
 
 class CustomerController extends Controller
 {
@@ -97,6 +98,8 @@ class CustomerController extends Controller
             'number' => $request->number,
             'address' => $request->address,
             'pic' => $image_rename,
+            'creator' => Auth::user()->id,
+            'slug' => uniqid().rand(10000, 10000000),
         ]);
 
         if ($update) {

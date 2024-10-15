@@ -53,13 +53,12 @@ Route::get('/products/create', [ProductController::class, 'create'])->name('prod
 
 
 Route::post('/products/store', [ProductController::class, 'store'])->name('products.store');
+Route::get('/products/edit/{id}', [ProductController::class, 'edit']);
+Route::put('/products/update/{id}', [ProductController::class, 'update']);
+Route::delete('/products/delete/{id}', [ProductController::class, 'destroy']);
 
 
-Route::get('/products/{product}/edit', [ProductController::class, 'edit'])->name('products.edit');
 
-Route::put('/products/{product}', [ProductController::class, 'update'])->name('products.update');
-
-Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
 
 });
 

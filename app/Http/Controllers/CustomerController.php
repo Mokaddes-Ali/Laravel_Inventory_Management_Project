@@ -14,7 +14,7 @@ class CustomerController extends Controller
     }
 
     public function show(){
-        $all = Customer::orderBy('id', 'asc')->paginate(20);
+        $all = Customer::orderBy('id', 'asc')->paginate(3);
         return view('admin.customer.show', compact('all'));
     }
 

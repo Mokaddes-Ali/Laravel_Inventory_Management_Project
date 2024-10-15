@@ -17,7 +17,7 @@ class CategoriesController extends Controller
 
     public function show()
     {
-        $all = Categories::orderBy('id', 'asc')->paginate(9);
+        $all = Categories::orderBy('id', 'asc')->paginate(6);
         return view('admin.category.show', compact('all'));
     }
 

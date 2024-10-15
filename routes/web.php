@@ -7,7 +7,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\CategoriesController;
-
+use App\Http\Controllers\ProductController;
 
 Route::get('/dashboard', function () {
     return view('layouts.master');
@@ -42,6 +42,16 @@ Route::middleware('auth')->group(function () {
     Route::get('/brands/edit/{id}', [BrandsController::class, 'edit']);
     Route::post('/brands/update', [BrandsController::class, 'update']);
     Route::get('/delete/{id}', [BrandsController::class, 'destroy']);
+});
+
+
+Route::middleware('auth')->group(function () {
+    Route::get('/Product', [ProductController::class, 'index'])->name('index');
+    Route::post('/Product/submit', [ProductController::class, 'create'])->name('create');
+    Route::get('/Product/show', [ProductController::class, 'show']) -> name('brands.show');
+    Route::get('/Product/edit/{id}', [ProductController::class, 'edit']);
+    Route::post('/Product/update', [ProductController::class, 'update']);
+    Route::get('/delete/{id}', [ProductController::class, 'destroy']);
 });
 
 

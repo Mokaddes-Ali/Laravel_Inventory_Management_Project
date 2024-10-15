@@ -100,7 +100,7 @@
 
                             <li>
                                 <a href="#sidebarBrands" data-bs-toggle="collapse">
-                                    <i data-feather="mail"></i>
+                                    <i data-feather="tag"></i> <!-- Icon for Brands -->
                                     <span> Brands </span>
                                     <span class="menu-arrow"></span>
                                 </a>
@@ -112,18 +112,17 @@
                                 </div>
                             </li>
 
+                            <!-- Products Section -->
                             <li>
                                 <a href="#sidebarProducts" data-bs-toggle="collapse">
-                                    <i data-feather="mail"></i>
+                                    <i data-feather="package"></i> <!-- Icon for Products -->
                                     <span> Products </span>
-                                    <span class="menu-arrow
-                                    "></span>
+                                    <span class="menu-arrow"></span>
                                 </a>
                                 <div class="collapse" id="sidebarProducts">
-                                    <ul class="nav-second
-                                    -level">
-                                        <li><a href="/product">Add Products</a></li>
-                                        <li><a href="/product/show">List Products</a></li>
+                                    <ul class="nav-second-level">
+                                        <li><a href="/Product">Add Products</a></li>
+                                        <li><a href="/products/show">List Products</a></li>
                                     </ul>
                                 </div>
                             </li>

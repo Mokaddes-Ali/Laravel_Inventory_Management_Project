@@ -15,9 +15,17 @@ class ProductController extends Controller
         {
             $products = Product::with('category', 'brand')->paginate(10);
             return view('products.index', compact('products'));
+
         }
 
-        public function create(Request $request)
+        public function create()
+        {
+            $categories = Categories::all();
+            $brands = Brands::all();
+            return view('admin.product.add', compact('categories', 'brands'));
+        }
+
+        public function store(Request $request)
         {
             // Debugging the request data (can be removed later)
             // dd($request->all());
@@ -32,7 +40,7 @@ class ProductController extends Controller
                 'code' => 'required',
                 'unit' => 'required|numeric|min:1',
                 'details' => 'nullable',
-                'img_url' => 'required|image|mimes:jpeg,png,gif|max:2048',
+                'img_url' => 'nullable|image|mimes:jpeg,png,gif|max:2048',
             ]);
 
             // Handle the image upload
@@ -45,7 +53,7 @@ class ProductController extends Controller
             }
 
             // Insert product data into the 'products' table (assuming Product model)
-            $insert = Product::insertGetId([
+            $insert = Product::create([
                 'name' => $request['name'],
                 'category_id' => $request['category_id'],
                 'brand_id' => $request['brand_id'],
@@ -65,38 +73,8 @@ class ProductController extends Controller
                 session()->flash('success', 'Product added successfully.');
                 return redirect()->back();
             } else {
-                // Display failure message
                 return back()->with('fail', 'Data insertion failed');
             }
         }
 
-        // public function edit(Request $request)
-        // {
-        //     $categories = Categories::all();
-        //     $brands = Brands::all();
-        //     return view('products.edit', compact('product', 'categories', 'brands'));
-        // }
-
-        // public function update(Request $request)
-        // {
-        //     $request->validate([
-        //         'name' => 'required|max:100',
-        //         'category_id' => 'required|exists:categories,id',
-        //         'brand_id' => 'required|exists:brands,id',
-        //         'price' => 'required',
-        //         'cost' => 'required',
-        //         'unit' => 'required',
-        //         'img_url' => 'nullable|url',
-        //         'details' => 'nullable',
-        //     ]);
-
-        //     $product->update($request->all());
-        //     return redirect()->route('products.index')->with('success', 'Product updated successfully.');
-        // }
-
-        // public function destroy(Product $product)
-        // {
-        //     $product->delete();
-        //     return redirect()->route('products.index')->with('success', 'Product deleted successfully.');
-        // }
     }

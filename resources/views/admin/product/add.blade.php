@@ -74,12 +74,11 @@
             @enderror
         </div>
 
-        <div class="form-group">
-            <label for="img_url">Image URL</label>
-            <input type="text" name="img_url" class="form-control" placeholder="Enter image URL" value="{{ old('img_url') }}">
-            @error('img_url')
-            <small class="text-danger">{{ $message }}</small>
-            @enderror
+        <div class="form-group col-md-6">
+            <label for="img_url" class="mb-1 mt-2">Image</label>
+            <input type="file" name="img_url" class="form-control-file @error('img_url') is-invalid @enderror"
+                   id="img_url" required>
+            
         </div>
 
         <div class="form-group">

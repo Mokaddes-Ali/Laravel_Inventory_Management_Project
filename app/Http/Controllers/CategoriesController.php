@@ -8,10 +8,7 @@ use Illuminate\Http\Request;
 use Flasher\Prime\FlasherInterface;
 
 class CategoriesController extends Controller
-
 {
-
-
     public function index()
     {
         $all = Categories::all();
@@ -24,11 +21,7 @@ class CategoriesController extends Controller
         return view('admin.category.show', compact('all'));
     }
 
-
-
-
     public function store(Request $request, FlasherInterface $flasher)
-    //  dd($request->all());
     {
         $request->validate([
             'name' => 'required|string|max:50',
@@ -39,22 +32,20 @@ class CategoriesController extends Controller
             'name' => $request->name,
             'remarks' => $request->remarks,
             'slug' => uniqid().rand(10000, 10000000),
-            'status'=> 1,
-            'creator' =>Auth:: user()->id,
+            'status' => 1,
+            'creator' => Auth::user()->id,
         ]);
 
         if ($insert) {
             $flasher->addSuccess('Data Inserted Successfully.', [
                 'position' => 'top-center',
                 'timeout' => 3000,
-                ]
-            );
+            ]);
             return redirect()->back();
         } else {
             return back()->with('fail', 'Data insertion failed');
         }
     }
-
 
     public function edit($id)
     {
@@ -62,25 +53,20 @@ class CategoriesController extends Controller
         return view('admin.category.edit', compact('category'));
     }
 
-
-
     public function update(Request $request)
     {
-        // dd($request->all());
-        $id = $request->id;
+        $id = $request->id; // Ensure form sends 'id' as a hidden input
 
         $request->validate([
             'name' => 'required|string|max:50',
             'remarks' => 'nullable|string|max:200',
         ]);
 
-        $update = Categories::where('id',$id)->update([
+        $update = Categories::where('id', $id)->update([
             'name' => $request->name,
             'remarks' => $request->remarks,
-
-            'editor' =>Auth:: user()->id,
+            'editor' => Auth::user()->id,
         ]);
-
 
         if ($update) {
             return redirect()->route('categories.index')->with('success', 'Category updated successfully.');
@@ -89,10 +75,10 @@ class CategoriesController extends Controller
         }
     }
 
-
-    public function destroy(Request $request)
+    public function destroy($id)
     {
-        $request->delete();
+        $category = Categories::findOrFail($id);
+        $category->delete();
         return back()->with('success', 'Data deleted successfully');
     }
 }

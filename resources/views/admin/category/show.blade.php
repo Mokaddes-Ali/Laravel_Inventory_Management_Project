@@ -121,7 +121,7 @@
                                     <th class="border ">Remarks</th>
                                     <th class="border  ">Status</th>
                                     <th class="border ">Actions</th>
-                                    <th class="border ">View</th>
+                                    {{-- <th class="border ">View</th> --}}
                                 </tr>
                              </tr>
                          </thead>
@@ -136,10 +136,10 @@
                                  <td>
                                     <ul class="action-list">
                                         <li><a href="{{ url('/categories/edit' , $category-> id) }}" class="btn btn-primary"><i class="fa fa-pencil-alt"></i></a></li>
-                                        <li><a href="#" class="btn btn-danger"><i class="fa fa-times"></i></a></li>
+                                        <li><a onclick="return confirm('Are You Sure Delete!')" href="{{ url('/delete', $category -> id)}}"  class="btn btn-danger" ><i class="fa fa-times"></i></a></li>
                                     </ul>
                                 </td>
-                                 <td><a href="#" class="btn btn-sm btn-success"><i class="fa fa-eye"></i></a></td>
+                                 {{-- <td><a href="#" class="btn btn-sm btn-success"><i class="fa fa-eye"></i></a></td> --}}
                              </tr>
                                 @endforeach
                              <tr>

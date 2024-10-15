@@ -9,6 +9,7 @@
                 <form action="{{ route('categories.update') }}" method="POST">
                     @csrf
 
+                    <input type="hidden" name="id" value="{{ $category->id }}">
                     <!-- Name Field -->
                     <div class="form-group mb-3">
                         <label for="name">Name:</label>

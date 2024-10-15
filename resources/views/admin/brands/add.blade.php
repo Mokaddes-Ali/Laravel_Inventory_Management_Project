@@ -21,8 +21,8 @@
             </div>
 
             <div class="form-group col-md-8">
-                <label for="exampleInputPassword1" class="mb-2 mt-3">BrandsImage</label>
-                <input type="file"  name = "brandImg"  class="form-control" id="exampleInputPassword1" placeholder="Input a Image">
+                <label for="exampleInputPassword1" class="mb-2 mt-3">BrandImg</label>
+                <input type="file"  name ="brandImg"  class="form-control" id="exampleInputPassword1" placeholder="Input a Image">
               </div>
             <button type="submit" class="btn btn-primary mt-3">Submit</button>
           </form>

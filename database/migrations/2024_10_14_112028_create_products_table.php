@@ -13,35 +13,25 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-
             $table->unsignedBigInteger('creator');
-            $table->unsignedBigInteger('editor')->nullable();
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('brand_id');
 
+            $table->foreign('creator')->references('id')->on('users');
+            $table->foreign('category_id')->references('id')->on('categories');
+            $table->foreign('brand_id')->references('id')->on('brands');
 
-            $table->foreign('creator')->references('id')->on('users')
-                ->cascadeOnUpdate()->restrictOnDelete();
-                $table->foreign('editor')->references('id')->on('users')
-                ->cascadeOnUpdate()->restrictOnDelete();
-            $table->foreign('category_id')->references('id')->on('categories')
-                ->cascadeOnUpdate()->restrictOnDelete();
-
-            $table->foreign('brand_id')->references('id')->on('brands')
-                ->restrictOnDelete()
-                ->cascadeOnUpdate();
-            $table->string('name',100);
-            $table->string('code')->nullable()->unique();
-            $table->string('price',50);
-            $table->string('cost',50);
-            $table->string('unit',50);
-            $table->string('img_url',100);
+            $table->string('name');
+            $table->string('code')->unique();
+            $table->decimal('price', 8, 2);
+            $table->decimal('cost', 8, 2);
+            $table->integer('unit');
+            $table->string('img_url')->nullable();
             $table->text('details')->nullable();
-            $table->string('slug',50)->nullable();
-            $table->integer('status')->default(1);
+            $table->string('slug')->nullable();
+            $table->boolean('status')->default(1);
 
-            $table->timestamp('created_at')->useCurrent();
-            $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
+            $table->timestamps();
         });
     }
 

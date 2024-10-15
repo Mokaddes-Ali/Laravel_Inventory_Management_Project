@@ -14,7 +14,7 @@ class Product extends Model
 
     // Mass assignable fields
     protected $fillable = [
-        'name', 'category_id', 'brand_id', 'price', 'cost', 'code', 'unit', 'details', 'img_url', 'creator', 'slug'
+        'name', 'category_id', 'brand_id', 'price', 'cost', 'code', 'unit', 'details', 'img_url', 'creator', 'slug', 'status'
     ];
 
     public function category()

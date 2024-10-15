@@ -52,19 +52,21 @@
                             <td>{{ $product->unit }}</td>
                             <td>
                                 @if($product->status == 1)
-                                    <span class="badge badge-success">Active</span>
+                                    <span class="badge" style="background-color: #28a745; color: #fff;">Active</span> <!-- Custom Green -->
                                 @else
-                                    <span class="badge badge-danger">Inactive</span>
+                                    <span class="badge" style="background-color: #dc3545; color: #fff;">Inactive</span> <!-- Custom Red -->
                                 @endif
                             </td>
-                            <td>
-                                <a href="{{ url('/products/edit/' . $product->id) }}" class="btn btn-primary btn-sm">Edit</a>
+
+                            <td class="d-flex justify-content-start">
+                                <a href="{{ url('/products/edit/' . $product->id) }}" class="btn btn-primary btn-sm me-2">Edit</a>
                                 <form action="{{ url('/products/delete/' . $product->id) }}" method="POST" style="display:inline;">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</button>
                                 </form>
                             </td>
+
                         </tr>
                         @endforeach
                     </tbody>

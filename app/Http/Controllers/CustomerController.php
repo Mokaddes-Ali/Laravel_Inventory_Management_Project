@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Customer;
 use Illuminate\Http\Request;
+use Flasher\Prime\FlasherInterface;
 
 class CustomerController extends Controller
 {
@@ -17,7 +18,7 @@ class CustomerController extends Controller
     }
 
 
-    public function create(Request $request){
+    public function create(Request $request, FlasherInterface $flasher){
             $request->validate([
             'name' => 'required|max:40',
             'email' => 'required',
@@ -43,7 +44,12 @@ class CustomerController extends Controller
         ]);
 
         if ($insert) {
-            return redirect()-> route('customer.show')->with('success', 'Data inserted successfully');
+            $flasher->addSuccess('Data Inserted Successfully.', [
+                'position' => 'top-center',
+                'timeout' => 3000,
+                ]
+            );
+            return redirect()->back();
 
         } else {
             return back()->with('fail', 'Data insertion failed');
@@ -55,7 +61,7 @@ class CustomerController extends Controller
         return view('admin.customer.edit', compact('record'));
     }
 
-    public function update(Request $request){
+    public function update(Request $request, FlasherInterface $flasher){
          //dd($request->all());
         $id = $request->id;
          $request->validate([
@@ -94,23 +100,48 @@ class CustomerController extends Controller
         ]);
 
         if ($update) {
-            return back()->with('success', 'Data updated successfully');
+            $flasher->addSuccess('Update Successfully.', [
+                'position' => 'top-center',
+                'timeout' => 3000,
+                ]
+            );
+            return redirect()->route('customer.show');
         } else {
             return back()->with('fail', 'Data update failed');
         }
     }
 
-
-    public function destroy($id){
-        $id=intval($id);
+    public function destroy($id, FlasherInterface $flasher)
+    {
+        $id = intval($id);
         $customer = Customer::find($id);
+
+        // Check if the customer exists
         if ($customer) {
             $imagePath = public_path('images/' . $customer->pic);
-            if (file_exists($imagePath)) { // Check if it's a file
-                unlink($imagePath);
+
+            // Check if the file exists and is a valid file
+            if (is_file($imagePath) && file_exists($imagePath)) {
+                unlink($imagePath); // Delete the image
             }
-            $customer->delete();
-            return back()->with('success', 'Data deleted successfully');
+
+            $customer->delete(); // Delete the customer record
+
+            // Add a success message using the flasher
+            $flasher->addSuccess('Deleted successfully.', [
+                'position' => 'top-center',
+                'timeout' => 3000,
+            ]);
+
+            return redirect()->back(); // Redirect to the previous page
         }
+
+        // If customer doesn't exist, handle the error
+        $flasher->addError('Customer not found.', [
+            'position' => 'top-center',
+            'timeout' => 3000,
+        ]);
+
+        return redirect()->back(); // Redirect back in case of an error
     }
 }

@@ -1,22 +1,22 @@
 @extends('layouts.master')
 
 @section('content')
-<div class="card">
-    <div class="card-header d-flex justify-content-between align-items-center">
+<div class="card ">
+    <div class="card-header d-flex justify-content-start align-items-center">
         <div>
             <a href="{{ url('/customer/show') }}">
-                <button type="button" class="btn btn-info">Go To List</button>
+                <button type="button" class="btn btn-info mx-5">Go To List</button>
             </a>
         </div>
-        <h3 class="text-center">Add Customer</h3>
+        <h3 class="text-center mx-5">Add Customer</h3>
     </div>
 
-    <div class="card-body">
+    <div class="card-body col-md-10">
         <form id="customerForm" method="POST" action="{{ url('/customer/submit') }}" enctype="multipart/form-data">
             @csrf
 
             <!-- Name Input -->
-            <div class="form-group">
+            <div class="form-group col-md-6">
                 <label for="name" class="mb-1">Name</label>
                 <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
                        id="name" placeholder="Enter Name" value="{{ old('name') }}" required>
@@ -28,7 +28,7 @@
             </div>
 
             <!-- Email Input -->
-            <div class="form-group">
+            <div class="form-group col-md-6">
                 <label for="email" class="mb-1 mt-2">Email</label>
                 <input type="email" name="email" class="form-control @error('email') is-invalid @enderror"
                        id="email" placeholder="Enter Email" value="{{ old('email') }}" required>
@@ -40,7 +40,7 @@
             </div>
 
             <!-- Mobile Number Input -->
-            <div class="form-group">
+            <div class="form-group col-md-6">
                 <label for="number" class="mb-1 mt-2">Mobile</label>
                 <input type="number" name="number" class="form-control @error('number') is-invalid @enderror"
                        id="number" placeholder="Enter Mobile Number" value="{{ old('number') }}" required>
@@ -52,7 +52,7 @@
             </div>
 
             <!-- Address Input -->
-            <div class="form-group">
+            <div class="form-group col-md-6">
                 <label for="address" class="mb-1 mt-2">Address</label>
                 <input type="text" name="address" class="form-control @error('address') is-invalid @enderror"
                        id="address" placeholder="Enter Address" value="{{ old('address') }}" required>
@@ -64,7 +64,7 @@
             </div>
 
             <!-- Image Input -->
-            <div class="form-group">
+            <div class="form-group col-md-6">
                 <label for="pic" class="mb-1 mt-2">Image</label>
                 <input type="file" name="pic" class="form-control-file @error('pic') is-invalid @enderror"
                        id="pic" required>

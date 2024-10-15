@@ -121,8 +121,8 @@
                                 </a>
                                 <div class="collapse" id="sidebarProducts">
                                     <ul class="nav-second-level">
-                                        <li><a href="/Product">Add Products</a></li>
-                                        <li><a href="/products/show">List Products</a></li>
+                                        <li><a href="/products/create">Add Products</a></li>
+                                        <li><a href="/products">List Products</a></li>
                                     </ul>
                                 </div>
                             </li>

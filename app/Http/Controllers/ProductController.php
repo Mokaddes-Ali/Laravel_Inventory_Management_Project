@@ -15,7 +15,7 @@ class ProductController extends Controller
         public function index()
 {
     // Fetch all products with pagination (10 products per page)
-    $products = Product::with(['category', 'brand'])->paginate(10);
+    $products = Product::with(['category', 'brand'])->paginate(2);
 
     return view('admin.product.index', compact('products'));
 }

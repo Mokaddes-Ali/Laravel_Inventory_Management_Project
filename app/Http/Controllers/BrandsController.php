@@ -13,7 +13,7 @@ public function index(){
 }
 
 public function show(){
-    $all = Brands::orderBy('id', 'asc')->paginate(20);
+    $all = Brands::orderBy('id', 'asc')->paginate(4);
     return view('admin.brands.show', compact('all'));
 }
 

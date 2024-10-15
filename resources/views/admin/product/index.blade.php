@@ -19,7 +19,8 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th>Image</th>
+                            <th>ID</th>
+                            <th>Product Image</th>
                             <th>Name</th>
                             <th>Category</th>
                             <th>Brand</th>
@@ -34,6 +35,7 @@
                     <tbody>
                         @foreach($products as $product)
                         <tr>
+                            <td>{{ $product->id }}</td>
                             <td>
                                 @if($product->img_url)
                                     <img src="{{ asset('productImage/' . $product->img_url) }}" alt="{{ $product->name }}" width="70" height="70">
@@ -43,7 +45,7 @@
                             </td>
                             <td>{{ $product->name }}</td>
                             <td>{{ $product->category->name }}</td>
-                            <td>{{ $product->brand->name }}</td>
+                            <td>{{ $product->brand->brandName}}</td>
                             <td>${{ $product->price }}</td>
                             <td>${{ $product->cost }}</td>
                             <td>{{ $product->code }}</td>

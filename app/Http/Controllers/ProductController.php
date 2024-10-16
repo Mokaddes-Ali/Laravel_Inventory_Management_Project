@@ -63,7 +63,7 @@ class ProductController extends Controller
                 'img_url' => $image_rename,
                 'creator' => Auth::user()->id,
                 'slug' => uniqid() . rand(10000, 10000000),
-                'status' => $request->status,  // Status field
+                'status' => $request->status,
             ]);
             if (!$product) {
             session()->flash('success', 'Product added successfully.');
@@ -74,6 +74,8 @@ class ProductController extends Controller
         }
     }
 
+    // edit product form
+
     public function edit($id){
         $product = Product::find($id);
         $categories = Categories::all();
@@ -81,9 +83,10 @@ class ProductController extends Controller
         return view('admin.product.edit', compact('product', 'categories', 'brands'));
     }
 
+    // Update product data
+
     public function update(Request $request, $id)
-{
-    // Validate the form data
+    {
     $request->validate([
         'name' => 'required|max:100',
         'category_id' => 'required|exists:categories,id',
@@ -95,18 +98,13 @@ class ProductController extends Controller
         'details' => 'nullable',
         'img_url' => 'nullable|image|mimes:jpeg,png,gif|max:2048',
     ]);
-
-    // Find the product by ID
     $product = Product::find($id);
 
     if (!$product) {
         return back()->with('fail', 'Product not found.');
     }
-
-    // Handle the image upload
-    $image_rename = $product->img_url; // Keep the old image if not updated
+    $image_rename = $product->img_url;
     if ($request->hasFile('img_url')) {
-        // Delete the old image if it exists
         if ($product->img_url && file_exists(public_path('productImage/' . $product->img_url))) {
             unlink(public_path('productImage/' . $product->img_url));
         }
@@ -116,8 +114,6 @@ class ProductController extends Controller
         $image_rename = time() . '_' . rand(100000, 10000000) . '.' . $ext;
         $image->move(public_path('productImage'), $image_rename);
     }
-
-    // Update the product
     $product->update([
         'name' => $request['name'],
         'category_id' => $request['category_id'],
@@ -131,30 +127,26 @@ class ProductController extends Controller
         'status' => $request['status'],
     ]);
 
-    // Return success response
-    return redirect()->back()->with('success', 'Product updated successfully.');
+    if ($product) {
+        return redirect()->back()->with('success', 'Product updated successfully.');
+    } else {
+        return back()->with('fail', 'Failed to update product.');
+    }
 }
 
+// Show product details
 public function destroy($id)
 {
-    // Find the product by ID
     $product = Product::find($id);
 
     if (!$product) {
         return redirect()->back()->with('fail', 'Product not found.');
     }
-
-    // Delete the product image if it exists
     if ($product->img_url && file_exists(public_path('productImage/' . $product->img_url))) {
         unlink(public_path('productImage/' . $product->img_url));
     }
-
-    // Delete the product
     $product->delete();
-
-    // Return success response
     return redirect()->back()->with('success', 'Product deleted successfully.');
 }
-
 
 }

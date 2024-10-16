@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 class SettingsController extends Controller
 {
+    // Edit settings
     public function edit(){
         $data = Settings::firstOrFail();
         return view('admin.setting.edit', compact('data'));
@@ -15,7 +16,7 @@ class SettingsController extends Controller
     public function update(Request $request){
         // Validate the request
         $request->validate([
-            'company_name' => 'required|max:45', // Corrected typo
+            'company_name' => 'required|max:45',
             'email' => 'required|email',
             'mobile' => 'required',
             'address' => 'required',

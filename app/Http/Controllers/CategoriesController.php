@@ -9,18 +9,23 @@ use Flasher\Prime\FlasherInterface;
 
 class CategoriesController extends Controller
 {
+    // Add category form
     public function index()
     {
         $all = Categories::all();
         return view('admin.category.add', compact('all'));
     }
 
+
+    // Show all categories
     public function show()
     {
         $all = Categories::orderBy('id', 'asc')->paginate(6);
         return view('admin.category.show', compact('all'));
     }
 
+
+    // Insert category data
     public function store(Request $request, FlasherInterface $flasher)
     {
         $request->validate([
@@ -47,6 +52,8 @@ class CategoriesController extends Controller
         }
     }
 
+
+    // Edit category form
     public function edit($id)
     {
         $category = Categories::findOrFail($id);
@@ -55,7 +62,7 @@ class CategoriesController extends Controller
 
     public function update(Request $request)
     {
-        $id = $request->id; // Ensure form sends 'id' as a hidden input
+        $id = $request->id;
 
         $request->validate([
             'name' => 'required|string|max:50',
@@ -75,6 +82,8 @@ class CategoriesController extends Controller
         }
     }
 
+
+    // Delete category data
     public function destroy($id)
     {
         $category = Categories::findOrFail($id);

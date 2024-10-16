@@ -9,17 +9,22 @@ use Illuminate\Support\Facades\Auth;
 
 class CustomerController extends Controller
 {
+    // Add customer form
     public function index(){
         return view('admin.customer.add');
     }
+
+    // Show all customers
 
     public function show(){
         $all = Customer::orderBy('id', 'asc')->paginate(3);
         return view('admin.customer.show', compact('all'));
     }
 
-
+     // Insert customer data
     public function create(Request $request, FlasherInterface $flasher){
+          //dd($request->all());
+
             $request->validate([
             'name' => 'required|max:40',
             'email' => 'required',
@@ -57,10 +62,13 @@ class CustomerController extends Controller
         }
     }
 
+    // Edit customer form
     public function edit($id){
         $record = Customer::findOrFail($id);
         return view('admin.customer.edit', compact('record'));
     }
+
+    // Update customer data
 
     public function update(Request $request, FlasherInterface $flasher){
          //dd($request->all());
@@ -114,37 +122,30 @@ class CustomerController extends Controller
         }
     }
 
+    // Delete customer data
     public function destroy($id, FlasherInterface $flasher)
     {
         $id = intval($id);
         $customer = Customer::find($id);
-
-        // Check if the customer exists
         if ($customer) {
             $imagePath = public_path('images/' . $customer->pic);
-
-            // Check if the file exists and is a valid file
             if (is_file($imagePath) && file_exists($imagePath)) {
-                unlink($imagePath); // Delete the image
+                unlink($imagePath);
             }
 
-            $customer->delete(); // Delete the customer record
-
-            // Add a success message using the flasher
+            $customer->delete();
             $flasher->addSuccess('Deleted successfully.', [
                 'position' => 'top-center',
                 'timeout' => 3000,
             ]);
 
-            return redirect()->back(); // Redirect to the previous page
+            return redirect()->back();
         }
-
-        // If customer doesn't exist, handle the error
         $flasher->addError('Customer not found.', [
             'position' => 'top-center',
             'timeout' => 3000,
         ]);
 
-        return redirect()->back(); // Redirect back in case of an error
+        return redirect()->back(); 
     }
 }

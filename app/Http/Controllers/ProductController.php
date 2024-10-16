@@ -10,26 +10,25 @@ use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
-
-
-        public function index()
-{
-    // Fetch all products with pagination (10 products per page)
-    $products = Product::with(['category', 'brand'])->paginate(2);
-
-    return view('admin.product.index', compact('products'));
-}
-
-        public function create()
-        {
-            $categories = Categories::all();
-            $brands = Brands::all();
-            return view('admin.product.add', compact('categories', 'brands'));
-        }
-
-        public function store(Request $request)
+    // Add product form
+    public function create()
     {
-        // Form data validation
+        $categories = Categories::all();
+        $brands = Brands::all();
+        return view('admin.product.add', compact('categories', 'brands'));
+    }
+
+     //show all data
+     public function index()
+     {
+    $products = Product::with(['category', 'brand'])->paginate(2);
+    return view('admin.product.index', compact('products'));
+    }
+
+   // Insert product data
+    public function store(Request $request)
+    {
+
         $request->validate([
             'name' => 'required|max:100',
             'category_id' => 'required|exists:categories,id',
@@ -40,10 +39,9 @@ class ProductController extends Controller
             'unit' => 'required|numeric|min:1',
             'details' => 'nullable',
             'img_url' => 'nullable|image|mimes:jpeg,png,gif|max:2048',
-            'status' => 'required|in:1,0', // Active/Inactive status
+            'status' => 'required|in:1,0',
         ]);
 
-        // Image upload handling
         $image_rename = '';
         if ($request->hasFile('img_url')) {
             $image = $request->file('img_url');
@@ -52,7 +50,6 @@ class ProductController extends Controller
             $image->move(public_path('productImage'), $image_rename);
         }
 
-        // Insert product data into database
         try {
             $product = Product::create([
                 'name' => $request->name,
@@ -68,9 +65,10 @@ class ProductController extends Controller
                 'slug' => uniqid() . rand(10000, 10000000),
                 'status' => $request->status,  // Status field
             ]);
-
+            if (!$product) {
             session()->flash('success', 'Product added successfully.');
             return redirect()->back();
+            }
         } catch (\Exception $e) {
             return back()->with('fail', 'Failed to add product: ' . $e->getMessage());
         }

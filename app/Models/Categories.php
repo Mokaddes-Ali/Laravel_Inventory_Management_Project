@@ -18,7 +18,6 @@ class Categories extends Model
         'status',
     ];
 
-    // Optionally define relationships
     public function creator()
     {
         return $this->belongsTo(User::class, 'creator');

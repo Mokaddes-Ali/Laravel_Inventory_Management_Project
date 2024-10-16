@@ -24,7 +24,6 @@
                 <label for="name">Product Name</label>
                 <input type="text" name="name" class="form-control" id="name" placeholder="Enter product name" required>
             </div>
-
             <div class="form-group">
                 <label for="category_id">Category</label>
                 <select name="category_id" id="category_id" class="form-control select2" required>
@@ -40,6 +39,7 @@
                 @enderror
             </div>
 
+
             <div class="form-group">
                 <label for="brand_id">Brand</label>
                 <select name="brand_id" class="form-control" required>
@@ -54,7 +54,6 @@
                 <small class="text-danger">{{ $message }}</small>
                 @enderror
             </div>
-
             <div class="form-group">
                 <label for="price">Price</label>
                 <input type="number" name="price" class="form-control" id="price" placeholder="Enter product price" required>

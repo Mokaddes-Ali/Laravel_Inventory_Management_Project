@@ -1,12 +1,12 @@
 @extends('layouts.master')
 
 @section('content')
-<div class="container mt-5">
-    <div class="card shadow-sm">
-        <div class="card-header bg-primary text-white">
-            <h3>Add New Product</h3>
+<div class="container fixed mt-2">
+    <div class="card shadow-sm" style="max-width: 900px; margin: 0 auto;">
+        <div class="card-header bg-primary text-white text-center" style="height: 10px">
+            <h3 class="mt-1">Add New Product</h3>
         </div>
-        <div class="card-body">
+        <div class="card-body p-3">
             @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>
@@ -22,7 +22,7 @@
 
                 <div class="row">
                     <!-- Product Name -->
-                    <div class="form-group col-md-6 mb-3">
+                    <div class="form-group col-md-6 mb-2">
                         <label for="name">Product Name <span class="text-danger">*</span></label>
                         <input type="text" name="name" class="form-control" id="name" placeholder="Enter product name" value="{{ old('name') }}" required>
                         @error('name')
@@ -31,7 +31,7 @@
                     </div>
 
                     <!-- Category -->
-                    <div class="form-group col-md-6 mb-3">
+                    <div class="form-group col-md-6 mb-2">
                         <label for="category_id">Category <span class="text-danger">*</span></label>
                         <select name="category_id" id="category_id" class="form-control select2" required>
                             <option value="" disabled selected>Select a category</option>
@@ -49,7 +49,7 @@
 
                 <div class="row">
                     <!-- Brand -->
-                    <div class="form-group col-md-6 mb-3">
+                    <div class="form-group col-md-6 mb-2">
                         <label for="brand_id">Brand <span class="text-danger">*</span></label>
                         <select name="brand_id" class="form-control" required>
                             <option value="" disabled selected>Select a brand</option>
@@ -65,7 +65,7 @@
                     </div>
 
                     <!-- Price -->
-                    <div class="form-group col-md-6 mb-3">
+                    <div class="form-group col-md-6 mb-2">
                         <label for="price">Price <span class="text-danger">*</span></label>
                         <input type="number" name="price" class="form-control" id="price" placeholder="Enter product price" value="{{ old('price') }}" required>
                         @error('price')
@@ -76,7 +76,7 @@
 
                 <div class="row">
                     <!-- Cost -->
-                    <div class="form-group col-md-6 mb-3">
+                    <div class="form-group col-md-6 mb-2">
                         <label for="cost">Cost <span class="text-danger">*</span></label>
                         <input type="number" name="cost" class="form-control" id="cost" placeholder="Enter product cost" value="{{ old('cost') }}" required>
                         @error('cost')
@@ -85,7 +85,7 @@
                     </div>
 
                     <!-- Product Code -->
-                    <div class="form-group col-md-6 mb-3">
+                    <div class="form-group col-md-6 mb-2">
                         <label for="code">Product Code <span class="text-danger">*</span></label>
                         <input type="text" name="code" class="form-control" id="code" placeholder="Enter product code" value="{{ old('code') }}" required>
                         @error('code')
@@ -96,7 +96,7 @@
 
                 <div class="row">
                     <!-- Units -->
-                    <div class="form-group col-md-6 mb-3">
+                    <div class="form-group col-md-6 mb-2">
                         <label for="unit">Units <span class="text-danger">*</span></label>
                         <input type="number" name="unit" class="form-control" id="unit" placeholder="Enter available units" value="{{ old('unit') }}" required>
                         @error('unit')
@@ -105,7 +105,7 @@
                     </div>
 
                     <!-- Details -->
-                    <div class="form-group col-md-6 mb-3">
+                    <div class="form-group col-md-6 mb-2">
                         <label for="details">Details</label>
                         <textarea name="details" class="form-control" id="details" rows="3">{{ old('details') }}</textarea>
                         @error('details')
@@ -116,7 +116,7 @@
 
                 <div class="row">
                     <!-- Product Image -->
-                    <div class="form-group col-md-6 mb-3">
+                    <div class="form-group col-md-6 mb-2">
                         <label for="img_url">Product Image</label>
                         <input type="file" name="img_url" class="form-control-file" id="img_url">
                         @error('img_url')
@@ -125,7 +125,7 @@
                     </div>
 
                     <!-- Status -->
-                    <div class="form-group col-md-6 mb-3">
+                    <div class="form-group col-md-6 mb-2">
                         <label for="status">Status</label>
                         <select name="status" class="form-control">
                             <option value="1" {{ old('status') == '1' ? 'selected' : '' }}>Active</option>
@@ -137,8 +137,10 @@
                     </div>
                 </div>
 
-                <!-- Submit Button -->
-                <button type="submit" class="btn btn-primary btn-block mt-4">Submit</button>
+                <!-- Submit Button Centered -->
+                <div class="d-flex justify-content-center">
+                    <button type="submit" class="btn btn-primary mt-1">Submit</button>
+                </div>
             </form>
         </div>
     </div>

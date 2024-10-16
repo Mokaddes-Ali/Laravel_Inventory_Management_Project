@@ -65,10 +65,10 @@ class ProductController extends Controller
                 'slug' => uniqid() . rand(10000, 10000000),
                 'status' => $request->status,
             ]);
-            if (!$product) {
+
             session()->flash('success', 'Product added successfully.');
             return redirect()->back();
-            }
+        
         } catch (\Exception $e) {
             return back()->with('fail', 'Failed to add product: ' . $e->getMessage());
         }

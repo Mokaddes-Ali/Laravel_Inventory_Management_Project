@@ -135,11 +135,27 @@
                                 </a>
                                 <div class="collapse" id="sidebarIncome"> <!-- Changed id here -->
                                     <ul class="nav-second-level">
-                                        <li><a href="/product/add">Add Income</a></li>
+                                        <li><a href="/income/add">Add Income</a></li>
                                         <li><a href="/show/income">List Income</a></li>
                                     </ul>
                                 </div>
                             </li>
+
+                            <li>
+                                <a href="#sidebarSale" data-bs-toggle="collapse">
+                                    <i data-feather="clipboard"></i>
+                                    <span> Sale </span>
+                                    <span class="menu-arrow"></span>
+                                </a>
+                                <div class="collapse" id="sidebarSale"> <!-- Changed id here -->
+                                    <ul class="nav-second-level">
+                                        <li><a href=" /sale">Sale</a></li>
+                                        <li><a href="/show/income">List Sale</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+
+
 
                             <li>
                                 <a href="#sidebarExpense" data-bs-toggle="collapse">

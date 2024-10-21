@@ -3,11 +3,12 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BackupController;
 use App\Http\Controllers\BrandsController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\InvoicesController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\CategoriesController;
-use App\Http\Controllers\ProductController;
 
 Route::get('/dashboard', function () {
     return view('layouts.master');
@@ -61,11 +62,13 @@ Route::post('/settings/update', [SettingsController::class, 'update'])->name('se
 });
 
 
-// Route::middleware('auth')->group(function () {
-//     Route::get('/invoice/create/{id}', [InvoiceController::class, 'index'])->name('invoice.index');
-//     Route::get('/invoice/pdf/{id}', [InvoiceController::class, 'pdf'])->name('invoice.pdf');
 
-//  });
+Route::middleware('auth')->group(function () {
+    // Route::get('/invoice/create/{id}', [InvoiceController::class, 'index'])->name('invoice.index');
+    // Route::get('/invoice/pdf/{id}', [InvoiceController::class, 'pdf'])->name('invoice.pdf');
+    Route::get('/sale', [InvoicesController::class, 'index'])->name('sale.index');
+
+ });
 
 
 Route::middleware('auth')->group(function () {

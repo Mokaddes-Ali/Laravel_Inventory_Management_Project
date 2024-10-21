@@ -68,10 +68,17 @@ class ProductController extends Controller
 
             session()->flash('success', 'Product added successfully.');
             return redirect()->back();
-        
+
         } catch (\Exception $e) {
             return back()->with('fail', 'Failed to add product: ' . $e->getMessage());
         }
+    }
+
+
+    public function productList(){
+        $all = Product::all();
+        return response()->json($all);
+
     }
 
     // edit product form

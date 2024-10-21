@@ -22,6 +22,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/customer/edit/{id}', [CustomerController::class, 'edit']);
     Route::post('/customer/update', [CustomerController::class, 'update']);
     Route::get('/delete/{id}', [CustomerController::class, 'destroy']);
+
+    Route::get('/customerlist', [ProductController::class, 'customertList'])->name('customerlist');
+
 });
 
 
@@ -53,6 +56,11 @@ Route::post('/products/store', [ProductController::class, 'store'])->name('produ
 Route::get('/products/edit/{id}', [ProductController::class, 'edit']);
 Route::put('/products/update/{id}', [ProductController::class, 'update']);
 Route::delete('/products/delete/{id}', [ProductController::class, 'destroy']);
+
+Route::get('/productlist', [ProductController::class, 'productList'])->name('productlist');
+
+
+
 });
 
 

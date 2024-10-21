@@ -68,6 +68,13 @@ class CustomerController extends Controller
         return view('admin.customer.edit', compact('record'));
     }
 
+
+    public function customerList(){
+        $all = Customer::all();
+        return response()->json($all);
+
+    }
+
     // Update customer data
 
     public function update(Request $request, FlasherInterface $flasher){
@@ -146,6 +153,6 @@ class CustomerController extends Controller
             'timeout' => 3000,
         ]);
 
-        return redirect()->back(); 
+        return redirect()->back();
     }
 }

@@ -127,7 +127,7 @@
                                 </div>
                             </li>
 
-                            <li>
+                            {{-- <li>
                                 <a href="#sidebarIncome" data-bs-toggle="collapse">
                                     <i data-feather="clipboard"></i>
                                     <span> Income </span>
@@ -139,7 +139,7 @@
                                         <li><a href="/show/income">List Income</a></li>
                                     </ul>
                                 </div>
-                            </li>
+                            </li> --}}
 
                             <li>
                                 <a href="#sidebarSale" data-bs-toggle="collapse">

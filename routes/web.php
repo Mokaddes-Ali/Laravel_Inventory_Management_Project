@@ -71,8 +71,8 @@ Route::post('/settings/update', [SettingsController::class, 'update'])->name('se
 
 
 Route::middleware('auth')->group(function () {
-    // Route::get('/invoice/create/{id}', [InvoiceController::class, 'index'])->name('invoice.index');
-    // Route::get('/invoice/pdf/{id}', [InvoiceController::class, 'pdf'])->name('invoice.pdf');
+    Route::get('/invoice/create/{id}', [InvoiceController::class, 'index'])->name('invoice.index');
+    Route::get('/invoice/pdf/{id}', [InvoiceController::class, 'pdf'])->name('invoice.pdf');
     Route::get('/sale', [InvoicesController::class, 'index'])->name('sale.index');
 
  });

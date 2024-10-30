@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BackupController;
 use App\Http\Controllers\BrandsController;
+use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CustomerController;
@@ -71,9 +72,9 @@ Route::post('/settings/update', [SettingsController::class, 'update'])->name('se
 
 
 Route::middleware('auth')->group(function () {
-    Route::get('/invoice/create/{id}', [InvoiceController::class, 'index'])->name('invoice.index');
+    Route::get('/show/invoice', [InvoiceController::class, 'index'])->name('invoice.index');
     Route::get('/invoice/pdf/{id}', [InvoiceController::class, 'pdf'])->name('invoice.pdf');
-    Route::get('/sale', [InvoicesController::class, 'index'])->name('sale.index');
+    Route::get('/sale', [InvoiceController::class, 'indexa'])->name('sale.indexa');
 
  });
 

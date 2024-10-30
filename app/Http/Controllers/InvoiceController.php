@@ -11,21 +11,23 @@ use Barryvdh\DomPDF\Facade\Pdf;
 
 class InvoiceController extends Controller
 {
-    public function index($pid)
+    public function index()
     {
-        $invoices = Income::where('project_id', $pid)->get();
-        $data = Project::where('id', $pid)->first();
-        $setting = Settings::where('status', 0)->firstOrFail();
-        return view('admin.invoice.index', compact('invoices', 'data', 'setting'));
+        // $invoices = Income::where('project_id', $pid)->get();
+        // $data = Project::where('id', $pid)->first();
+        // $setting = Settings::where('status', 0)->firstOrFail();
+        // return view('admin.invoice.index', compact('invoices', 'data', 'setting'));
+
+        return view('admin.sale.index');
     }
 
-    public function pdf($pid)
-    {
+    // public function pdf($pid)
+    // {
 
-        $invoices = Income::where('project_id', $pid)->get();
-        $data = Project::where('id', $pid)->first();
-        $setting = Settings::where('status', 0)->firstOrFail();
-        $pdf = Pdf::loadView('admin.invoice.pdf', compact('invoices', 'data', 'setting'));
-        return $pdf->download('invoice.pdf');
-    }
+    //     $invoices = Income::where('project_id', $pid)->get();
+    //     $data = Project::where('id', $pid)->first();
+    //     $setting = Settings::where('status', 0)->firstOrFail();
+    //     $pdf = Pdf::loadView('admin.invoice.pdf', compact('invoices', 'data', 'setting'));
+    //     return $pdf->download('invoice.pdf');
+    // }
 }

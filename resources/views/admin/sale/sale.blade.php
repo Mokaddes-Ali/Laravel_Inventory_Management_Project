@@ -184,18 +184,31 @@
 
         <!-- Product List -->
 
-       <script>
-        Productlist();
+        <script>
+            Productlist();
 
-        async function Productlist() {
+            async function Productlist() {
 
-                let response = await fetch('/productlist');
-                let data = await response.json();
-                let productList=$("#productList");
+                    let response = await fetch('/productlist');
+                    let data = await response.json();
+                    let productList=$("#productList");
+                     productList.empty();
+                     data.forEach(function(item,index) {
 
-        }
+                     let row=`
+                     <tr>
+                     <td>${item.name}</td>
+                      <td> <a class="btn btn-dark" onclick="addToCart('${item.name}', ${item.price})">ADD</a></td>
+                     </tr>
+                     `;
+                     productList.append(row);
 
-       </script>
+                     });
+
+            }
+
+           </script>
+
 
 <div class="product-list">
     <table class="table w-100" id="productTable">

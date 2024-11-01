@@ -19,11 +19,6 @@ class ProductController extends Controller
     }
 
 
-    public function productList(){
-        $products = Product::all();
-        return response()->json($products);
-    }
-
      //show all data
      public function index()
      {
@@ -81,10 +76,10 @@ class ProductController extends Controller
     }
 
 
-    public function productList(){
-        $product = Product::all();
-        return response()->json( $product);
-
+    public function ProductList()
+    {
+        $products = Product::all(); // Assuming you have a Product model
+        return response()->json($products);
     }
 
     // edit product form

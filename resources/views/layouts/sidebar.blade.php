@@ -149,12 +149,11 @@
                                 </a>
                                 <div class="collapse" id="sidebarSale"> <!-- Changed id here -->
                                     <ul class="nav-second-level">
-                                        <li><a href=" /sale">Sale</a></li>
+                                        <li><a href="{{url('/sale')}}">Sale</a></a></li>
                                         <li><a href="/show/invoice">List Sale</a></li>
                                     </ul>
                                 </div>
                             </li>
-
 
 
                             <li>

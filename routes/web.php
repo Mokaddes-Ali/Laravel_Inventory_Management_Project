@@ -23,6 +23,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/customer/edit/{id}', [CustomerController::class, 'edit']);
     Route::post('/customer/update', [CustomerController::class, 'update']);
     Route::get('/delete/{id}', [CustomerController::class, 'destroy']);
+
     Route::get('/customerlist', [ProductController::class, 'customertList'])->name('customerlist');
 
 });
@@ -74,7 +75,7 @@ Route::post('/settings/update', [SettingsController::class, 'update'])->name('se
 Route::middleware('auth')->group(function () {
     Route::get('/show/invoice', [InvoiceController::class, 'index'])->name('invoice.index');
     Route::get('/invoice/pdf/{id}', [InvoiceController::class, 'pdf'])->name('invoice.pdf');
-    Route::get('/sale', [InvoiceController::class, 'indexa'])->name('sale.indexa');
+    Route::get('/sale', [InvoiceController::class, 'saleIndex'])->name('sale.indexa');
 
  });
 

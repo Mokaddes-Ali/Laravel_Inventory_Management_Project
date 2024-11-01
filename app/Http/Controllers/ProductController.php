@@ -18,6 +18,12 @@ class ProductController extends Controller
         return view('admin.product.add', compact('categories', 'brands'));
     }
 
+
+    public function productList(){
+        $products = Product::all();
+        return response()->json($products);
+    }
+
      //show all data
      public function index()
      {

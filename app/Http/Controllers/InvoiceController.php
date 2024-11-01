@@ -21,6 +21,10 @@ class InvoiceController extends Controller
         return view('admin.sale.index');
     }
 
+    public function saleIndex(){
+        return view ('admin.sale.sale');
+    }
+
     // public function pdf($pid)
     // {
 

@@ -69,7 +69,7 @@ class CustomerController extends Controller
     }
 
 
-    public function customerList(){
+    public function customertList(){
         $all = Customer::all();
         return response()->json($all);
 

@@ -168,11 +168,38 @@
 
 
 <!-- Customer Selection -->
+
+<script>
+    Customertlist();
+
+    async function Customertlist() {
+
+            let response = await fetch('/customerlist');
+            let data = await response.json();
+            let customerList=$("#customerList");
+            customerList.empty();
+             data.forEach(function(item,index) {
+
+             let row=`
+             <tr>
+             <td>${item.name}</td>
+              <td> <a class="btn btn-dark" onclick="addToCart('${item.name}')">ADD</a></td>
+             </tr>
+             `;
+             customerList.append(row);
+
+             });
+
+    }
+
+   </script>
+
 <div class="customer-section">
 <table class="table table-sm w-100" id="customerTable">
                         <thead class="w-100">
                         <tr class="text-xs text-bold">
                             <td>Customer</td>
+
                             <td>Pick</td>
                         </tr>
                         </thead>

@@ -23,7 +23,6 @@ return new class extends Migration
             $table->string('slug',50)->nullable();
             $table->integer('status')->default(1);
 
-
             $table->foreign('invoice_id')->references('id')->on('invoices')
                 ->cascadeOnUpdate()->restrictOnDelete();
 

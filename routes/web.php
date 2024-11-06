@@ -3,13 +3,13 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BackupController;
 use App\Http\Controllers\BrandsController;
-use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\InvoicesController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\InvoiceController;
 
 Route::get('/dashboard', function () {
     return view('layouts.master');
@@ -62,6 +62,28 @@ Route::get('/productlist', [ProductController::class, 'ProductList']);
 
 
 
+});
+
+
+
+Route::middleware('auth')->group(function () {
+// Route to show all invoices
+Route::get('/invoices', [InvoiceController::class, 'index'])->name('invoices.index');
+
+// Route to show the form to create a new invoice
+Route::get('/invoices/create', [InvoiceController::class, 'create'])->name('invoices.create');
+
+// Route to store a new invoice
+Route::post('/invoices', [InvoiceController::class, 'store'])->name('invoices.store');
+
+// Route to show the form to edit an existing invoice
+Route::get('/invoices/{invoice}/edit', [InvoiceController::class, 'edit'])->name('invoices.edit');
+
+// Route to update an existing invoice
+Route::put('/invoices/{invoice}', [InvoiceController::class, 'update'])->name('invoices.update');
+
+// Route to delete an existing invoice
+Route::delete('/invoices/{invoice}', [InvoiceController::class, 'destroy'])->name('invoices.destroy');
 });
 
 

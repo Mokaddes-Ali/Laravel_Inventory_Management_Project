@@ -3,62 +3,79 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Invoice;
+use Illuminate\Support\Facades\Auth;
 
 class InvoiceController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $invoices = Invoice::with(['creator', 'editor', 'customer'])->get();
+        return view('invoices.index', compact('invoices'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        return view('invoices.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'discount' => 'required|string|max:50',
+            'vat' => 'required|string|max:50',
+            'payable' => 'required|string|max:50',
+            'paid' => 'required|string|max:50',
+            'due' => 'required|string|max:50',
+            'customer_id' => 'required|exists:customers,id',
+        ]);
+
+        Invoice::create([
+            'discount' => $request->discount,
+            'vat' => $request->vat,
+            'payable' => $request->payable,
+            'paid' => $request->paid,
+            'due' => $request->due,
+            'creator' => Auth::id(),
+            'customer_id' => $request->customer_id,
+        ]);
+
+        return redirect()->route('invoices.index')->with('success', 'Invoice created successfully.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function edit(Invoice $invoice)
     {
-        //
+        return view('invoices.edit', compact('invoice'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function update(Request $request, Invoice $invoice)
     {
-        //
+        $request->validate([
+            'discount' => 'required|string|max:50',
+            'vat' => 'required|string|max:50',
+            'payable' => 'required|string|max:50',
+            'paid' => 'required|string|max:50',
+            'due' => 'required|string|max:50',
+            'customer_id' => 'required|exists:customers,id',
+        ]);
+
+        $invoice->update([
+            'discount' => $request->discount,
+            'vat' => $request->vat,
+            'payable' => $request->payable,
+            'paid' => $request->paid,
+            'due' => $request->due,
+            'editor' => Auth::id(),
+            'customer_id' => $request->customer_id,
+        ]);
+
+        return redirect()->route('invoices.index')->with('success', 'Invoice updated successfully.');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function destroy(Invoice $invoice)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        $invoice->delete();
+        return redirect()->route('invoices.index')->with('success', 'Invoice deleted successfully.');
     }
 }
+

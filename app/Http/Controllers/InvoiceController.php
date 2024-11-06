@@ -2,36 +2,63 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Income;
-use App\Models\Project;
-use App\Models\Settings;
 use Illuminate\Http\Request;
-use Barryvdh\DomPDF\Facade\Pdf;
-
 
 class InvoiceController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     */
     public function index()
     {
-        // $invoices = Income::where('project_id', $pid)->get();
-        // $data = Project::where('id', $pid)->first();
-        // $setting = Settings::where('status', 0)->firstOrFail();
-        // return view('admin.invoice.index', compact('invoices', 'data', 'setting'));
-
-        return view('admin.sale.index');
+        //
     }
 
-    public function saleIndex(){
-        return view ('admin.sale.sale');
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        //
     }
 
-    // public function pdf($pid)
-    // {
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        //
+    }
 
-    //     $invoices = Income::where('project_id', $pid)->get();
-    //     $data = Project::where('id', $pid)->first();
-    //     $setting = Settings::where('status', 0)->firstOrFail();
-    //     $pdf = Pdf::loadView('admin.invoice.pdf', compact('invoices', 'data', 'setting'));
-    //     return $pdf->download('invoice.pdf');
-    // }
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        //
+    }
 }

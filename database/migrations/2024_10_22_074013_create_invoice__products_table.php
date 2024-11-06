@@ -13,15 +13,11 @@ return new class extends Migration
     {
         Schema::create('invoice__products', function (Blueprint $table) {
             $table->id();
-           
             $table->unsignedBigInteger('invoice_id');
             $table->unsignedBigInteger('product_id');
-           
-
             $table->string('qty',50);
             $table->string('sale_price',50);
 			$table->string('subtotal',50)->nullable()->default(0);
-
             $table->unsignedBigInteger('creator');
             $table->unsignedBigInteger('editor')->nullable();
             $table->string('slug',50)->nullable();
@@ -33,10 +29,10 @@ return new class extends Migration
 
             $table->foreign('product_id')->references('id')->on('products')
                 ->cascadeOnUpdate()->restrictOnDelete();
- 
-                
-               
-    
+
+
+
+
                 $table->foreign('creator')->references('id')->on('users')
                     ->cascadeOnUpdate()->restrictOnDelete();
                     $table->foreign('editor')->references('id')->on('users')

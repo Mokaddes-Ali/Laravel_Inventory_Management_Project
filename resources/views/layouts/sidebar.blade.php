@@ -127,7 +127,7 @@
                                 </div>
                             </li>
 
-                            {{-- <li>
+                            <li>
                                 <a href="#sidebarIncome" data-bs-toggle="collapse">
                                     <i data-feather="clipboard"></i>
                                     <span> Income </span>
@@ -135,11 +135,11 @@
                                 </a>
                                 <div class="collapse" id="sidebarIncome"> <!-- Changed id here -->
                                     <ul class="nav-second-level">
-                                        <li><a href="/income/add">Add Income</a></li>
-                                        <li><a href="/show/income">List Income</a></li>
+                                        <li><a href="/invoices/create">Add Invoice</a></li>
+                                        <li><a href="/invoices">List Invoice</a></li>
                                     </ul>
                                 </div>
-                            </li> --}}
+                            </li>
 
                             <li>
                                 <a href="#sidebarSale" data-bs-toggle="collapse">

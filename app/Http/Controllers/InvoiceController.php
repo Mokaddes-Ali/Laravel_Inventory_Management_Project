@@ -11,12 +11,12 @@ class InvoiceController extends Controller
     public function index()
     {
         $invoices = Invoice::with(['creator', 'editor', 'customer'])->get();
-        return view('invoices.index', compact('invoices'));
+        return view('admin.invoice.create', compact('invoices'));
     }
 
     public function create()
     {
-        return view('invoices.create');
+        return view('admin.invoice.create');
     }
 
     public function store(Request $request)
@@ -40,12 +40,12 @@ class InvoiceController extends Controller
             'customer_id' => $request->customer_id,
         ]);
 
-        return redirect()->route('invoices.index')->with('success', 'Invoice created successfully.');
+        return redirect()->route('admin.invoice.index')->with('success', 'Invoice created successfully.');
     }
 
     public function edit(Invoice $invoice)
     {
-        return view('invoices.edit', compact('invoice'));
+        return view('admin.invoice.edit', compact('invoice'));
     }
 
     public function update(Request $request, Invoice $invoice)
@@ -69,13 +69,13 @@ class InvoiceController extends Controller
             'customer_id' => $request->customer_id,
         ]);
 
-        return redirect()->route('invoices.index')->with('success', 'Invoice updated successfully.');
+        return redirect()->route('admin.invoice.index')->with('success', 'Invoice updated successfully.');
     }
 
     public function destroy(Invoice $invoice)
     {
         $invoice->delete();
-        return redirect()->route('invoices.index')->with('success', 'Invoice deleted successfully.');
+        return redirect()->route('admin.invoice.index')->with('success', 'Invoice deleted successfully.');
     }
 }
 

@@ -8,4 +8,19 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'name', 'remarks', 'creator', 'editor', 'status'
+    ];
+
+
+    public function creator()
+    {
+        return $this->belongsTo(User::class, 'creator');
+    }
+
+    public function editor()
+    {
+        return $this->belongsTo(User::class, 'editor');
+    }
 }

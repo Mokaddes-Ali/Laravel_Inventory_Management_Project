@@ -5,7 +5,7 @@
         <h1 class="mb-4">Create Category</h1>
 
         <row class="col-md-8">
-        <form action="{{ route('categories.store') }}" method="POST" class="needs-validation" novalidate>
+        <form action="{{ route('category.store') }}" method="POST" class="needs-validation" novalidate>
             @csrf
 
 

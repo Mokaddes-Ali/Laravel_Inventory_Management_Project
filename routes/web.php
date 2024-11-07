@@ -29,14 +29,14 @@ Route::middleware('auth')->group(function () {
 });
 
 
-// Route::middleware('auth')->group(function () {
-//     Route::get('/category', [CategoryController::class, 'index'])->name('category.index');
-//     Route::post('/category/submit', [CategoryController::class, 'store'])->name('categories.store');
-//     Route::get('/category/show', [CategoryController::class, 'show']);
-//     Route::get('/category/edit/{id}', [CategoryController::class, 'edit'])->name('categories.edit');
-//     Route::post('/category/update', [CategoryController::class, 'update'])->name('categories.update');
-//     Route::get('/category/delete/{id}', [CategoryController::class, 'destroy']);
-// });
+Route::middleware('auth')->group(function () {
+    Route::get('/category', [CategoryController::class, 'index'])->name('category.index');
+    Route::post('/category/submit', [CategoryController::class, 'store'])->name('category.store');
+    Route::get('/category/show', [CategoryController::class, 'show']);
+    Route::get('/category/edit/{id}', [CategoryController::class, 'edit'])->name('category.edit');
+    Route::post('/category/update', [CategoryController::class, 'update'])->name('category.update');
+    Route::get('/delete/category/{id}', [CategoryController::class, 'destroy']);
+});
 
 
 

@@ -135,8 +135,8 @@
                                  <td class="border border-gray-300 px-2 py-1">{{ $category->status ? 'Active' : 'Inactive' }}</td>
                                  <td>
                                     <ul class="action-list">
-                                        <li><a href="{{ url('/categories/edit' , $category-> id) }}" class="btn btn-primary"><i class="fa fa-pencil-alt"></i></a></li>
-                                        <li><a onclick="return confirm('Are You Sure Delete!')" href="{{ url('/delete', $category -> id)}}"  class="btn btn-danger" ><i class="fa fa-times"></i></a></li>
+                                        <li><a href="{{ url('/category/edit' , $category-> id) }}" class="btn btn-primary"><i class="fa fa-pencil-alt"></i></a></li>
+                                        <li><a onclick="return confirm('Are You Sure Delete!')" href="{{ url('/delete/category', $category -> id)}}"  class="btn btn-danger" ><i class="fa fa-times"></i></a></li>
                                     </ul>
                                 </td>
                                  {{-- <td><a href="#" class="btn btn-sm btn-success"><i class="fa fa-eye"></i></a></td> --}}

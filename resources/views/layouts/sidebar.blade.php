@@ -92,8 +92,8 @@
                                 </a>
                                 <div class="collapse" id="sidebarCategories">
                                     <ul class="nav-second-level">
-                                        <li><a href="/categories">Add Categories</a></li>
-                                        <li><a href="/categories/show">List Categories</a></li>
+                                        <li><a href="/category">Add Categories</a></li>
+                                        <li><a href="/category/show">List Categories</a></li>
                                     </ul>
                                 </div>
                             </li>

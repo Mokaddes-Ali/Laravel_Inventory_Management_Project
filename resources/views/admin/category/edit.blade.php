@@ -6,7 +6,7 @@
 
         <div class="row">
             <div class="col-md-8">
-                <form action="{{ route('categories.update') }}" method="POST">
+                <form action="{{ route('category.update') }}" method="POST">
                     @csrf
 
                     <input type="hidden" name="id" value="{{ $category->id }}">

@@ -3,13 +3,13 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BackupController;
 use App\Http\Controllers\BrandsController;
+use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
-use App\Http\Controllers\InvoicesController;
 use App\Http\Controllers\SettingsController;
-use App\Http\Controllers\CategoriesController;
-use App\Http\Controllers\InvoiceController;
+use App\Models\Category;
 
 Route::get('/dashboard', function () {
     return view('layouts.master');
@@ -29,14 +29,14 @@ Route::middleware('auth')->group(function () {
 });
 
 
-Route::middleware('auth')->group(function () {
-    Route::get('/categories', [CategoriesController::class, 'index'])->name('categories.index');
-    Route::post('/categories/submit', [CategoriesController::class, 'store'])->name('categories.store');
-    Route::get('/categories/show', [CategoriesController::class, 'show']);
-    Route::get('/categories/edit/{id}', [CategoriesController::class, 'edit'])->name('categories.edit');
-    Route::post('/categories/update', [CategoriesController::class, 'update'])->name('categories.update');
-    Route::get('/categories/delete/{id}', [CategoriesController::class, 'destroy']);
-});
+// Route::middleware('auth')->group(function () {
+//     Route::get('/category', [CategoryController::class, 'index'])->name('category.index');
+//     Route::post('/category/submit', [CategoryController::class, 'store'])->name('categories.store');
+//     Route::get('/category/show', [CategoryController::class, 'show']);
+//     Route::get('/category/edit/{id}', [CategoryController::class, 'edit'])->name('categories.edit');
+//     Route::post('/category/update', [CategoryController::class, 'update'])->name('categories.update');
+//     Route::get('/category/delete/{id}', [CategoryController::class, 'destroy']);
+// });
 
 
 

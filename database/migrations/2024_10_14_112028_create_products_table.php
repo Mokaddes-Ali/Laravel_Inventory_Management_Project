@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('brand_id');
 
             $table->foreign('creator')->references('id')->on('users');
-            $table->foreign('category_id')->references('id')->on('categories');
+            $table->foreign('category_id')->references('id')->on('category');
             $table->foreign('brand_id')->references('id')->on('brands');
 
             $table->string('name');
@@ -44,7 +44,7 @@ return new class extends Migration
     {
         Schema::dropIfExists('products');
         Schema:: dropIfExists('users');
-        Schema:: dropIfExists('categories');
+        Schema:: dropIfExists('category');
         Schema:: dropIfExists('brands');
     }
 };

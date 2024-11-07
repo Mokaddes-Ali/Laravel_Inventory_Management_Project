@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Brands;
 use App\Models\Product;
-use App\Models\Categories;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,7 +13,7 @@ class ProductController extends Controller
     // Add product form
     public function create()
     {
-        $categories = Categories::all();
+        $categories = Category::all();
         $brands = Brands::all();
         return view('admin.product.add', compact('categories', 'brands'));
     }
@@ -86,7 +86,7 @@ class ProductController extends Controller
 
     public function edit($id){
         $product = Product::find($id);
-        $categories = Categories::all();
+        $categories = Category::all();
         $brands = Brands::all();
         return view('admin.product.edit', compact('product', 'categories', 'brands'));
     }

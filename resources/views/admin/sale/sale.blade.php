@@ -176,21 +176,17 @@
 
             let response = await fetch('/customerlist');
             let data = await response.json();
-            let customerList=$("#customerList");
-            customerList.empty();
-             data.forEach(function(item,index) {
-
-             let row=`
-             <tr>
-             <td>${item.name}</td>
-              <td> <a class="btn btn-dark" onclick="addToCart('${item.name}')">ADD</a></td>
-             </tr>
-             `;
-             customerList.append(row);
-
-             });
-
-    }
+                let customerList = document.getElementById('customerList');
+                customerList.innerHTML = '';
+                data.forEach(function(item) {
+                    customerList.innerHTML += `
+                        <tr>
+                            <td>${item.name}</td>
+                            <td><button class="btn btn-dark" onclick="selectCustomer('${item.name}', '${item.address}', '${item.mobile}', '${item.id}')">ADD</button></td>
+                        </tr>
+                    `;
+                });
+            }
 
    </script>
 

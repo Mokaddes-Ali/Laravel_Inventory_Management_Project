@@ -25,7 +25,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/delete/{id}', [CustomerController::class, 'destroy']);
 
     //for invoice
-    Route::get('/customerlist', [ProductController::class, 'customertList'])->name('customerlist');
+    Route::get('/customerlist', [CustomerController::class, 'customertList']);
 
 });
 

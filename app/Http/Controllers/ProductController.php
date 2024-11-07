@@ -75,10 +75,23 @@ class ProductController extends Controller
         }
     }
 
+   //product list for api in invoice
+   public function productList(Request $request)
+{
+    $perPage = $request->query('per_page', 10); // Default 10 items per page
+    $products = Product::paginate($perPage);
 
-    public function ProductList()
+    return response()->json($products);
+}
+
+    //search product for api in invoice
+    // Controller method
+    public function searchProducts(Request $request)
     {
-        $products = Product::all(); // Assuming you have a Product model
+        $search = $request->query('search');
+        $perPage = $request->query('per_page', 10); // Default 10 items per page
+        $products = Product::where('name', 'LIKE', "%{$search}%")->paginate($perPage);
+
         return response()->json($products);
     }
 

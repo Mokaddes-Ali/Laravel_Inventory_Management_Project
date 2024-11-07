@@ -69,11 +69,28 @@ class CustomerController extends Controller
     }
 
 
-    public function customertList(){
-        $all = Customer::all();
-        return response()->json($all);
+  // paginated customer list
+public function customerList(Request $request)
+{
+    $perPage = $request->query('per_page', 10); // Default to 10 items per page
+    $customers = Customer::orderBy('name')->paginate($perPage);
 
-    }
+    return response()->json($customers);
+}
+
+
+    //Search Customer
+
+
+// paginated customer search results
+public function searchCustomers(Request $request)
+{
+    $search = $request->query('search');
+    $perPage = $request->query('per_page', 10); // Default to 10 items per page
+    $customers = Customer::where('name', 'LIKE', "%{$search}%")->paginate($perPage);
+
+    return response()->json($customers);
+}
 
     // Update customer data
 

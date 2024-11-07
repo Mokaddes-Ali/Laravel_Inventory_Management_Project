@@ -25,7 +25,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/delete/{id}', [CustomerController::class, 'destroy']);
 
     //for invoice
-    Route::get('/customerlist', [CustomerController::class, 'customertList']);
+    Route::get('/customerlist', [CustomerController::class, 'customerList']);
+    //search cutomer
+    Route::get('/search-customers', [CustomerController::class, 'searchCustomers']);
+
 
 });
 
@@ -61,6 +64,8 @@ Route::delete('/products/delete/{id}', [ProductController::class, 'destroy']);
 
 //for product list in use invoice
 Route::get('/productlist', [ProductController::class, 'ProductList']);
+//search product
+Route::get('/search-products', [ProductController::class, 'searchProducts']);
 
 
 

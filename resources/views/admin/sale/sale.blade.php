@@ -170,70 +170,186 @@
 <!-- Customer Selection -->
 
 <script>
-    Customertlist();
+let currentPage = 1;
+let totalPages = 1;
 
-    async function Customertlist() {
+// Fetch and display paginated customers initially
+CustomerList();
 
-            let response = await fetch('/customerlist');
-            let data = await response.json();
-                let customerList = document.getElementById('customerList');
-                customerList.innerHTML = '';
-                data.forEach(function(item) {
-                    customerList.innerHTML += `
-                        <tr>
-                            <td>${item.name}</td>
-                            <td><button class="btn btn-dark" onclick="selectCustomer('${item.name}', '${item.address}', '${item.mobile}', '${item.id}')">ADD</button></td>
-                        </tr>
-                    `;
-                });
-            }
+async function CustomerList(page = 1) {
+    let response = await fetch(`/customerlist?page=${page}`);
+    let data = await response.json();
+    displayCustomers(data.data); // `data.data` contains the paginated customers
+    updateCustomerPagination(data);
+}
+
+// Function to display customers in the table
+function displayCustomers(customers) {
+    let customerList = $("#customerList");
+    customerList.empty();
+    customers.forEach(function(item) {
+        let row = `
+            <tr>
+                <td>${item.name}</td>
+                <td><a class="btn btn-dark" onclick="selectCustomer('${item.name}', '${item.address}', '${item.mobile}', '${item.id}')">ADD</a></td>
+            </tr>
+        `;
+        customerList.append(row);
+    });
+}
+
+// Update pagination controls based on response metadata
+function updateCustomerPagination(data) {
+    currentPage = data.current_page;
+    totalPages = data.last_page;
+    document.getElementById('customerPageInfo').textContent = `Page ${currentPage} of ${totalPages}`;
+
+    // Disable buttons at boundaries
+    document.querySelector('#paginationControls button:first-child').disabled = currentPage <= 1;
+    document.querySelector('#paginationControls button:last-child').disabled = currentPage >= totalPages;
+}
+
+// Change page on pagination button click
+function changeCustomerPage(page) {
+    if (page > 0 && page <= totalPages) {
+        CustomerList(page);
+    }
+}
+
+// Search customers with optional real-time triggering and pagination
+async function searchCustomers(isRealTime = false) {
+    let searchInput = document.getElementById('customerSearchInput').value;
+
+    // Skip search if input is empty on real-time triggers
+    if (isRealTime && searchInput.trim() === "") {
+        CustomerList(); // Show all customers
+        return;
+    }
+
+    let response = await fetch(`/search-customers?search=${encodeURIComponent(searchInput)}&page=${currentPage}`);
+    let data = await response.json();
+    displayCustomers(data.data); // `data.data` contains the paginated search results
+    updateCustomerPagination(data);
+}
+
+// Reset search to show all customers again
+function resetCustomerSearch() {
+    document.getElementById('customerSearchInput').value = ''; // Clear input field
+    CustomerList(); // Fetch and display all customers
+}
+
 
    </script>
 
 <div class="customer-section">
-<table class="table table-sm w-100" id="customerTable">
-                        <thead class="w-100">
-                        <tr class="text-xs text-bold">
-                            <td>Customer</td>
+    <!-- Search Input and Buttons -->
+    <input type="text" id="customerSearchInput" placeholder="Search customers..." oninput="searchCustomers(true)">
+    <button onclick="searchCustomers()">Search</button>
+    <button onclick="resetCustomerSearch()">Reset</button>
 
-                            <td>Pick</td>
-                        </tr>
-                        </thead>
-                        <tbody  class="w-100" id="customerList">
+    <!-- Customer Table -->
+    <table class="table w-100" id="customerTable">
+        <thead class="w-100">
+            <tr class="text-xs text-bold">
+                <td>Customer</td>
+                <td>Pick</td>
+            </tr>
+        </thead>
+        <tbody class="w-100" id="customerList"></tbody>
+    </table>
 
-                        </tbody>
-                    </table>
+    <!-- Pagination Controls -->
+    <div id="paginationControls" class="pagination-controls">
+        <button onclick="changeCustomerPage(currentPage - 1)">Previous</button>
+        <span id="customerPageInfo"></span>
+        <button onclick="changeCustomerPage(currentPage + 1)">Next</button>
+    </div>
 </div>
+
+
+
 
         <!-- Product List -->
 
         <script>
-            Productlist();
+let currentPage = 1;
+let totalPages = 1;
 
-            async function Productlist() {
+// Fetch and display paginated products initially
+Productlist();
 
-                    let response = await fetch('/productlist');
-                    let data = await response.json();
-                    let productList=$("#productList");
-                     productList.empty();
-                     data.forEach(function(item,index) {
+async function Productlist(page = 1) {
+    let response = await fetch(`/productlist?page=${page}`);
+    let data = await response.json();
+    displayProducts(data.data); // `data.data` contains the paginated products
+    updatePagination(data);
+}
 
-                     let row=`
-                     <tr>
-                     <td>${item.name}</td>
-                      <td> <a class="btn btn-dark" onclick="addToCart('${item.name}', ${item.price})">ADD</a></td>
-                     </tr>
-                     `;
-                     productList.append(row);
+// Function to display products in the table
+function displayProducts(products) {
+    let productList = $("#productList");
+    productList.empty();
+    products.forEach(function(item) {
+        let row = `
+            <tr>
+                <td>${item.name}</td>
+                <td><a class="btn btn-dark" onclick="addToCart('${item.name}', ${item.price})">ADD</a></td>
+            </tr>
+        `;
+        productList.append(row);
+    });
+}
 
-                     });
+// Update pagination controls based on response metadata
+function updatePagination(data) {
+    currentPage = data.current_page;
+    totalPages = data.last_page;
+    document.getElementById('pageInfo').textContent = `Page ${currentPage} of ${totalPages}`;
 
-            }
+    // Disable buttons at boundaries
+    document.querySelector('#paginationControls button:first-child').disabled = currentPage <= 1;
+    document.querySelector('#paginationControls button:last-child').disabled = currentPage >= totalPages;
+}
+
+// Change page on pagination button click
+function changePage(page) {
+    if (page > 0 && page <= totalPages) {
+        Productlist(page);
+    }
+}
+
+// Search products with optional real-time triggering and pagination
+async function searchProducts(isRealTime = false) {
+    let searchInput = document.getElementById('productSearchInput').value;
+
+    // Skip search if input is empty on real-time triggers
+    if (isRealTime && searchInput.trim() === "") {
+        Productlist(); // Show all products
+        return;
+    }
+
+    let response = await fetch(`/search-products?search=${encodeURIComponent(searchInput)}&page=${currentPage}`);
+    let data = await response.json();
+    displayProducts(data.data); // `data.data` contains the paginated search results
+    updatePagination(data);
+}
+
+// Reset search to show all products again
+function resetProductSearch() {
+    document.getElementById('productSearchInput').value = ''; // Clear input field
+    Productlist(); // Fetch and display all products
+}
+
 
            </script>
 
-
 <div class="product-list">
+    <!-- Search Input and Buttons -->
+    <input type="text" id="productSearchInput" placeholder="Search products..." oninput="searchProducts(true)">
+    <button onclick="searchProducts()">Search</button>
+    <button onclick="resetProductSearch()">Reset</button>
+
+    <!-- Product Table -->
     <table class="table w-100" id="productTable">
         <thead class="w-100">
             <tr class="text-xs text-bold">
@@ -241,12 +357,18 @@
                 <td>Pick</td>
             </tr>
         </thead>
-        <tbody class="w-100" id="productList">
-
-
-        </tbody>
+        <tbody class="w-100" id="productList"></tbody>
     </table>
+
+    <!-- Pagination Controls -->
+    <div id="paginationControls" class="pagination-controls">
+        <button onclick="changePage(currentPage - 1)">Previous</button>
+        <span id="pageInfo"></span>
+        <button onclick="changePage(currentPage + 1)">Next</button>
+    </div>
 </div>
+
+
 
 
     <!-- Payment Modal -->

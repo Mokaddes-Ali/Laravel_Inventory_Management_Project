@@ -1,6 +1,4 @@
-{{-- @extends('layouts.master')
-
-@section('content')
+{{--
 
 
 <!DOCTYPE html>
@@ -538,11 +536,15 @@ async function submitInvoice() {
 </body>
 </html>
 
+ --}}
 
 
 
 
-@endsection --}}
+
+@extends('layouts.master')
+
+@section('content')
 
 
 
@@ -732,6 +734,9 @@ async function submitInvoice() {
 
             <!-- Customer Selection -->
             <div class="customer-section">
+                <input type="text" id="searchInput" placeholder="Search customers..." oninput="searchCustomers(true)">
+                <button onclick="searchCustomers()">Search</button>
+                <button onclick="resetSearch()">Reset</button>
                 <table class="table table-sm w-100" id="customerTable">
                     <thead class="w-100">
                     <tr class="text-xs text-bold">
@@ -745,6 +750,10 @@ async function submitInvoice() {
 
             <!-- Product List -->
             <div class="product-list">
+                 <!-- Search Input and Buttons -->
+     <input type="text" id="productSearchInput" placeholder="Search products..." oninput="searchProducts(true)">
+     <button onclick="searchProducts()">Search</button>
+     <button onclick="resetProductSearch()">Reset</button>
                 <table class="table w-100" id="productTable">
                     <thead class="w-100">
                     <tr class="text-xs text-bold">
@@ -967,6 +976,52 @@ async function submitInvoice() {
                 });
             }
 
+                        // Fetch and display all customers initially
+Customertlist();
+
+async function Customertlist() {
+    let response = await fetch('/customerlist');
+    let data = await response.json();
+    displayCustomers(data);
+}
+
+// Function to display customers in the table
+function displayCustomers(data) {
+    let customerList = document.getElementById('customerList');
+    customerList.innerHTML = '';
+    data.forEach(function(item) {
+        customerList.innerHTML += `
+            <tr>
+                <td>${item.name}</td>
+                <td><button class="btn btn-dark" onclick="selectCustomer('${item.name}', '${item.address}', '${item.mobile}', '${item.id}')">ADD</button></td>
+            </tr>
+        `;
+    });
+}
+
+// Search customers with optional real-time triggering
+async function searchCustomers(isRealTime = false) {
+    let searchInput = document.getElementById('searchInput').value;
+
+    // Skip search if input is empty on real-time triggers
+    if (isRealTime && searchInput.trim() === "") {
+        Customertlist();
+        return;
+    }
+
+    let response = await fetch(`/search-customers?search=${encodeURIComponent(searchInput)}`);
+    let data = await response.json();
+    displayCustomers(data);
+}
+
+// Reset search to show all customers again
+function resetSearch() {
+    document.getElementById('searchInput').value = ''; // Clear input field
+    Customertlist(); // Fetch and display all customers
+}
+
+
+
             // Fetch product list
             async function Productlist() {
                 let response = await fetch('/productlist');
@@ -983,6 +1038,51 @@ async function submitInvoice() {
                 });
             }
 
+              // Fetch and display all products initially
+Productlist();
+
+async function Productlist() {
+    let response = await fetch('/productlist');
+    let data = await response.json();
+    displayProducts(data);
+}
+
+// Function to display products in the table
+function displayProducts(data) {
+    let productList = $("#productList");
+    productList.empty();
+    data.forEach(function(item) {
+        let row = `
+            <tr>
+                <td>${item.name}</td>
+                <td><a class="btn btn-dark" onclick="addToCart('${item.name}', ${item.price})">ADD</a></td>
+            </tr>
+        `;
+        productList.append(row);
+    });
+}
+
+// Search products with optional real-time triggering
+async function searchProducts(isRealTime = false) {
+    let searchInput = document.getElementById('productSearchInput').value;
+
+    // Skip search if input is empty on real-time triggers
+    if (isRealTime && searchInput.trim() === "") {
+        Productlist();
+        return;
+    }
+
+    let response = await fetch(`/search-products?search=${encodeURIComponent(searchInput)}`);
+    let data = await response.json();
+    displayProducts(data);
+}
+
+// Reset search to show all products again
+function resetProductSearch() {
+    document.getElementById('productSearchInput').value = ''; // Clear input field
+    Productlist(); // Fetch and display all products
+}
+
             // Call these functions on page load
             customerlist();
             Productlist();
@@ -990,3 +1090,4 @@ async function submitInvoice() {
     </body>
     </html>
 
+ @endsection

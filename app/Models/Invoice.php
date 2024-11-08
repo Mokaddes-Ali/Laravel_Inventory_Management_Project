@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Invoice extends Model
 {
     use HasFactory;
+// Specify the fields that can be mass-assigned
+protected $fillable = [
+    'customer_id',  // Add this to allow mass assignment
+    'vat',
+    'payable',
+    'paid',
+    'due',
+    'creator',
+    'editor',
+];
 }

@@ -77,6 +77,9 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/invoices', [InvoiceController::class, 'submitInvoice'])->name('submitInvoice');
     Route::get('/invoices/show', [InvoiceController::class, 'index'])->name('invoices.index');
+
+Route::get('/view/salelist/{id}', [InvoiceController::class, 'salelist'])->name('salelist');
+Route::get('/delete/invoice/{id}', [InvoiceController::class, 'destroy'])->name('invoices.destroy');
 });
 
 Route::middleware('auth')->group(function () {

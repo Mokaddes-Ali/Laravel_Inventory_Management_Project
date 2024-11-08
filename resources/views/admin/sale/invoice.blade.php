@@ -116,10 +116,8 @@
 
 
             @foreach ($invoice->products as $product)
-
-
                 <tr>
-                    <td>1</td>
+                    <td>{{ $loop->iteration }}</td>
                     <td>{{ $product->product->name ?? 'Product not found' }}</td>
                     <td>{{ $product->qty }}</td>
                     <td>{{ $product->sale_price }}</td>

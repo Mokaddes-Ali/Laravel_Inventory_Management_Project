@@ -40,18 +40,12 @@
                             <!-- <li class="menu-title">Navigation</li> -->
 
                             <li>
-                                <a href="#sidebarDashboard" data-bs-toggle="collapse">
+                                <a href="/dashboard" data-bs-toggle="collapse">
                                     <span class="badge bg-success float-end">02</span>
                                     <i data-feather="home"></i>
-                                    <span> Dashboards </span>
+                                    <span> Project </span>
                                     <!-- <span class="menu-arrow"></span> -->
                                 </a>
-                                <div class="collapse" id="sidebarDashboard">
-                                    <ul class="nav-second-level">
-                                        <li><a href="index.html">Ecommerce</a></li>
-                                        <li><a href="dashboard-analytics.html">Analytics</a></li>
-                                    </ul>
-                                </div>
                             </li>
 
                             <li class="menu-title mt-2">Apps</li>
@@ -64,9 +58,9 @@
                             </li>
 
                             <li>
-                                <a href="apps-chat.html">
+                                <a href="/dashboard">
                                     <i data-feather="message-square"></i>
-                                    <span> Chat </span>
+                                    <span> Dashboard</span>
                                 </a>
                             </li>
 

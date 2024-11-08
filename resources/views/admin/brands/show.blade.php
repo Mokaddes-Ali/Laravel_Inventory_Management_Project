@@ -6,9 +6,13 @@
         <div class="mx-5 mt-2">
         <a href="{{ url('/brands') }}" class=""><button type="button" class="btn btn-danger">Add Brand</button></a>
       </div>
+
         <div class="mx-5 mt-2 text-center display-6">
         Brand List
     </div>
+    <a href="{{ url('/brand-export1') }}" class="mx-2 mt-3"><button type="button" class="btn btn-success display-4">Excel</button></a>
+            <a href="{{ url('/brand-export2') }}" class="mt-3 mx-2"><button type="button" class="btn btn-success display-4">CSV</button></a>
+            <a href="{{ url('/brand-export3') }}" class="mt-3 mx-2"><button type="button" class="btn btn-success display-4">PDF</button></a>
     </div>
 <table class="table table-striped table-responsive table-dark">
     <thead>

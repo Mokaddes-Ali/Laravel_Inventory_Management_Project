@@ -7,7 +7,6 @@ use App\Models\Customer;
 use Illuminate\Http\Request;
 use Flasher\Prime\FlasherInterface;
 use Illuminate\Support\Facades\Auth;
-use App\Exports\UsersExport;
 use Maatwebsite\Excel\Facades\Excel;
 
 class CustomerController extends Controller
@@ -20,7 +19,7 @@ class CustomerController extends Controller
     // Show all customers
 
     public function show(){
-        $all = Customer::orderBy('id', 'asc')->paginate(3);
+        $all = Customer::orderBy('id', 'desc')->paginate(3);
         return view('admin.customer.show', compact('all'));
     }
 

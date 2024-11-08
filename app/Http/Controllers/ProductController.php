@@ -22,7 +22,7 @@ class ProductController extends Controller
      //show all data
      public function index()
      {
-    $products = Product::with(['category', 'brand'])->paginate(2);
+    $products = Product::with(['category', 'brand'])->orderBy('id', 'desc')->paginate(2);
     return view('admin.product.index', compact('products'));
     }
 

@@ -4,14 +4,15 @@
 <div class="card ">
     <div class="card-header d-flex w-36 h-11 ">
         <div class="mx-5 mt-2">
-            <a href="{{ url('/customer-export1') }}" class=""><button type="button" class="btn btn-success display-4">Excel</button></a>
-            <a href="{{ url('/customer-export2') }}" class=""><button type="button" class="btn btn-success display-4">CSV</button></a>
-            <a href="{{ url('/customer-export3') }}" class=""><button type="button" class="btn btn-success display-4">PDF</button></a>
+
         <a href="{{ url('/customer') }}" class=""><button type="button" class="btn btn-success display-4">Add Customer</button></a>
       </div>
         <div class="mx-5 mt-2 text-center display-6">
         List of Customer
     </div>
+    <a href="{{ url('/customer-export1') }}" class="mx-2 mt-3"><button type="button" class="btn btn-success display-4">Excel</button></a>
+            <a href="{{ url('/customer-export2') }}" class="mt-3 mx-2"><button type="button" class="btn btn-success display-4">CSV</button></a>
+            <a href="{{ url('/customer-export3') }}" class="mt-3 mx-2"><button type="button" class="btn btn-success display-4">PDF</button></a>
     </div>
 <table class="table table-striped table-responsive table-dark">
     <thead>

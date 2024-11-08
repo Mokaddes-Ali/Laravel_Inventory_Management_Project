@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BackupController;
 use App\Http\Controllers\BrandsController;
@@ -11,9 +12,14 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\SettingsController;
 
 
-Route::get('/dashboard', function () {
-    return view('layouts.master');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('layouts.master');
+// })->middleware(['auth', 'verified'])->name('dashboard');
+
+
+Route::middleware('auth')->group(function () {
+    Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
+});
 
 
 Route::middleware('auth')->group(function () {
@@ -55,6 +61,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/brands/edit/{id}', [BrandsController::class, 'edit']);
     Route::post('/brands/update', [BrandsController::class, 'update']);
     Route::get('/delete/{id}', [BrandsController::class, 'destroy']);
+
+    //export
+    Route::get('/brand-export1', [BrandsController::class, 'export1']);
+    Route::get('/brand-export2', [BrandsController::class, 'export2']);
+    Route::get('/brand-export3', [BrandsController::class, 'export3']);
 });
 
 

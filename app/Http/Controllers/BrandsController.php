@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\BrandsExport;
 use App\Models\Brands;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 
 class BrandsController extends Controller
 {
@@ -15,8 +17,24 @@ public function index(){
 
    //show all data
 public function show(){
-    $all = Brands::orderBy('id', 'asc')->paginate(4);
+    $all = Brands::orderBy('id', 'desc')->paginate(4);
     return view('admin.brands.show', compact('all'));
+}
+
+//export data
+
+public function export1()
+{
+    return Excel::download(new BrandsExport, 'brands.xlsx');
+}
+public function export2()
+{
+    return Excel::download(new BrandsExport, 'brands.csv');
+}
+
+public function export3()
+{
+    return Excel::download(new BrandsExport, 'brands.pdf');
 }
 
 //insert data
@@ -44,7 +62,7 @@ public function create(Request $request) {
     ]);
 
     if ($insert) {
-        return redirect()->route('brands.show')->with('success', 'Data inserted successfully');
+        return redirect()->back()->with('success', 'Data inserted successfully');
     } else {
         return back()->with('fail', 'Data insertion failed');
     }
@@ -102,7 +120,7 @@ public function destroy($id){
     $customer =Brands::find($id);
     if ($customer) {
         $imagePath = public_path('BrandImage/' . $customer->brandImg);
-        if (file_exists($imagePath)) { 
+        if (file_exists($imagePath)) {
             unlink($imagePath);
         }
         $customer->delete();

@@ -76,10 +76,10 @@ class ProductController extends Controller
     }
 
    //product list for api in invoice
-   public function productList(Request $request)
+   public function productList()
 {
-    $perPage = $request->query('per_page', 10); // Default 10 items per page
-    $products = Product::paginate($perPage);
+
+    $products = Product::all();
 
     return response()->json($products);
 }
@@ -89,9 +89,7 @@ class ProductController extends Controller
     public function searchProducts(Request $request)
     {
         $search = $request->query('search');
-        $perPage = $request->query('per_page', 10); // Default 10 items per page
-        $products = Product::where('name', 'LIKE', "%{$search}%")->paginate($perPage);
-
+        $products = Product::where('name', 'LIKE', "%{$search}%")->get(); // Case-insensitive match
         return response()->json($products);
     }
 

@@ -70,12 +70,11 @@ class CustomerController extends Controller
 
 
   // paginated customer list
-public function customerList(Request $request)
+public function customerList()
 {
-    $perPage = $request->query('per_page', 10); // Default to 10 items per page
-    $customers = Customer::orderBy('name')->paginate($perPage);
+    $customers = Customer::get();
 
-    return response()->json($customers);
+    return response()->json( $customers);
 }
 
 
@@ -85,9 +84,12 @@ public function customerList(Request $request)
 // paginated customer search results
 public function searchCustomers(Request $request)
 {
-    $search = $request->query('search');
-    $perPage = $request->query('per_page', 10); // Default to 10 items per page
-    $customers = Customer::where('name', 'LIKE', "%{$search}%")->paginate($perPage);
+    $searchTerm = $request->input('search');
+
+    $customers = Customer::where('name', 'LIKE', "%{$searchTerm}%")
+                         ->orWhere('address', 'LIKE', "%{$searchTerm}%")
+                         ->orderBy('name', 'asc') // Sort by name or another column if needed
+                         ->get();
 
     return response()->json($customers);
 }

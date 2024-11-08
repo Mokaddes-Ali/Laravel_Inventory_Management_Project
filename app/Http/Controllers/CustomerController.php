@@ -6,6 +6,8 @@ use App\Models\Customer;
 use Illuminate\Http\Request;
 use Flasher\Prime\FlasherInterface;
 use Illuminate\Support\Facades\Auth;
+use App\Exports\UsersExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CustomerController extends Controller
 {
@@ -92,6 +94,12 @@ public function searchCustomers(Request $request)
                          ->get();
 
     return response()->json($customers);
+}
+
+
+public function export()
+{
+    return Excel::download(new UsersExport, 'customers.xlsx');
 }
 
     // Update customer data

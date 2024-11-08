@@ -4,6 +4,8 @@
 <div class="card ">
     <div class="card-header d-flex w-36 h-11 ">
         <div class="mx-5 mt-2">
+
+            <a href="{{ url('/customer-export') }}" class=""><button type="button" class="btn btn-success display-4">Excel</button></a>
         <a href="{{ url('/customer') }}" class=""><button type="button" class="btn btn-success display-4">Add Customer</button></a>
       </div>
         <div class="mx-5 mt-2 text-center display-6">

@@ -26,6 +26,8 @@ Route::middleware('auth')->group(function () {
 
     //for invoice
     Route::get('/customerlist', [CustomerController::class, 'customerList']);
+    Route::get('/customer-export', [CustomerController::class, 'export']);
+
     //search cutomer
     Route::get('/search-customers', [CustomerController::class, 'searchCustomers']);
 

@@ -1,5 +1,4 @@
 @extends('layouts.master')
-
 @section('content')
 <div class="container">
     <h2>Invoice List</h2>
@@ -17,23 +16,30 @@
             </tr>
         </thead>
         <tbody>
-
+            @foreach($invoices as $invoice)
                 <tr>
-                    <td></td>
-                    <td></td>
+                    <td>{{ $invoice->id }}</td>
+                    <td>{{ $invoice->customer->name }}</td>
 
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
+                    <td>{{ $invoice->vat }}</td>
+                    <td>{{ $invoice->payable }}</td>
+                    <td>{{ $invoice->paid }}</td>
+                    <td>{{ $invoice->due }}</td>
                     <td>
-
-                    <ul>
-                        <li></li>
-                    </ul>
+                        <ul style="list-style-type: none; padding: 0;">
+                            @foreach ($invoice->products as $index => $product)
+                                <li style="margin-bottom: 8px; border-bottom: 1px solid #ddd; padding-bottom: 4px;">
+                                    <strong>{{ $index + 1 }}.</strong>
+                                    <span style="font-weight: bold; color: #333;">{{ $product->product->name ?? 'Product not found' }}</span>
+                                    <br>
+                                    <span style="color: #555;">Quantity:</span> {{ $product->qty }} &nbsp; | &nbsp;
+                                    <span style="color: #555;">Price:</span> ${{ $product->sale_price }}
+                                </li>
+                            @endforeach
+                        </ul>
                     </td>
                 </tr>
+            @endforeach
 
         </tbody>
     </table>

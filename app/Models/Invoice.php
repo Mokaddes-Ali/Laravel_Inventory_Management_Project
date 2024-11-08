@@ -18,4 +18,16 @@ protected $fillable = [
     'creator',
     'editor',
 ];
+
+public function products()
+    {
+        return $this->hasMany(Invoice_Product::class);
+    }
+
+
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class, 'customer_id');
+    }
+    
 }

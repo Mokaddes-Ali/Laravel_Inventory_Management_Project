@@ -11,8 +11,8 @@ class InvoiceController extends Controller
 
   public function index()
     {
-        $invoices = Invoice::with('products', 'customer')->get();
-        return view('admin.invoice.invoice', compact('invoices'));
+        $invoices = Invoice::orderBy('id', 'desc')->with('products', 'customer')->get();
+        return view('admin.sale.index', compact('invoices'));
     }
     public function saleIndex()
     {

@@ -76,6 +76,7 @@ Route::get('/search-products', [ProductController::class, 'searchProducts']);
 Route::middleware('auth')->group(function () {
 
     Route::post('/invoices', [InvoiceController::class, 'submitInvoice'])->name('submitInvoice');
+    Route::get('/invoices/show', [InvoiceController::class, 'index'])->name('invoices.index');
 });
 
 Route::middleware('auth')->group(function () {

@@ -8,6 +8,12 @@ use App\Models\Invoice_Product;
 
 class InvoiceController extends Controller
 {
+
+  public function index()
+    {
+        $invoices = Invoice::with('products', 'customer')->get();
+        return view('admin.invoice.invoice', compact('invoices'));
+    }
     public function saleIndex()
     {
         return view('admin.sale.sale');

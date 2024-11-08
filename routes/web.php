@@ -79,6 +79,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/invoices/show', [InvoiceController::class, 'index'])->name('invoices.index');
 
 Route::get('/view/salelist/{id}', [InvoiceController::class, 'salelist'])->name('salelist');
+Route::get('/view/salelist/pdf/{id}', [InvoiceController::class, 'pdf'])->name('invoice.pdf');
 Route::get('/delete/invoice/{id}', [InvoiceController::class, 'destroy'])->name('invoices.destroy');
 });
 

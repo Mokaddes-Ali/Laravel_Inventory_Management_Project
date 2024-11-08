@@ -41,6 +41,7 @@
                     </td>
                     <td>
                     <a class="btn btn-success btn-sm" href="{{ url('/view/salelist',$invoice->id ) }}">View</a>
+                    <a class="btn btn-success btn-sm" href="{{ url('/view/salelist/pdf',$invoice->id ) }}">pdf</a>
                     <a class="btn btn-danger btn-sm" onclick="return confirm('Are you sure to delete?')" href="{{ url('/delete/invoice',$invoice->id ) }}">Delete</a>
                    </td>
                 </tr>

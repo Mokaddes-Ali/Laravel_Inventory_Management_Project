@@ -106,9 +106,10 @@ Route::middleware('auth')->group(function () {
 Route::get('/view/salelist/{id}', [InvoiceController::class, 'salelist'])->name('salelist');
 Route::get('/view/salelist/pdf/{id}', [InvoiceController::class, 'pdf'])->name('invoice.pdf');
 Route::get('/delete/invoice/{id}', [InvoiceController::class, 'destroy'])->name('invoices.destroy');
-});
-
-Route::middleware('auth')->group(function () {
+ //export
+ Route::get('/sale-export1', [InvoiceController::class, 'export1']);
+ Route::get('/sale-export2', [InvoiceController::class, 'export2']);
+ Route::get('/sale-export3', [InvoiceController::class, 'export3']);
 
     // for sale invoice
     Route::get('/sale', [InvoiceController::class, 'saleIndex'])->name('sell.index');

@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\InvoicesExport;
 use App\Models\Invoice;
 use Illuminate\Http\Request;
 use App\Models\Invoice_Product;
 use Illuminate\Support\Facades\DB;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Maatwebsite\Excel\Facades\Excel;
 
 class InvoiceController extends Controller
 {
@@ -88,6 +90,21 @@ class InvoiceController extends Controller
 
         return response()->json(['message' => 'Invoice and items saved successfully']);
     }
+
+    //Export
+    public function export1()
+{
+    return Excel::download(new InvoicesExport, 'invoices.xlsx');
+}
+public function export2()
+{
+    return Excel::download(new InvoicesExport, 'invoices.csv');
+}
+
+public function export3()
+{
+    return Excel::download(new InvoicesExport, 'invoices.pdf');
+}
 
     public function destroy($id)
     {

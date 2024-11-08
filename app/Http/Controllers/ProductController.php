@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ProductsExport;
 use App\Models\Brands;
 use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ProductController extends Controller
 {
@@ -25,6 +27,23 @@ class ProductController extends Controller
     $products = Product::with(['category', 'brand'])->orderBy('id', 'desc')->paginate(2);
     return view('admin.product.index', compact('products'));
     }
+
+
+    // export
+
+    public function export1()
+{
+    return Excel::download(new ProductsExport, 'products.xlsx');
+}
+public function export2()
+{
+    return Excel::download(new ProductsExport, 'products.csv');
+}
+
+public function export3()
+{
+    return Excel::download(new ProductsExport, 'products.pdf');
+}
 
    // Insert product data
     public function store(Request $request)

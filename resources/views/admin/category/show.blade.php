@@ -104,13 +104,15 @@
      <div class="row">
          <div class="col-md-offset-1 col-md-11">
              <div class="panel">
-                 <div class="panel-heading">
-                     <div class="row">
-                         <div class="col-sm-12 col-xs-12">
-                             <a href="#" class="btn mt-3 mb-3  btn-sm btn-primary pull-left"><i class="fa fa-plus-circle"></i> Add New</a>
-                         </div>
-                     </div>
-                 </div>
+                <div class="panel-heading d-flex align-items-center">
+                    <a href="/category" class="btn btn-sm btn-primary me-5 mt-3 mb-3"><i class="fa fa-plus-circle"></i> Add New</a>
+                    <h2 class="mb-0 mx-5 me-5 mt-3">List Category</h2>
+                    <a href="{{ url('/category-export1') }}" class="btn btn-success display-4 me-2 mt-3">Excel</a>
+                    <a href="{{ url('/category-export2') }}" class="btn btn-success display-4 me-2 mt-3">CSV</a>
+                    <a href="{{ url('/category-export3') }}" class="btn btn-success display-4 mt-3">PDF</a>
+                </div>
+
+
                  <div class="panel-body ">
                      <table class="table">
                          <thead>

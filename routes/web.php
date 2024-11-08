@@ -50,6 +50,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/category/edit/{id}', [CategoryController::class, 'edit'])->name('category.edit');
     Route::post('/category/update', [CategoryController::class, 'update'])->name('category.update');
     Route::get('/delete/category/{id}', [CategoryController::class, 'destroy']);
+
+    //export
+    Route::get('/category-export1', [CategoryController::class, 'export1']);
+    Route::get('/category-export2', [CategoryController::class, 'export2']);
+    Route::get('/category-export3', [CategoryController::class, 'export3']);
 });
 
 
@@ -81,6 +86,11 @@ Route::delete('/products/delete/{id}', [ProductController::class, 'destroy']);
 Route::get('/productlist', [ProductController::class, 'ProductList']);
 //search product
 Route::get('/search-products', [ProductController::class, 'searchProducts']);
+
+ //export
+ Route::get('/product-export1', [ProductController::class, 'export1']);
+ Route::get('/product-export2', [ProductController::class, 'export2']);
+ Route::get('/product-export3', [ProductController::class, 'export3']);
 
 
 

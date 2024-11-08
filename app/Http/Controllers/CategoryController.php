@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Exports\CategoryExport;
 use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Flasher\Prime\FlasherInterface;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CategoryController extends Controller
 {
@@ -24,6 +25,21 @@ class CategoryController extends Controller
         $all = Category::orderBy('id', 'asc')->paginate(6);
         return view('admin.category.show', compact('all'));
     }
+
+
+    public function export1()
+{
+    return Excel::download(new CategoryExport, 'category.xlsx');
+}
+public function export2()
+{
+    return Excel::download(new CategoryExport, 'category.csv');
+}
+
+public function export3()
+{
+    return Excel::download(new CategoryExport, 'category.pdf');
+}
 
 
     // Insert category data

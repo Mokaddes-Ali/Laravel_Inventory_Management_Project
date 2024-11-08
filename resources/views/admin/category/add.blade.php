@@ -2,7 +2,14 @@
 
 @section('content')
     <div class="container mt-5">
-        <h1 class="mb-4">Create Category</h1>
+        <div class="card-header d-flex justify-content-start align-items-center">
+            <div>
+                <a href="{{ url('/category/show') }}">
+                    <button type="button" class="btn btn-info mx-5">Go To List</button>
+                </a>
+            </div>
+            <h3 class="text-center mx-5">Add Category</h3>
+        </div>
 
         <row class="col-md-8">
         <form action="{{ route('category.store') }}" method="POST" class="needs-validation" novalidate>

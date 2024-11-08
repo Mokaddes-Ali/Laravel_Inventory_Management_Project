@@ -1,10 +1,19 @@
 @extends('layouts.master')
 
 @section('content')
-<div class="container mt-5">
+<div class="container">
     <div class="card shadow-sm">
-        <div class="card-header bg-primary text-white text-center"  style="height:60px">
-            <h3>All Products</h3>
+        <div class="card-header d-flex w-36 h-11 ">
+            <div class="mx-5 mt-2">
+
+            <a href="{{ url('/products/create') }}" class=""><button type="button" class="btn btn-success display-4">Add Product</button></a>
+          </div>
+            <div class="mx-5 mt-2 text-center display-6">
+            Product List
+        </div>
+        <a href="{{ url('/product-export1') }}" class="mx-2 mt-3"><button type="button" class="btn btn-success display-4">Excel</button></a>
+                <a href="{{ url('/product-export2') }}" class="mt-3 mx-2"><button type="button" class="btn btn-success display-4">CSV</button></a>
+                <a href="{{ url('/product-export3') }}" class="mt-3 mx-2"><button type="button" class="btn btn-success display-4">PDF</button></a>
         </div>
         <div class="card-body">
             @if (session('success'))

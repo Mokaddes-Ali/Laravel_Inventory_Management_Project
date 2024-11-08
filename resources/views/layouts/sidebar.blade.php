@@ -121,7 +121,7 @@
                                 </div>
                             </li>
 
-                            <li>
+                            {{-- <li>
                                 <a href="#sidebarIncome" data-bs-toggle="collapse">
                                     <i data-feather="clipboard"></i>
                                     <span> Income </span>
@@ -133,7 +133,7 @@
                                         <li><a href="/invoices">List Invoice</a></li>
                                     </ul>
                                 </div>
-                            </li>
+                            </li> --}}
 
                             <li>
                                 <a href="#sidebarSale" data-bs-toggle="collapse">
@@ -150,7 +150,7 @@
                             </li>
 
 
-                            <li>
+                            {{-- <li>
                                 <a href="#sidebarExpense" data-bs-toggle="collapse">
                                     <i data-feather="clipboard"></i>
                                     <span> Expense </span>
@@ -162,7 +162,7 @@
                                         <li><a href="/show/expense">List expense</a></li>
                                     </ul>
                                 </div>
-                            </li>
+                            </li> --}}
 
 
                             <li>
@@ -173,7 +173,7 @@
 
                                 <a href="/backup">
                                     <i data-feather="file-plus"></i>
-                                    <span>Data Backup</span>
+                                    <span>Database Backup</span>
                                 </a>
                             </li>
 

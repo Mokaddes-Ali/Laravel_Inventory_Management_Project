@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\CustomersExport;
 use App\Models\Customer;
 use Illuminate\Http\Request;
 use Flasher\Prime\FlasherInterface;
@@ -97,9 +98,18 @@ public function searchCustomers(Request $request)
 }
 
 
-public function export()
+public function export1()
 {
-    return Excel::download(new UsersExport, 'customers.xlsx');
+    return Excel::download(new CustomersExport, 'customers.xlsx');
+}
+public function export2()
+{
+    return Excel::download(new CustomersExport, 'customers.csv');
+}
+
+public function export3()
+{
+    return Excel::download(new CustomersExport, 'customers.pdf');
 }
 
     // Update customer data

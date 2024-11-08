@@ -19,7 +19,16 @@ class AdminController extends Controller
         $categories = Category::all();
         $brands = Brands::all();
         $customers = Customer::all();
-        return view('admin.dashboard.index', compact('invoices', 'products', 'categories', 'brands', 'customers'));
+        $totalPaidAmount = Invoice::sum('paid');
+        $totalDueAmount = Invoice::sum('due');
+        $totalVat = Invoice::sum('vat');
+        // $totalDiscount = Invoice::sum('discount');
+        // $totalIncome = Invoice::sum('total');
+
+        return view('admin.dashboard.index',
+         compact('invoices', 'products', 'categories',
+         'brands', 'customers','totalPaidAmount',
+        'totalDueAmount', 'totalVat'));
     }
 
 }

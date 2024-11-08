@@ -1,42 +1,25 @@
 @extends('layouts.master')
+
 @section('content')
-
-
 <body class="loading" data-layout='{"mode": "light", "width": "fluid", "menuPosition": "fixed", "sidebar": { "color": "dark", "size": "default", "showuser": false}, "topbar": {"color": "light"}, "showRightSidebarOnPageLoad": true}'>
-<!-- start page title -->
+
+<!-- Page Title Section -->
 <div class="row">
     <div class="col-12">
-        <div class="page-title-box">
+        <div class="page-title-box d-flex align-items-center justify-content-between">
             <h4 class="page-title">Dashboard</h4>
             <div class="page-title-right">
-                <form class="float-sm-end mt-3 mt-sm-0">
-                    <div class="row g-2">
-                        <div class="col-md-auto">
-                            <div class="mb-1 mb-sm-0">
-                                <input type="text" class="form-control" id="dash-daterange" style="min-width: 210px;" />
-                            </div>
-                        </div>
-                        <div class="col-md-auto">
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class='uil uil-file-alt me-1'></i>Download
-                                <i class="icon"><span data-feather="chevron-down"></span></i></button>
-                                <div class="dropdown-menu dropdown-menu-end">
-                                    <a href="#" class="dropdown-item notify-item">
-                                        <i data-feather="mail" class="icon-dual icon-xs me-2"></i>
-                                        <span>Email</span>
-                                    </a>
-                                    <a href="#" class="dropdown-item notify-item">
-                                        <i data-feather="printer" class="icon-dual icon-xs me-2"></i>
-                                        <span>Print</span>
-                                    </a>
-                                    <div class="dropdown-divider"></div>
-                                    <a href="#" class="dropdown-item notify-item">
-                                        <i data-feather="file" class="icon-dual icon-xs me-2"></i>
-                                        <span>Re-Generate</span>
-                                    </a>
-                                </div>
-                            </div>
+                <form class="d-flex gap-2 align-items-center">
+                    <input type="text" class="form-control" id="dash-daterange" placeholder="Select Date Range" style="min-width: 210px;" />
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class='uil uil-file-alt me-1'></i>Download
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-end">
+                            <a href="#" class="dropdown-item"><i class='uil uil-envelope-alt me-1'></i>Email</a>
+                            <a href="#" class="dropdown-item"><i class='uil uil-print me-1'></i>Print</a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item"><i class='uil uil-file me-1'></i>Re-Generate</a>
                         </div>
                     </div>
                 </form>
@@ -44,106 +27,93 @@
         </div>
     </div>
 </div>
-<!-- end page title -->
 
+<!-- Statistics Section -->
 <div class="row">
-    <div class="col-md-6 col-xl-3">
-        <div class="card">
+    <!-- Total Invoices -->
+    <div class="col-md-6 col-xl-3 mb-3">
+        <div class="card h-100 shadow-sm">
             <div class="card-body">
-                <div class="d-flex">
-                    <div class="flex-grow-1">
-                        <span class="text-muted text-uppercase fs-12 fw-bold">Total Invoices</span>
-                        <h3 class="mb-0">{{  $invoices->count() }}</h3>
-                    </div>
-                    <div class="align-self-center flex-shrink-0">
-                        <span class="text-success fw-bold fs-13"><i class='uil uil-arrow-up'></i> 10.21%</span>
-                    </div>
-                </div>
+                <h6 class="text-muted fw-bold">Total Invoices</h6>
+                <h3 class="mb-0">{{ $invoices->count() }}</h3>
+                <span class="text-success"><i class='uil uil-arrow-up'></i> 10.21%</span>
             </div>
         </div>
     </div>
 
-    <div class="col-md-6 col-xl-3">
-        <div class="card">
+    <!-- Total Products -->
+    <div class="col-md-6 col-xl-3 mb-3">
+        <div class="card h-100 shadow-sm">
             <div class="card-body">
-                <div class="d-flex">
-                    <div class="flex-grow-1">
-                        <span class="text-muted text-uppercase fs-12 fw-bold">Total Products</span>
-                        <h3 class="mb-0">{{ $products->count() }}</h3>
-                    </div>
-                    <div class="align-self-center flex-shrink-0">
-                        <span class="text-danger fw-bold fs-13"><i class='uil uil-arrow-down'></i> 5.05%</span>
-                    </div>
-                </div>
+                <h6 class="text-muted fw-bold">Total Products</h6>
+                <h3 class="mb-0">{{ $products->count() }}</h3>
+                <span class="text-danger"><i class='uil uil-arrow-down'></i> 5.05%</span>
             </div>
         </div>
     </div>
 
-    <div class="col-md-6 col-xl-3">
-        <div class="card">
+    <!-- Total Categories -->
+    <div class="col-md-6 col-xl-3 mb-3">
+        <div class="card h-100 shadow-sm">
             <div class="card-body">
-                <div class="d-flex">
-                    <div class="flex-grow-1">
-                        <span class="text-muted text-uppercase fs-12 fw-bold">Total Categories</span>
-                        <h3 class="mb-0">{{  $categories->count() }}</h3>
-                    </div>
-                    <div class="align-self-center flex-shrink-0">
-                        <span class="text-success fw-bold fs-13"><i class='uil uil-arrow-up'></i> 15.34%</span>
-                    </div>
-                </div>
+                <h6 class="text-muted fw-bold">Total Categories</h6>
+                <h3 class="mb-0">{{ $categories->count() }}</h3>
+                <span class="text-success"><i class='uil uil-arrow-up'></i> 15.34%</span>
             </div>
         </div>
     </div>
 
-    <div class="col-md-6 col-xl-3">
-        <div class="card">
+    <!-- Total Brands -->
+    <div class="col-md-6 col-xl-3 mb-3">
+        <div class="card h-100 shadow-sm">
             <div class="card-body">
-                <div class="d-flex">
-                    <div class="flex-grow-1">
-                        <span class="text-muted text-uppercase fs-12 fw-bold">Total Brands</span>
-                        <h3 class="mb-0">{{ $brands->count() }}</h3>
-                    </div>
-                    <div class="align-self-center flex-shrink-0">
-                        <span class="text-success fw-bold fs-13"><i class='uil uil-arrow-up'></i> 12.67%</span>
-                    </div>
-                </div>
+                <h6 class="text-muted fw-bold">Total Brands</h6>
+                <h3 class="mb-0">{{ $brands->count() }}</h3>
+                <span class="text-success"><i class='uil uil-arrow-up'></i> 12.67%</span>
             </div>
         </div>
     </div>
 
-    <div class="col-md-6 col-xl-3">
-        <div class="card">
+    <!-- Total Customers -->
+    <div class="col-md-6 col-xl-3 mb-3">
+        <div class="card h-100 shadow-sm">
             <div class="card-body">
-                <div class="d-flex">
-                    <div class="flex-grow-1">
-                        <span class="text-muted text-uppercase fs-12 fw-bold">Total Customers</span>
-                        <h3 class="mb-0">{{ $customers->count() }}</h3>
-                    </div>
-                    <div class="align-self-center flex-shrink-0">
-                        <span class="text-success fw-bold fs-13"><i class='uil uil-arrow-up'></i> 25.16%</span>
-                    </div>
-                </div>
+                <h6 class="text-muted fw-bold">Total Customers</h6>
+                <h3 class="mb-0">{{ $customers->count() }}</h3>
+                <span class="text-success"><i class='uil uil-arrow-up'></i> 25.16%</span>
             </div>
         </div>
     </div>
-</div>
 
-
-    <div class="col-md-6 col-xl-3">
-        <div class="card">
+    <!-- Total Paid Amount -->
+    <div class="col-md-6 col-xl-3 mb-3">
+        <div class="card h-100 shadow-sm">
             <div class="card-body">
-                <div class="d-flex">
-                    <div class="flex-grow-1">
-                        <span class="text-muted text-uppercase fs-12 fw-bold">NewVisitors</span>
-                        <h3 class="mb-0">958</h3>
-                    </div>
-                    <div class="align-self-center flex-shrink-0">
-                        <div id="today-new-visitors-chart" class="apex-charts"></div>
-                        <span class="text-danger fw-bold fs-13">
-                            <i class='uil uil-arrow-down'></i> 5.05%
-                        </span>
-                    </div>
-                </div>
+                <h6 class="text-muted fw-bold">Total Paid Amount</h6>
+                <h3 class="mb-0">${{ number_format($totalPaidAmount, 2) }}</h3>
+                <span class="text-success"><i class='uil uil-arrow-up'></i></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Total Due Amount -->
+    <div class="col-md-6 col-xl-3 mb-3">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body">
+                <h6 class="text-muted fw-bold">Total Due Amount</h6>
+                <h3 class="mb-0">${{ number_format($totalDueAmount, 2) }}</h3>
+                <span class="text-danger"><i class='uil uil-arrow-down'></i></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Total VAT -->
+    <div class="col-md-6 col-xl-3 mb-3">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body">
+                <h6 class="text-muted fw-bold">Total VAT</h6>
+                <h3 class="mb-0">${{ number_format($totalVat, 2) }}</h3>
+                <span class="text-danger"><i class='uil uil-arrow-down'></i></span>
             </div>
         </div>
     </div>

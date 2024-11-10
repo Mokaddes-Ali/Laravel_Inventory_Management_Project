@@ -4,9 +4,10 @@
 <div class="card ">
     <div class="card-header d-flex w-36 h-11 ">
         <div class="mx-5 mt-2">
-
+       @can('customer-create')
         <a href="{{ url('/customer') }}" class=""><button type="button" class="btn btn-success display-4">Add Customer</button></a>
-      </div>
+        @endcan
+    </div>
         <div class="mx-5 mt-2 text-center display-6">
         List of Customer
     </div>
@@ -38,20 +39,25 @@
             <img src="{{ asset('images/'.$row['pic']) }}" alt="img" width="50" height="50">
         </td>
         <td>
+            @can('customer-edit')
             <!-- Edit Button -->
             <a class="btn btn-primary btn-sm" href="{{ url('/customer/edit', $row->id) }}">
                 <i class="fa fa-pencil-alt"></i>
             </a>
+            @endcan
 
             <!-- View Button -->
             <a href="{{ route('customer.dataShow', $row->id) }}" class="btn btn-info btn-sm">
                 <i class="bi bi-eye"></i>
             </a>
 
+            @can('customer-delete')
+
             <!-- Delete Button -->
             <a class="btn btn-danger btn-sm" onclick="return confirm('Are You Sure Delete!')" href="{{ url('/delete', $row->id) }}">
                 <i class="fa fa-times"></i>
             </a>
+            @endcan
         </td>
 
       </tr>

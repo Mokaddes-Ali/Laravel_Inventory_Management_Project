@@ -27,7 +27,9 @@
        <th>Name</th>
        <th>Email</th>
        <th>Roles</th>
+       @can('role-edit')
        <th width="280px">Action</th>
+       @endcan
    </tr>
    @foreach ($data as $key => $user)
     <tr>
@@ -44,7 +46,9 @@
        @endif
         </td>
         <td>
+            @can('role-edit')
              <a class="btn btn-info btn-sm" href="{{ route('users.show',$user->id) }}"><i class="fa-solid fa-list"></i> Show</a>
+                @endcan
            @can('role-edit')
              <a class="btn btn-primary btn-sm" href="{{ route('users.edit',$user->id) }}"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
              @endcan

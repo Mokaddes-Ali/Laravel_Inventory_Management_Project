@@ -5,9 +5,11 @@
     <div class="card shadow-sm">
         <div class="card-header d-flex w-36 h-11 ">
             <div class="mx-5 mt-2">
+                @can('product-create')
 
             <a href="{{ url('/products/create') }}" class=""><button type="button" class="btn btn-success display-4">Add Product</button></a>
-          </div>
+            @endcan
+        </div>
             <div class="mx-5 mt-2 text-center display-6">
             Product List
         </div>
@@ -68,15 +70,19 @@
                                     @endif
                                 </td>
                                 <td class="d-flex">
+                                    @can('product-edit')
                                     <!-- Edit Button with Icon -->
                                     <a href="{{ url('/products/edit/' . $product->id) }}" class="btn btn-primary btn-sm me-2">
                                         <i class="fa fa-pencil-alt"></i>
                                     </a>
+                                    @endcan
 
                                     <!-- View Button with Icon -->
                                     <a href="{{ route('product.dataShow', $product->id) }}" class="btn btn-info btn-sm me-2">
                                         <i class="bi bi-eye"></i>
                                     </a>
+
+                                    @can('product-delete')
 
                                     <!-- Delete Button with Icon -->
                                     <form action="{{ url('/products/delete/' . $product->id) }}" method="POST" style="display:inline;">
@@ -86,6 +92,7 @@
                                             <i class="fa fa-trash"></i>
                                         </button>
                                     </form>
+                                    @endcan
                                 </td>
 
                             </tr>

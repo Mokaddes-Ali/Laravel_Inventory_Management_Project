@@ -3,8 +3,10 @@
 <div class="container">
     <<div class="card-header d-flex w-36 h-11 ">
         <div class="mx-5">
+            @can('sale-create')
 
         <a href="{{ url('/sale') }}" class=""><button type="button" class="btn btn-success display-4">Sale Add</button></a>
+        @endcan
       </div>
         <div class="mx-5  text-center display-6">
         Invoice List
@@ -53,7 +55,9 @@
                     <td>
                     <a class="btn btn-success btn-sm" href="{{ url('/view/salelist',$invoice->id ) }}">View</a>
                     <a class="btn btn-success btn-sm" href="{{ url('/view/salelist/pdf',$invoice->id ) }}">pdf</a>
+                    @can('sale-delete')
                     <a class="btn btn-danger btn-sm" onclick="return confirm('Are you sure to delete?')" href="{{ url('/delete/invoice',$invoice->id ) }}">Delete</a>
+                    @endcan
                    </td>
                 </tr>
             @endforeach

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MailController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BackupController;
@@ -145,6 +146,13 @@ Route::group(['middleware' => ['auth']], function() {
       Route::resource('users', UserController::class);
       //Route::resource('products', ProductController::class);
   });
+
+
+    Route::get('/send-mail', [MailController::class, 'sendMail']);
+
+
+
+
 
 
 

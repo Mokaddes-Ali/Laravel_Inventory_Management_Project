@@ -20,20 +20,55 @@ class UserSeeder extends Seeder
 
         $adminRole = Role::create(['name' => 'admin']);
         $adminRole->givePermissionTo([
+            'user-list',
+            'user-create',
+            'user-edit',
+
+            'customer-list',
+            'customer-create',
+            'customer-edit',
+
+
+            'category-list',
+            'category-create',
+            'category-edit',
+
+
+            'brand-list',
+            'brand-create',
+            'brand-edit',
+
+
             'product-list',
             'product-create',
             'product-edit',
-            'product-delete'
+
+            'sale-list',
+            'sale-create',
+            'sale-edit',
+
         ]);
         $staffRole = Role::create(['name' => 'staff']);
 
         $staffRole->givePermissionTo([
-            'product-list'
+            'user-list',
+            'customer-list',
+            'category-list',
+            'brand-list',
+            'product-list',
+            'sale-list',
+
+
         ]);
         $userRole = Role::create(['name' => 'user']);
 
         $userRole->givePermissionTo([
-            'product-list'
+            'user-list',
+            'customer-list',
+            'category-list',
+            'brand-list',
+            'product-list',
+            'sale-list',
         ]);
 
         // Create and assign role to Super Admin user

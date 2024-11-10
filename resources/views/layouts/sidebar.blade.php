@@ -38,16 +38,6 @@
                         <ul id="side-menu">
 
                             <!-- <li class="menu-title">Navigation</li> -->
-
-                            <li>
-                                <a href="/dashboard" data-bs-toggle="collapse">
-                                    <span class="badge bg-success float-end">02</span>
-                                    <i data-feather="home"></i>
-                                    <span> Project </span>
-                                    <!-- <span class="menu-arrow"></span> -->
-                                </a>
-                            </li>
-
                             <li>
                                 <a href="/dashboard">
                                     <i data-feather="message-square"></i>

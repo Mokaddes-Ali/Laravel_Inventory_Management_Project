@@ -20,10 +20,40 @@ class PermissionSeeder extends Seeder
             'role-create',
             'role-edit',
             'role-delete',
+
+            'user-list',
+            'user-create',
+            'user-edit',
+            'user-delete',
+
+            'customer-list',
+            'customer-create',
+            'customer-edit',
+            'customer-delete',
+
+            'category-list',
+            'category-create',
+            'category-edit',
+            'category-delete',
+
+            'brand-list',
+            'brand-create',
+            'brand-edit',
+            'brand-delete',
+
             'product-list',
             'product-create',
             'product-edit',
-            'product-delete'
+            'product-delete',
+
+            'sale-list',
+            'sale-create',
+            'sale-edit',
+            'sale-delete',
+
+            'setting',
+            'databasebackup',
+
          ];
 
          foreach ($permissions as $permission) {

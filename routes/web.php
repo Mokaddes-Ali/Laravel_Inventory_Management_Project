@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BackupController;
 use App\Http\Controllers\BrandsController;
 use App\Http\Controllers\InvoiceController;
@@ -135,6 +136,15 @@ Route::middleware('auth')->group(function () {
 Route::get('/backup', [BackupController::class, 'createBackup'])->name('backup.create');
 
 });
+
+
+Route::group(['middleware' => ['auth']], function() {
+    //  Route::resource('roles', RoleController::class);
+    Route::get('/user', [UserController::class, 'create']);
+    Route::get('/show', [UserController::class, 'index']);
+      Route::resource('users', UserController::class);
+      //Route::resource('products', ProductController::class);
+  });
 
 
 

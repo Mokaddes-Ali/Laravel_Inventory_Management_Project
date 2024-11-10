@@ -48,20 +48,30 @@
                                 </a>
                             </li>
 
-                            <li class="menu-title mt-2">Apps</li>
-
-                            <li>
-                                <a href="apps-calendar.html">
-                                    <i data-feather="calendar"></i>
-                                    <span> Calendar </span>
-                                </a>
-                            </li>
-
                             <li>
                                 <a href="/dashboard">
                                     <i data-feather="message-square"></i>
                                     <span> Dashboard</span>
                                 </a>
+                            </li>
+
+                            <li class="menu-title mt-2">Apps</li>
+
+                            <li>
+                                <a href="#sidebarUsers" data-bs-toggle="collapse">
+                                    <i data-feather="user"></i>
+                                    <span> Users </span>
+                                    <span class="menu-arrow"></span>
+                                </a>
+                                <div class="collapse" id="sidebarUsers">
+                                    <ul class="nav-second-level">
+                                        <li><a href="{{ url('/show') }}">All Users</a></li>
+                                        @can('role-edit')
+                                        <li><a href="{{ url('/user') }}">Add New User</a></li>
+                                        @endcan
+                                        <li><a href="#">User Roles</a></li>
+                                    </ul>
+                                </div>
                             </li>
 
                             <li>
@@ -134,6 +144,8 @@
                                     </ul>
                                 </div>
                             </li> --}}
+                      @can('role-edit')
+
 
                             <li>
                                 <a href="#sidebarSale" data-bs-toggle="collapse">
@@ -148,6 +160,9 @@
                                     </ul>
                                 </div>
                             </li>
+                            @endcan
+
+
 
 
                             {{-- <li>

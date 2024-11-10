@@ -97,6 +97,13 @@ public function searchCustomers(Request $request)
 }
 
 
+public function dataShow($id)
+{
+    $customer = Customer::with(['creatorUser', 'editorUser'])->findOrFail($id);
+    return view('admin.customer.index', compact('customer'));
+}
+
+
 public function export1()
 {
     return Excel::download(new CustomersExport, 'customers.xlsx');

@@ -2,89 +2,70 @@
 
 @section('content')
 <div class="container">
-    <div class="card shadow-sm">
-        <div class="card-header d-flex w-36 h-11 ">
-            <div class="mx-5 mt-2">
-
-            <a href="{{ url('/products/create') }}" class=""><button type="button" class="btn btn-success display-4">Add Product</button></a>
-          </div>
-            <div class="mx-5 mt-2 text-center display-6">
-            Product List
+    <div class="">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h3>Product Details</h3>
+            <a href="{{ url('/products') }}" class="btn btn-secondary">
+                <i class="bi bi-arrow-left"></i> Back
+            </a>
         </div>
-        <a href="{{ url('/product-export1') }}" class="mx-2 mt-3"><button type="button" class="btn btn-success display-4">Excel</button></a>
-                <a href="{{ url('/product-export2') }}" class="mt-3 mx-2"><button type="button" class="btn btn-success display-4">CSV</button></a>
-                <a href="{{ url('/product-export3') }}" class="mt-3 mx-2"><button type="button" class="btn btn-success display-4">PDF</button></a>
-        </div>
-        <div class="card-body">
-            @if (session('success'))
-                <div class="alert alert-success">
-                    {{ session('success') }}
+        <div class="card-body text-center">
+            <!-- Product Image Display -->
+            @if($product->img_url)
+                <div class="mb-4">
+                    <img src="{{ asset('storage/' . $product->img_url) }}" alt="{{ $product->name }}" class="img-thumbnail" style="width: 150px; height: 150px;">
                 </div>
-            @endif
-
-            @if($products->isEmpty())
-                <p class="text-muted">No products available.</p>
             @else
-                <div class="table-responsive">
-                    <table class="table table-striped table-bordered">
-                        <thead class="table-dark">
-                            <tr>
-                                <th>ID</th>
-                                <th>Product Image</th>
-                                <th>Name</th>
-                                <th>Category</th>
-                                <th>Brand</th>
-                                <th>Price</th>
-                                <th>Cost</th>
-                                <th>Code</th>
-                                <th>Units</th>
-                                <th>Status</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($products as $product)
-                            <tr>
-                                <td>{{ $product->id }}</td>
-                                <td>
-                                    @if($product->img_url)
-                                        <img src="{{ asset('productImage/' . $product->img_url) }}" alt="{{ $product->name }}" class="img-thumbnail" width="70" height="70">
-                                    @else
-                                        <img src="{{ asset('default.jpg') }}" alt="No Image" class="img-thumbnail" width="70" height="70">
-                                    @endif
-                                </td>
-                                <td>{{ $product->name }}</td>
-                                <td>{{ $product->category->name }}</td>
-                                <td>{{ $product->brand->brandName}}</td>
-                                <td>${{ $product->price }}</td>
-                                <td>${{ $product->cost }}</td>
-                                <td>{{ $product->code }}</td>
-                                <td>{{ $product->unit }}</td>
-                                <td>
-                                    @if($product->status == 1)
-                                        <span class="badge bg-success">Active</span>
-                                    @else
-                                        <span class="badge bg-danger">Inactive</span>
-                                    @endif
-                                </td>
-                                <td class="d-flex">
-                                    <a href="{{ url('/products/edit/' . $product->id) }}" class="btn btn-primary btn-sm me-2">Edit</a>
-                                    <form action="{{ url('/products/delete/' . $product->id) }}" method="POST" style="display:inline;">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</button>
-                                    </form>
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                <p class="text-muted"><strong>Product Image:</strong> Not Available</p>
+            @endif
+
+            <!-- Product Details -->
+            <h4 class="card-title">{{ $product->name }}</h4>
+            <div class="row mt-3 text-left">
+                <div class="col-md-4 mb-3">
+                    <p class="card-text"><strong>Code:</strong> {{ $product->code }}</p>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <p class="card-text"><strong>Price:</strong> ${{ number_format($product->price, 2) }}</p>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <p class="card-text"><strong>Cost:</strong> ${{ number_format($product->cost, 2) }}</p>
                 </div>
 
-                <div class="d-flex justify-content-center mt-4">
-                    {{ $products->links('pagination::bootstrap-4') }}
+                <div class="col-md-4 mb-3">
+                    <p class="card-text"><strong>Unit:</strong> {{ $product->unit }}</p>
                 </div>
-            @endif
+                <div class="col-md-4 mb-3">
+                    <p class="card-text"><strong>Details:</strong> {{ $product->details ?? 'N/A' }}</p>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <p class="card-text"><strong>Slug:</strong> {{ $product->slug ?? 'N/A' }}</p>
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <p class="card-text"><strong>Status:</strong> {{ $product->status == 1 ? 'Active' : 'Inactive' }}</p>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <p class="card-text"><strong>Category:</strong> {{ $product->category ? $product->category->name : 'N/A' }}</p>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <p class="card-text"><strong>Brand:</strong> {{ $product->brand ? $product->brand->name : 'N/A' }}</p>
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <p class="card-text"><strong>Created By:</strong> {{ $product->creatorUser ? $product->creatorUser->name : 'N/A' }}</p>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <p class="card-text"><strong>Edited By:</strong> {{ $product->editorUser ? $product->editorUser->name : 'N/A' }}</p>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <p class="card-text"><strong>Created At:</strong> {{ $product->created_at ? $product->created_at->format('Y-m-d H:i:s') : 'N/A' }}</p>
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <p class="card-text"><strong>Updated At:</strong> {{ $product->updated_at ? $product->updated_at->format('Y-m-d H:i:s') : 'N/A' }}</p>
+                </div>
+            </div>
         </div>
     </div>
 </div>

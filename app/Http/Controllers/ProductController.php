@@ -25,8 +25,15 @@ class ProductController extends Controller
      public function index()
      {
     $products = Product::with(['category', 'brand'])->orderBy('id', 'desc')->paginate(2);
-    return view('admin.product.index', compact('products'));
+    return view('admin.product.show', compact('products'));
     }
+
+
+    public function dataShow($id)
+{
+    $product = Product::with(['creatorUser', 'editorUser', 'category', 'brand'])->findOrFail($id);
+    return view('admin.product.index', compact('product'));
+}
 
 
     // export

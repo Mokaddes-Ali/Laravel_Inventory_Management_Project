@@ -15,14 +15,23 @@ class Product extends Model
     protected $fillable = [
         'name', 'category_id', 'brand_id', 'price', 'cost', 'code', 'unit', 'details', 'img_url', 'creator', 'slug', 'status'
     ];
+public function creatorUser()
+{
+    return $this->belongsTo(User::class, 'creator');
+}
 
-    public function category()
-    {
-        return $this->belongsTo(Category::class);
-    }
+public function editorUser()
+{
+    return $this->belongsTo(User::class, 'editor');
+}
 
-    public function brand()
-    {
-        return $this->belongsTo(Brands::class);
-    }
+public function category()
+{
+    return $this->belongsTo(Category::class);
+}
+
+public function brand()
+{
+    return $this->belongsTo(Brands::class);
+}
 }

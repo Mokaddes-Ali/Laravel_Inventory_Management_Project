@@ -64,9 +64,9 @@
                                 </a>
                                 <div class="collapse" id="sidebarCustomer">
                                     <ul class="nav-second-level">
-                                        @can('customer-create')
+                                        {{-- @can('customer-create') --}}
                                         <li><a href="/customer">Add Customer</a></li>
-                                        @endcan
+                                        {{-- @endcan --}}
                                         <li><a href="/customer/show">List Customer</a></li>
                                     </ul>
                                 </div>
@@ -97,9 +97,9 @@
                                 </a>
                                 <div class="collapse" id="sidebarBrands">
                                     <ul class="nav-second-level">
-                                        @can('brand-create')
+                                        {{-- @can('brand-create') --}}
                                         <li><a href="/brands">Add Brands</a></li>
-                                        @endcan
+                                        {{-- @endcan --}}
                                         <li><a href="/brands/show">List Brands</a></li>
                                     </ul>
                                 </div>
@@ -114,9 +114,9 @@
                                 </a>
                                 <div class="collapse" id="sidebarProducts">
                                     <ul class="nav-second-level">
-                                        @can('product-create')
+                                        {{-- @can('product-create') --}}
                                         <li><a href="/products/create">Add Products</a></li>
-                                        @endcan
+                                        {{-- @endcan --}}
                                         <li><a href="/products">List Products</a></li>
                                     </ul>
                                 </div>

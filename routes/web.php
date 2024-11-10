@@ -32,6 +32,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/customer/update', [CustomerController::class, 'update']);
     Route::get('/delete/{id}', [CustomerController::class, 'destroy']);
 
+    Route::get('/customer/{id}', [CustomerController::class, 'dataShow'])->name('customer.dataShow');
+
     //for invoice
     Route::get('/customerlist', [CustomerController::class, 'customerList']);
     Route::get('/customer-export1', [CustomerController::class, 'export1']);
@@ -84,6 +86,10 @@ Route::post('/products/store', [ProductController::class, 'store'])->name('produ
 Route::get('/products/edit/{id}', [ProductController::class, 'edit']);
 Route::put('/products/update/{id}', [ProductController::class, 'update']);
 Route::delete('/products/delete/{id}', [ProductController::class, 'destroy']);
+
+// In web.php
+Route::get('/products/{id}', [ProductController::class, 'dataShow'])->name('product.dataShow');
+
 
 //for product list in use invoice
 Route::get('/productlist', [ProductController::class, 'ProductList']);

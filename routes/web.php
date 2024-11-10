@@ -72,6 +72,10 @@ Route::middleware('auth')->group(function () {
     Route::post('/brands/update', [BrandsController::class, 'update']);
     Route::get('/delete/{id}', [BrandsController::class, 'destroy']);
 
+    Route::get('/brands/{id}', [BrandsController::class, 'dataShow'])->name('brands.dataShow');
+
+
+
     //export
     Route::get('/brand-export1', [BrandsController::class, 'export1']);
     Route::get('/brand-export2', [BrandsController::class, 'export2']);

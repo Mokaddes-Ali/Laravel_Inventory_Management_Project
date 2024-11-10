@@ -68,17 +68,26 @@
                                     @endif
                                 </td>
                                 <td class="d-flex">
-                                    <a href="{{ url('/products/edit/' . $product->id) }}" class="btn btn-primary btn-sm me-2">Edit</a>
-                                     <!-- View Button -->
-                                <a href="{{ route('product.dataShow', $product->id) }}" class="btn btn-info">
-                                   <i class="bi bi-eye"></i>
-                                  </a>
+                                    <!-- Edit Button with Icon -->
+                                    <a href="{{ url('/products/edit/' . $product->id) }}" class="btn btn-primary btn-sm me-2">
+                                        <i class="fa fa-pencil-alt"></i>
+                                    </a>
+
+                                    <!-- View Button with Icon -->
+                                    <a href="{{ route('product.dataShow', $product->id) }}" class="btn btn-info btn-sm me-2">
+                                        <i class="bi bi-eye"></i>
+                                    </a>
+
+                                    <!-- Delete Button with Icon -->
                                     <form action="{{ url('/products/delete/' . $product->id) }}" method="POST" style="display:inline;">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</button>
+                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
                                     </form>
                                 </td>
+
                             </tr>
                             @endforeach
                         </tbody>

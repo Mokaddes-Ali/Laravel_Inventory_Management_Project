@@ -13,7 +13,7 @@
             <!-- Product Image Display -->
             @if($product->img_url)
                 <div class="mb-4">
-                    <img src="{{ asset('storage/' . $product->img_url) }}" alt="{{ $product->name }}" class="img-thumbnail" style="width: 150px; height: 150px;">
+                    <img src="{{ asset('productImage/' . $product->img_url) }}" alt="{{ $product->name }}" class="img-thumbnail" style="width: 150px; height: 150px;">
                 </div>
             @else
                 <p class="text-muted"><strong>Product Image:</strong> Not Available</p>

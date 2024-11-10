@@ -38,14 +38,22 @@
             <img src="{{ asset('images/'.$row['pic']) }}" alt="img" width="50" height="50">
         </td>
         <td>
-            <a class="btn btn-primary btn-sm," href="{{ url('/customer/edit' , $row -> id) }}"><i class="fa fa-pencil-alt"></i></a>
-             <!-- View Button -->
-                <a href="{{ route('customer.dataShow', $row->id) }}" class="btn btn-info">
-                    <i class="bi bi-eye"></i>
-                </a>
+            <!-- Edit Button -->
+            <a class="btn btn-primary btn-sm" href="{{ url('/customer/edit', $row->id) }}">
+                <i class="fa fa-pencil-alt"></i>
+            </a>
 
-            <a class="btn btn-danger btn-lg" onclick="return confirm('Are You Sure Delete!')" href="{{ url('/delete', $row -> id)}}"><i class="fa fa-times"></i></a>
+            <!-- View Button -->
+            <a href="{{ route('customer.dataShow', $row->id) }}" class="btn btn-info btn-sm">
+                <i class="bi bi-eye"></i>
+            </a>
+
+            <!-- Delete Button -->
+            <a class="btn btn-danger btn-sm" onclick="return confirm('Are You Sure Delete!')" href="{{ url('/delete', $row->id) }}">
+                <i class="fa fa-times"></i>
+            </a>
         </td>
+
       </tr>
       @endforeach
     </tbody>

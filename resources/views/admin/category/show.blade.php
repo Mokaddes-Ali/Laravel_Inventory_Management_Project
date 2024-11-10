@@ -143,28 +143,26 @@
                                     <ul class="action-list d-flex gap-2">
                                         <!-- Edit Button -->
                                         <li>
-                                            <a href="{{ url('/category/edit', $category->id) }}" class="btn btn-primary">
+                                            <a href="{{ url('/category/edit', $category->id) }}" class="btn btn-primary btn-sm">
                                                 <i class="fa fa-pencil-alt"></i>
                                             </a>
                                         </li>
 
                                         <!-- View Button -->
                                         <li>
-                                            <a href="{{ route('category.dataShow', $category->id) }}" class="btn btn-info">
+                                            <a href="{{ route('category.dataShow', $category->id) }}" class="btn btn-info btn-sm">
                                                 <i class="bi bi-eye"></i>
                                             </a>
                                         </li>
 
                                         <!-- Delete Button -->
                                         <li>
-                                            <a onclick="return confirm('Are You Sure Delete!')" href="{{ url('/delete/category', $category->id) }}" class="btn btn-danger">
+                                            <a onclick="return confirm('Are You Sure Delete!')" href="{{ url('/delete/category', $category->id) }}" class="btn btn-danger btn-sm">
                                                 <i class="fa fa-times"></i>
                                             </a>
                                         </li>
                                     </ul>
-
                                 </td>
-                                 {{-- <td><a href="#" class="btn btn-sm btn-success"><i class="fa fa-eye"></i></a></td> --}}
                              </tr>
                                 @endforeach
                              <tr>

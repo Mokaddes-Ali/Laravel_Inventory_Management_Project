@@ -21,6 +21,13 @@ public function show(){
     return view('admin.brands.show', compact('all'));
 }
 
+
+public function dataShow($id)
+{
+    $brand = Brands::findOrFail($id); // Find the brand by its ID
+    return view('admin.brands.index', compact('brand'));
+}
+
 //export data
 
 public function export1()

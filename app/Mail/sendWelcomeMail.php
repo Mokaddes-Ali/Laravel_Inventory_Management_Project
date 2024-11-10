@@ -13,12 +13,14 @@ class sendWelcomeMail extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $welcomeMessage;
+
     /**
      * Create a new message instance.
      */
-    public function __construct()
-    {
-        //
+    public function __construct($welcomeMessage){
+
+        $this->welcomeMessage = $welcomeMessage;
     }
 
     /**
@@ -37,7 +39,7 @@ class sendWelcomeMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'view.name',
+            view: 'WelcomeEmail',
         );
     }
 

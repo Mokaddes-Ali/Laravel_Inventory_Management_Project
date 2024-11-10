@@ -105,11 +105,15 @@
          <div class="col-md-offset-1 col-md-11">
              <div class="panel">
                 <div class="panel-heading d-flex align-items-center">
+                    @can('category-create')
                     <a href="/category" class="btn btn-sm btn-primary me-5 mt-3 mb-3"><i class="fa fa-plus-circle"></i> Add New</a>
+                    @endcan
                     <h2 class="mb-0 mx-5 me-5 mt-3">List Category</h2>
+                    @can('category-create')
                     <a href="{{ url('/category-export1') }}" class="btn btn-success display-4 me-2 mt-3">Excel</a>
                     <a href="{{ url('/category-export2') }}" class="btn btn-success display-4 me-2 mt-3">CSV</a>
                     <a href="{{ url('/category-export3') }}" class="btn btn-success display-4 mt-3">PDF</a>
+                    @endcan
                 </div>
 
 
@@ -136,10 +140,29 @@
                                  <td class="border  px-2 py-1">{{ $category->remarks }}</td>
                                  <td class="border border-gray-300 px-2 py-1">{{ $category->status ? 'Active' : 'Inactive' }}</td>
                                  <td>
-                                    <ul class="action-list">
-                                        <li><a href="{{ url('/category/edit' , $category-> id) }}" class="btn btn-primary"><i class="fa fa-pencil-alt"></i></a></li>
-                                        <li><a onclick="return confirm('Are You Sure Delete!')" href="{{ url('/delete/category', $category -> id)}}"  class="btn btn-danger" ><i class="fa fa-times"></i></a></li>
+                                    <ul class="action-list d-flex gap-2">
+                                        <!-- Edit Button -->
+                                        <li>
+                                            <a href="{{ url('/category/edit', $category->id) }}" class="btn btn-primary">
+                                                <i class="fa fa-pencil-alt"></i>
+                                            </a>
+                                        </li>
+
+                                        <!-- View Button -->
+                                        <li>
+                                            <a href="{{ route('category.dataShow', $category->id) }}" class="btn btn-info">
+                                                <i class="bi bi-eye"></i>
+                                            </a>
+                                        </li>
+
+                                        <!-- Delete Button -->
+                                        <li>
+                                            <a onclick="return confirm('Are You Sure Delete!')" href="{{ url('/delete/category', $category->id) }}" class="btn btn-danger">
+                                                <i class="fa fa-times"></i>
+                                            </a>
+                                        </li>
                                     </ul>
+
                                 </td>
                                  {{-- <td><a href="#" class="btn btn-sm btn-success"><i class="fa fa-eye"></i></a></td> --}}
                              </tr>

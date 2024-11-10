@@ -4,16 +4,19 @@
 <div class="card ">
     <div class="card-header d-flex w-36 h-11 ">
         <div class="mx-5 mt-2">
+            @can('brand-create')
         <a href="{{ url('/brands') }}" class=""><button type="button" class="btn btn-danger">Add Brand</button></a>
+        @endcan
       </div>
 
         <div class="mx-5 mt-2 text-center display-6">
         Brand List
-    </div>
-    <a href="{{ url('/brand-export1') }}" class="mx-2 mt-3"><button type="button" class="btn btn-success display-4">Excel</button></a>
+    </div>    @can('brand-create')
+           <a href="{{ url('/brand-export1') }}" class="mx-2 mt-3"><button type="button" class="btn btn-success display-4">Excel</button></a>
             <a href="{{ url('/brand-export2') }}" class="mt-3 mx-2"><button type="button" class="btn btn-success display-4">CSV</button></a>
             <a href="{{ url('/brand-export3') }}" class="mt-3 mx-2"><button type="button" class="btn btn-success display-4">PDF</button></a>
-    </div>
+            @endcan
+        </div>
 <table class="table table-striped table-responsive table-dark">
     <thead>
       <tr>

@@ -13,15 +13,7 @@
                                 <a href="pages-profile.html" class="dropdown-item notify-item">
                                     <i data-feather="user" class="icon-dual icon-xs me-1"></i><span>My Account</span>
                                 </a>
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                    <i data-feather="settings" class="icon-dual icon-xs me-1"></i><span>Settings</span>
-                                </a>
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                    <i data-feather="help-circle" class="icon-dual icon-xs me-1"></i><span>Support</span>
-                                </a>
-                                <a href="pages-lock-screen.html" class="dropdown-item notify-item">
-                                    <i data-feather="lock" class="icon-dual icon-xs me-1"></i><span>Lock Screen</span>
-                                </a>
+
                                 <div class="dropdown-divider"></div>
                                 <a href="javascript:void(0);" class="dropdown-item notify-item">
                                     <i data-feather="log-out" class="icon-dual icon-xs me-1"></i><span>Logout</span>
@@ -72,7 +64,9 @@
                                 </a>
                                 <div class="collapse" id="sidebarCustomer">
                                     <ul class="nav-second-level">
+                                        @can('customer-create')
                                         <li><a href="/customer">Add Customer</a></li>
+                                        @endcan
                                         <li><a href="/customer/show">List Customer</a></li>
                                     </ul>
                                 </div>
@@ -86,7 +80,10 @@
                                 </a>
                                 <div class="collapse" id="sidebarCategories">
                                     <ul class="nav-second-level">
+                                        {{-- @can('category-create') --}}
                                         <li><a href="/category">Add Categories</a></li>
+                                        {{-- @endcan --}}
+
                                         <li><a href="/category/show">List Categories</a></li>
                                     </ul>
                                 </div>
@@ -100,7 +97,9 @@
                                 </a>
                                 <div class="collapse" id="sidebarBrands">
                                     <ul class="nav-second-level">
+                                        @can('brand-create')
                                         <li><a href="/brands">Add Brands</a></li>
+                                        @endcan
                                         <li><a href="/brands/show">List Brands</a></li>
                                     </ul>
                                 </div>
@@ -115,26 +114,13 @@
                                 </a>
                                 <div class="collapse" id="sidebarProducts">
                                     <ul class="nav-second-level">
+                                        @can('product-create')
                                         <li><a href="/products/create">Add Products</a></li>
+                                        @endcan
                                         <li><a href="/products">List Products</a></li>
                                     </ul>
                                 </div>
                             </li>
-
-                            {{-- <li>
-                                <a href="#sidebarIncome" data-bs-toggle="collapse">
-                                    <i data-feather="clipboard"></i>
-                                    <span> Income </span>
-                                    <span class="menu-arrow"></span>
-                                </a>
-                                <div class="collapse" id="sidebarIncome"> <!-- Changed id here -->
-                                    <ul class="nav-second-level">
-                                        <li><a href="/invoices/create">Add Invoice</a></li>
-                                        <li><a href="/invoices">List Invoice</a></li>
-                                    </ul>
-                                </div>
-                            </li> --}}
-                      @can('role-edit')
 
 
                             <li>
@@ -145,42 +131,32 @@
                                 </a>
                                 <div class="collapse" id="sidebarSale"> <!-- Changed id here -->
                                     <ul class="nav-second-level">
+                                        @can('sale-create')
                                         <li><a href="{{url('/sale')}}">Sale</a></a></li>
+                                        @endcan
                                         <li><a href="/invoices/show">List Sale</a></li>
                                     </ul>
                                 </div>
                             </li>
-                            @endcan
-
-
-
-
-                            {{-- <li>
-                                <a href="#sidebarExpense" data-bs-toggle="collapse">
-                                    <i data-feather="clipboard"></i>
-                                    <span> Expense </span>
-                                    <span class="menu-arrow"></span>
-                                </a>
-                                <div class="collapse" id="sidebarExpense"> <!-- Changed id here -->
-                                    <ul class="nav-second-level">
-                                        <li><a href="/expense">Add expense</a></li>
-                                        <li><a href="/show/expense">List expense</a></li>
-                                    </ul>
-                                </div>
-                            </li> --}}
 
 
                             <li>
+                                @can('setting')
                                 <a href="/settings">
                                     <i data-feather="file-plus"></i>
                                     <span> Settings </span>
                                 </a>
+                                @endcan
+
+
+                                @can('databasebackup')
 
                                 <a href="/backup">
                                     <i data-feather="file-plus"></i>
                                     <span>Database Backup</span>
                                 </a>
                             </li>
+                            @endcan
 
                             <li class="menu-title mt-2">Expense</li>
 

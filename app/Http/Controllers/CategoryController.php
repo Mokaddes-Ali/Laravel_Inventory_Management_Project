@@ -19,12 +19,21 @@ class CategoryController extends Controller
     }
 
 
+
     // Show all categories
     public function show()
     {
         $all = Category::orderBy('id', 'asc')->paginate(6);
         return view('admin.category.show', compact('all'));
     }
+
+
+  // Show category data
+    public function dataShow($id)
+{
+    $category= Category::with(['creatorUser', 'editorUser'])->findOrFail($id);
+    return view('admin.category.index', compact('category'));
+}
 
 
     public function export1()

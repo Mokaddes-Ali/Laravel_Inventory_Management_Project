@@ -50,7 +50,6 @@ class PermissionSeeder extends Seeder
             'sale-create',
             'sale-edit',
             'sale-delete',
-
             'setting',
             'databasebackup',
 

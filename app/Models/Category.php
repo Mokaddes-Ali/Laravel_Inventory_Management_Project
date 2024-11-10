@@ -13,14 +13,14 @@ class Category extends Model
         'name', 'remarks', 'creator', 'editor', 'status'
     ];
 
-
-    public function creator()
+    public function creatorUser()
     {
         return $this->belongsTo(User::class, 'creator');
     }
 
-    public function editor()
+    public function editorUser()
     {
         return $this->belongsTo(User::class, 'editor');
     }
 }
+

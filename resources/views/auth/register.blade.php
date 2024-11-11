@@ -2,9 +2,9 @@
     <!-- Background Wrapper with Image -->
     <div class="min-h-screen bg-cover bg-center flex items-center justify-center" style="background-image: url('https://png.pngtree.com/thumb_back/fh260/background/20220112/pngtree-glass-morphim-effect-registration-banner-with-gradient-blue-image_934693.jpg');">
         <!-- Shape and Form Container -->
-        <div class="bg-white bg-opacity-80 p-8 md:p-10 rounded-lg shadow-2xl max-w-md mx-auto backdrop-blur-md relative">
+        <div class="bg-white bg-opacity-80 w-96 p-8 md:p-10 rounded-lg shadow-2xl max-w-md mx-auto backdrop-blur-md relative">
             <!-- Decorative Shape -->
-            <div class="absolute inset-0 bg-gradient-to-br from-indigo-600 to-purple-600 opacity-30 rounded-lg transform rotate-3 scale-105 -z-10"></div>
+            <div class="absolute w-96 inset-0 bg-gradient-to-br from-indigo-600 to-purple-600 opacity-30 rounded-lg transform rotate-3 scale-105 -z-10"></div>
 
             <!-- Form Title -->
             <h2 class="text-4xl font-extrabold text-center text-indigo-800 mb-8">{{ __('Register') }}</h2>
@@ -55,7 +55,7 @@
 
                 <!-- Submit Button and Redirect Link -->
                 <div class="flex items-center justify-between mt-8">
-                    <a class="text-sm text-gray-600 hover:text-indigo-600 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
+                    <a class="text-lg text-fuchsia-600 hover:text-indigo-600 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
                         {{ __('Already registered?') }}
                     </a>
                     <x-primary-button class="ml-4 px-6 py-2 bg-indigo-600 text-white font-semibold rounded-md hover:bg-indigo-700 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">

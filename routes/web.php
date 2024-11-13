@@ -151,23 +151,14 @@ Route::get('/backup', [BackupController::class, 'createBackup'])->name('backup.c
 
 
 Route::group(['middleware' => ['auth']], function() {
-    //  Route::resource('roles', RoleController::class);
-    Route::get('/user', [UserController::class, 'create']);
-    Route::get('/show', [UserController::class, 'index']);
-      Route::resource('users', UserController::class);
-      //Route::resource('products', ProductController::class);
+Route::get('/user', [UserController::class, 'create']);
+Route::get('/show', [UserController::class, 'index']);
+Route::resource('users', UserController::class);
+Route::get('users/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
+Route::put('users/{id}', [UserController::class, 'update'])->name('users.update');
+Route::delete('users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
+
   });
-
-
-    Route::get('/send-mail', [MailController::class, 'sendMail']);
-
-
-
-
-
-
-
-
 
 
 Route::middleware('auth')->group(function () {

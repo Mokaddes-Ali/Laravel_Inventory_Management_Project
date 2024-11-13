@@ -48,4 +48,49 @@ class UserController extends Controller
             ->with('success','User created successfully');
 
     }
+
+
+    public function edit($id): View
+    {
+        $user = User::findOrFail($id);  // Get the user by ID
+        $roles = Role::pluck('name', 'name')->all();  // Get all roles
+        $userRoles = $user->roles->pluck('name')->toArray();  // Get current user's roles
+
+        return view('admin.users.edit', compact('user', 'roles', 'userRoles'));
+    }
+
+    // Update the specified user in the database
+    public function update(Request $request, $id): RedirectResponse
+    {
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255'],
+            'password' => ['nullable', 'string', 'min:8'],
+            'roles' => ['required', 'array'],
+        ]);
+
+        $user = User::findOrFail($id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+
+
+        if ($request->password) {
+            $user->password = Hash::make($request->password);
+        }
+
+        $user->save();
+
+
+        $user->syncRoles($request->roles);
+
+        return redirect()->route('users.index')->with('success', 'User updated successfully');
+    }
+
+
+    public function destroy($id): RedirectResponse
+    {
+        $user = User::findOrFail($id);
+        $user->delete();
+        return redirect()->route('users.index')->with('success', 'User deleted successfully');
+    }
 }

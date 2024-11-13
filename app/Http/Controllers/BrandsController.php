@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exports\BrandsExport;
-use App\Models\Brands;
+use App\Models\Brand;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
@@ -17,14 +17,14 @@ public function index(){
 
    //show all data
 public function show(){
-    $all = Brands::orderBy('id', 'desc')->paginate(4);
+    $all = Brand::orderBy('id', 'desc')->paginate(4);
     return view('admin.brands.show', compact('all'));
 }
 
 
 public function dataShow($id)
 {
-    $brand = Brands::findOrFail($id); // Find the brand by its ID
+    $brand = Brand::findOrFail($id); // Find the brand by its ID
     return view('admin.brands.index', compact('brand'));
 }
 
@@ -62,7 +62,7 @@ public function create(Request $request) {
         $image->move(public_path('BrandImage'), $image_rename);
     }
 
-    $insert = Brands::create([
+    $insert = Brand::create([
         'brandName' => $request->brandName,
         'brandImg' => $image_rename,
         'creator' => Auth::user()->id,
@@ -77,7 +77,7 @@ public function create(Request $request) {
 
 
 public function edit($id){
-    $record = Brands::findOrFail($id);
+    $record = Brand::findOrFail($id);
     return view('admin.brands.edit', compact('record'));
 }
 
@@ -89,7 +89,7 @@ public function update(Request $request){
         'brandImg' => 'nullable|mimes:jpeg,png,gif|max:2048',
     ]);
 
-    $oldimg = Brands::findOrFail($id);
+    $oldimg = Brand::findOrFail($id);
     $deleteimg=public_path('BrandImage/'.$oldimg['brandImg']);
     $image_rename = '';
 
@@ -108,7 +108,7 @@ public function update(Request $request){
             $image_rename=$oldimg['brandImg'];
         }
 
-    $update = Brands::where('id',$id)->update([
+    $update = Brand::where('id',$id)->update([
         'brandName' => $request->brandName,
         'brandImg' => $image_rename,
         'editor' => Auth::user()->id,
@@ -124,13 +124,13 @@ public function update(Request $request){
 
 public function destroy($id){
     $id=intval($id);
-    $customer =Brands::find($id);
-    if ($customer) {
-        $imagePath = public_path('BrandImage/' . $customer->brandImg);
+    $brand =Brand::find($id);
+    if ($brand) {
+        $imagePath = public_path('BrandImage/' . $brand->brandImg);
         if (file_exists($imagePath)) {
             unlink($imagePath);
         }
-        $customer->delete();
+        $brand->delete();
         return back()->with('success', 'Data deleted successfully');
     }
 }

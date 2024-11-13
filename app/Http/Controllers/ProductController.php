@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exports\ProductsExport;
-use App\Models\Brands;
+use App\Models\Brand;
 use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -16,7 +16,7 @@ class ProductController extends Controller
     public function create()
     {
         $categories = Category::all();
-        $brands = Brands::all();
+        $brands = Brand::all();
         return view('admin.product.add', compact('categories', 'brands'));
     }
 

@@ -14,6 +14,10 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\SettingsController;
 
 
+// Route::get('/dashboard', function () {
+//     return view('layouts.master');
+// })->middleware(['auth', 'verified'])->name('dashboard');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
@@ -36,6 +40,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/customer-export2', [CustomerController::class, 'export2']);
     Route::get('/customer-export3', [CustomerController::class, 'export3']);
 
+    //search cutomer
+    Route::get('/search-customers', [CustomerController::class, 'searchCustomers']);
 
 
 });
@@ -91,6 +97,8 @@ Route::get('/products/{id}', [ProductController::class, 'dataShow'])->name('prod
 
 //for product list in use invoice
 Route::get('/productlist', [ProductController::class, 'ProductList']);
+//search product
+Route::get('/search-products', [ProductController::class, 'searchProducts']);
 
  //export
  Route::get('/product-export1', [ProductController::class, 'export1']);

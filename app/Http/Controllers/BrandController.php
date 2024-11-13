@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 
-class BrandsController extends Controller
+class BrandController extends Controller
 {
 //add form
 public function index(){

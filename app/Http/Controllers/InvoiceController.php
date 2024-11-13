@@ -24,22 +24,11 @@ class InvoiceController extends Controller
         return view('admin.sale.invoice',compact('invoice'));
     }
 
-    // public function index($pid)
-    // {
-    //     $invoices = Income::where('project_id', $pid)->get();
-    //     $data = Project::where('id', $pid)->first();
-    //     $setting = Settings::where('status', 0)->firstOrFail();
-    //     return view('admin.invoice.index', compact('invoices', 'data', 'setting'));
-    // }
-
     public function pdf($id)
     {
 
         $invoice = Invoice::with(['products', 'customer']) ->where('id',$id)->first();
         $pdf = Pdf::loadView('admin.sale.pdf',compact('invoice'));
-
-        // $setting = Settings::where('status', 0)->firstOrFail();
-        // $pdf = Pdf::loadView('admin.invoice.pdf', compact('invoices', 'data', 'setting'));
         return $pdf->download('invoice.pdf');
     }
 

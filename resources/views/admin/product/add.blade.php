@@ -53,7 +53,7 @@
                         <label for="brand_id">Brand <span class="text-danger">*</span></label>
                         <select name="brand_id" class="form-control" required>
                             <option value="" disabled selected>Select a brand</option>
-                            @foreach($brands as $brand)
+                            @foreach($brand as $brand)
                                 <option value="{{ $brand->id }}" {{ old('brand_id') == $brand->id ? 'selected' : '' }}>
                                     {{ $brand->brandName }}
                                 </option>

@@ -16,8 +16,8 @@ class ProductController extends Controller
     public function create()
     {
         $categories = Category::all();
-        $brands = Brand::all();
-        return view('admin.product.add', compact('categories', 'brands'));
+        $brand = Brand::all();
+        return view('admin.product.add', compact('categories', 'brand'));
     }
 
 

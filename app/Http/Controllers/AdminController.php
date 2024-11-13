@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Brands;
+use App\Models\Brand;
 use App\Models\Invoice;
 use App\Models\Product;
 use App\Models\Category;
@@ -17,7 +17,7 @@ class AdminController extends Controller
         $invoices = Invoice::all();
         $products = Product::all();
         $categories = Category::all();
-        $brands = Brands::all();
+        $brands = Brand::all();
         $customers = Customer::all();
         $totalPaidAmount = Invoice::sum('paid');
         $totalDueAmount = Invoice::sum('due');

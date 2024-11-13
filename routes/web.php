@@ -5,7 +5,7 @@ use App\Http\Controllers\MailController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BackupController;
-use App\Http\Controllers\BrandsController;
+use App\Http\Controllers\BrandController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
@@ -13,10 +13,6 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\SettingsController;
 
-
-// Route::get('/dashboard', function () {
-//     return view('layouts.master');
-// })->middleware(['auth', 'verified'])->name('dashboard');
 
 
 Route::middleware('auth')->group(function () {
@@ -40,8 +36,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/customer-export2', [CustomerController::class, 'export2']);
     Route::get('/customer-export3', [CustomerController::class, 'export3']);
 
-    //search cutomer
-    Route::get('/search-customers', [CustomerController::class, 'searchCustomers']);
 
 
 });
@@ -65,21 +59,21 @@ Route::middleware('auth')->group(function () {
 
 
 Route::middleware('auth')->group(function () {
-    Route::get('/brands', [BrandsController::class, 'index'])->name('index');
-    Route::post('/brands/submit', [BrandsController::class, 'create'])->name('create');
-    Route::get('/brands/show', [BrandsController::class, 'show']) -> name('brands.show');
-    Route::get('/brands/edit/{id}', [BrandsController::class, 'edit']);
-    Route::post('/brands/update', [BrandsController::class, 'update']);
-    Route::get('/delete/{id}', [BrandsController::class, 'destroy']);
+    Route::get('/brands', [BrandController::class, 'index'])->name('index');
+    Route::post('/brands/submit', [BrandController::class, 'create'])->name('create');
+    Route::get('/brands/show', [BrandController::class, 'show']) -> name('brands.show');
+    Route::get('/brands/edit/{id}', [BrandController::class, 'edit']);
+    Route::post('/brands/update', [BrandController::class, 'update']);
+    Route::get('/delete/{id}', [BrandController::class, 'destroy']);
 
-    Route::get('/brands/{id}', [BrandsController::class, 'dataShow'])->name('brands.dataShow');
+    Route::get('/brands/{id}', [BrandController::class, 'dataShow'])->name('brands.dataShow');
 
 
 
     //export
-    Route::get('/brand-export1', [BrandsController::class, 'export1']);
-    Route::get('/brand-export2', [BrandsController::class, 'export2']);
-    Route::get('/brand-export3', [BrandsController::class, 'export3']);
+    Route::get('/brand-export1', [BrandController::class, 'export1']);
+    Route::get('/brand-export2', [BrandController::class, 'export2']);
+    Route::get('/brand-export3', [BrandController::class, 'export3']);
 });
 
 
@@ -97,8 +91,6 @@ Route::get('/products/{id}', [ProductController::class, 'dataShow'])->name('prod
 
 //for product list in use invoice
 Route::get('/productlist', [ProductController::class, 'ProductList']);
-//search product
-Route::get('/search-products', [ProductController::class, 'searchProducts']);
 
  //export
  Route::get('/product-export1', [ProductController::class, 'export1']);
@@ -113,9 +105,8 @@ Route::get('/search-products', [ProductController::class, 'searchProducts']);
 
 Route::middleware('auth')->group(function () {
 
-    Route::post('/invoices', [InvoiceController::class, 'submitInvoice'])->name('submitInvoice');
-    Route::get('/invoices/show', [InvoiceController::class, 'index'])->name('invoices.index');
-
+Route::post('/invoices', [InvoiceController::class, 'submitInvoice'])->name('submitInvoice');
+Route::get('/invoices/show', [InvoiceController::class, 'index'])->name('invoices.index');
 Route::get('/view/salelist/{id}', [InvoiceController::class, 'salelist'])->name('salelist');
 Route::get('/view/salelist/pdf/{id}', [InvoiceController::class, 'pdf'])->name('invoice.pdf');
 Route::get('/delete/invoice/{id}', [InvoiceController::class, 'destroy'])->name('invoices.destroy');

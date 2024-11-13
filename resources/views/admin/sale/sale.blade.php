@@ -1,113 +1,108 @@
-
-
-
 @extends('layouts.master')
 
 @section('content')
 
+<!-- start page title -->
+<meta name="csrf-token" content="{{ csrf_token() }}">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POS System</title>
 
-    <!-- start page title -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>POS System</title>
-
-        <style>
+    <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
             display: flex;
-            justify-content: space-between;
-
+            justify-content: center;
+            align-items: flex-start;
+            background-color: #f9f9f9;
         }
         .container {
             display: flex;
             width: 100%;
-            padding: 20px;
+            justify-content:space-between;
+            padding: 5px;
+            margin-top: 10px;
+        }
+        .cart-summary, .product-list, .customer-section {
+            background-color: #ffffff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border: 1px solid #ddd;
         }
         .cart-summary {
-            width: 50%;
-            padding: 10px;
-            background-color: #f4f4f4;
-            border: 1px solid #ddd;
+            width: 40%;
         }
-        .product-list{
-            width: 25%;
-            padding: 10px;
-            background-color: #f4f4f4;
-            border: 1px solid #ddd;
-        }
-        .product-details {
-            width: 25%;
-            padding: 10px;
-            border: 1px solid #ddd;
-        }
-        h2 {
-            font-size: 1.5em;
-            margin-bottom: 20px;
-        }
-        .item, .cart-item {
-            padding: 10px;
-            border-bottom: 1px solid #ddd;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .item button {
-            background-color: #28a745;
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            cursor: pointer;
-        }
-        .cart-summary button, .cart-item .qty-controls {
-            display: flex;
-            gap: 5px;
-        }
-        .qty-controls button {
-            background-color: #007bff;
-            color: white;
-            border: none;
-            padding: 5px;
-            cursor: pointer;
-        }
-        .cart-item button {
-            background-color: #dc3545;
-            color: white;
-            border: none;
-            padding: 5px;
-            cursor: pointer;
-        }
-        .summary {
-            padding: 10px;
-            border-top: 1px solid #ddd;
-            margin-top: 20px;
-        }
-        .summary span {
-            font-size: 1.2em;
+        .product-list {
+            width: 30%;
         }
         .customer-section {
             width: 25%;
-
-           padding: 10px;
-            background-color: #f4f4f4;
-            border: 1px solid #ddd;
         }
-        #cart-customer {
-            font-size: 1.2em;
-            margin-bottom: 20px;
+        h2, .summary {
+            font-size: 1em;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        .item, .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
             padding: 10px;
-            background-color: #f9f9f9;
+            background-color: #f8f8f8;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .item button, .cart-item button {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 4px;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .item button {
+            background-color: #28a745;
+        }
+        .cart-item button {
+            background-color: #dc3545;
+        }
+        .cart-item .qty-controls button {
+            background-color: #007bff;
+        }
+        .qty-controls {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+        .cart-item button:hover, .item button:hover, .qty-controls button:hover {
+            opacity: 0.8;
+        }
+        .summary span {
+            font-size: 1.2em;
+            color: #555;
+        }
+        .customer-section input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 4px;
             border: 1px solid #ddd;
         }
-        #cart-customer p {
-            margin: 0;
+        .table th, .table td {
+            padding: 12px;
+            text-align: center;
         }
-        /* Payment Modal */
+        .table {
+            width: 100%;
+            margin-top: 10px;
+        }
         .modal {
             display: none;
             position: fixed;
@@ -121,135 +116,141 @@
             align-items: center;
         }
         .modal-content {
-            background-color: #fff;
+            background-color: #ffdcdc;
             padding: 20px;
-            border-radius: 5px;
-            width: 300px;
+            border-radius: 8px;
+            width: 350px;
             text-align: center;
         }
         .modal-content input {
-            margin: 10px 0;
-            padding: 5px;
+            padding: 10px;
             width: 100%;
+            margin-bottom: 15px;
+            border: 1px solid #069afc;
+            border-radius: 4px;
         }
         .modal-content button {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
             background-color: #28a745;
             color: white;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
+            margin: 10px 5px;
         }
         .modal-content .close {
-            background-color: #dc3545;
-            padding: 10px;
+            background-color: #01a9f7;
+            padding: 10px 15px;
+        }
+
+        .heading-cart{
+            font-size: 1.2em;
+            color: #f80b0b;
         }
 
 
-        #paymentModal .modal-dialog {
-        width: 600px;  /* Custom width */
-        height: 400px; /* Custom height */
-    }
+        .invalid-amount {
+    color: red;
+}
 
-    @media (max-width: 768px) {
-        /* Responsive adjustments for smaller screens */
-        #paymentModal .modal-dialog {
-            width: 90%;   /* Set width to 90% of the screen for smaller devices */
-            height: auto; /* Height will adjust dynamically */
+.success-payment {
+    color: rgb(5, 253, 5);
+}
+
+.incomplete-payment {
+    color: rgb(255, 0, 0);
+}
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                width: 90%;
+            }
+            .cart-summary, .product-list, .customer-section {
+                width: 100%;
+                margin-bottom: 20px;
+            }
         }
-    }
     </style>
-    </head>
-    <body>
-        <div class="container">
+</head>
+<body>
+    <div class="container">
         @if(session()->has('success'))
-    <div class="alert alert-success">
-        {{ session()->get('success') }}
-    </div>
-@endif
+            <div class="alert alert-success">
+                {{ session()->get('success') }}
+            </div>
+        @endif
 
-@if(session()->has('error'))
-    <div class="alert alert-error">
-        {{ session()->get('error') }}
-    </div>
-@endif
-            <!-- Cart Summary -->
-            <div class="cart-summary">
-                <h2>Cart</h2>
-                <!-- Cart Customer Header -->
-                <div id="cart-customer">
-                    <p>No customer selected for this cart.</p>
-                </div>
+        @if(session()->has('error'))
+            <div class="alert alert-error">
+                {{ session()->get('error') }}
+            </div>
+        @endif
 
-                <!-- Cart Items -->
-                <div id="cart-items"></div>
-                <div class="summary">
-                    <span>Subtotal: $<span id="subtotal">0</span></span><br>
-                    <span>Taxes: $<span id="taxes">0</span></span><br>
-                    <strong>Total: $<span id="total">0</span></strong><br><br>
-                    <button onclick="openPaymentModal()">Proceed to Payment</button>
-                </div>
+        <!-- Cart Summary -->
+        <div class="cart-summary">
+            <h2>Cart</h2>
+            <!-- Cart Customer Header -->
+            <div id="cart-customer">
+                <p class="heading-cart">No customer selected for this cart.</p>
             </div>
 
-            <!-- Customer Selection -->
-            <div class="customer-section">
-                <input type="text" id="searchInput" placeholder="Search customers..." oninput="searchCustomers(true)">
-                <button onclick="searchCustomers()">Search</button>
-                <button onclick="resetSearch()">Reset</button>
-                <table class="table table-sm w-100" id="customerTable">
-                    <thead class="w-100">
-                    <tr class="text-xs text-bold">
-                        <td>Customer</td>
-                        <td>Pick</td>
-                    </tr>
-                    </thead>
-                    <tbody class="w-100" id="customerList"></tbody>
-                </table>
-            </div>
-
-            <!-- Product List -->
-            <div class="product-list">
-                 <!-- Search Input and Buttons -->
-     <input type="text" id="productSearchInput" placeholder="Search products..." oninput="searchProducts(true)">
-     <button onclick="searchProducts()">Search</button>
-     <button onclick="resetProductSearch()">Reset</button>
-                <table class="table w-100" id="productTable">
-                    <thead class="w-100">
-                    <tr class="text-xs text-bold">
-                        <td>Product</td>
-                        <td>Pick</td>
-                    </tr>
-                    </thead>
-                    <tbody class="w-100" id="productList"></tbody>
-                </table>
+            <!-- Cart Items -->
+            <div id="cart-items"></div>
+            <div class="summary">
+                <span>Subtotal: $<span id="subtotal">0</span></span><br>
+                <span>Taxes: $<span id="taxes">0</span></span><br>
+                <strong>Total: $<span id="total">0</span></strong><br><br>
+                <button onclick="openPaymentModal()">Proceed to Payment</button>
             </div>
         </div>
 
-        <!-- Payment Modal -->
-        <div id="paymentModal" class="modal">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header bg-primary text-white">
-                        <h5 class="modal-title">Complete Payment</h5>
-                        <button type="button" class="close text-white" onclick="closePaymentModal()">&times;</button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label class="font-weight-bold">Total Amount:</label>
-                            <h4>$<span id="modal-total"></span></h4>
-                        </div>
-                        <div class="form-group">
-                            <label>Amount Received</label>
-                            <input type="number" class="form-control" id="amountReceived" placeholder="Enter amount received">
-                        </div>
-                        <div id="paymentResult"></div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-success" onclick="processPayment()">Paid</button>
-                        <button type="button" class="btn btn-danger" onclick="closePaymentModal()">Close</button>
-                    </div>
-                </div>
+        <!-- Customer Selection -->
+        <div class="customer-section">
+            <table class="table" id="customerTable">
+                <thead>
+                    <tr>
+                        <th>Customer</th>
+                        <th>Pick</th>
+                    </tr>
+                </thead>
+                <tbody id="customerList"></tbody>
+            </table>
+        </div>
+
+        <!-- Product List -->
+        <div class="product-list">
+            <table class="table" id="productTable">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Pick</th>
+                    </tr>
+                </thead>
+                <tbody id="productList"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Payment Modal -->
+    <div id="paymentModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5>Please Receive Payment</h5>
+                <button type="button" class="close" onclick="closePaymentModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <label class="font-weight-bold">Total Amount:</label>
+                <h4>$<span id="modal-total"></span></h4>
+                <input type="number" id="amountReceived" placeholder="Enter amount received">
+                <div id="paymentResult"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" onclick="processPayment()">Paid</button>
+                <button type="button" onclick="closePaymentModal()">Close</button>
             </div>
         </div>
+    </div>
 
         <!-- Script for Fetch API -->
         <script>
@@ -347,19 +348,26 @@
                 const paymentResultDiv = document.getElementById('paymentResult');
 
                 if (isNaN(amountReceived) || amountReceived <= 0) {
-                    paymentResultDiv.innerText = 'Please enter a valid amount.';
-                    return;
-                }
+    paymentResultDiv.innerText = 'Please enter a valid amount.';
+    paymentResultDiv.classList.add('invalid-amount'); // Custom red text class
+    paymentResultDiv.classList.remove('success-payment', 'incomplete-payment');
+    return;
+}
 
-                if (amountReceived >= total) {
-                    const change = amountReceived - total;
-                    paymentResultDiv.innerText = `Payment successful! Change Due: $${change.toFixed(2)}`;
-                    submitInvoice();
-                } else {
-                    const due = total - amountReceived;
-                    paymentResultDiv.innerText = `Payment incomplete! Due Amount: $${due.toFixed(2)}`;
-                    submitInvoice();
-                }
+if (amountReceived >= total) {
+    const change = amountReceived - total;
+    paymentResultDiv.innerText = `Payment successful! Change Due: $${change.toFixed(2)}`;
+    paymentResultDiv.classList.add('success-payment'); // Custom green text class
+    paymentResultDiv.classList.remove('invalid-amount', 'incomplete-payment');
+    submitInvoice();
+} else {
+    const due = total - amountReceived;
+    paymentResultDiv.innerText = `Payment incomplete! Due Amount: $${due.toFixed(2)}`;
+    paymentResultDiv.classList.add('incomplete-payment'); // Custom yellow text class
+    paymentResultDiv.classList.remove('invalid-amount', 'success-payment');
+    submitInvoice();
+}
+
             }
 
             // Submit invoice to the server

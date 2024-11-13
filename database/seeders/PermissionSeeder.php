@@ -46,10 +46,13 @@ class PermissionSeeder extends Seeder
             'product-edit',
             'product-delete',
 
+
             'sale-list',
             'sale-create',
             'sale-edit',
             'sale-delete',
+
+
             'setting',
             'databasebackup',
 

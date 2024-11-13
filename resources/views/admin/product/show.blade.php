@@ -32,7 +32,7 @@
                         <thead class="table-dark">
                             <tr>
                                 <th>ID</th>
-                                <th>Product Image</th>
+                                <th>Pro. Image</th>
                                 <th>Name</th>
                                 <th>Category</th>
                                 <th>Brand</th>

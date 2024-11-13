@@ -1,69 +1,70 @@
 @extends('layouts.master')
+
 @section('content')
 
-<div class="row">
-    <div class="col-lg-12 margin-tb">
-        <div class="pull-left">
-            <h2>Add New User</h2>
-        </div>
-        <div class="pull-right">
-        @can('product-create')
-            <a class="btn btn-primary btn-sm mb-2" href="{{ route('users.index') }}"><i class="fa fa-arrow-left"></i> Back</a>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-12 col-md-10 col-sm-12">
+            <div class="d-flex justify-content-between align-items-center">
+                <h2>Add New User</h2>
+                @can('product-create')
+                    <a class="btn btn-outline-secondary btn-sm" href="{{ route('users.index') }}">
+                        <i class="fa fa-arrow-left"></i> Back
+                    </a>
+                @endcan
+            </div>
 
-        @endcan
+            <!-- Error Messages -->
+            @if (count($errors) > 0)
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>Whoops!</strong> There were some problems with your input.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+            <!-- Form -->
+            <form method="POST" action="{{ route('users.store') }}">
+                @csrf
+                <div class="card shadow-sm px-5 py-2">
+                    <div class="mb-1">
+                        <label for="name" class="form-label"><strong>Name:</strong></label>
+                        <input type="text" name="name" id="name" placeholder="Enter user's name" class="form-control" value="{{ old('name') }}">
+                    </div>
+
+                    <div class="mb-1">
+                        <label for="email" class="form-label"><strong>Email:</strong></label>
+                        <input type="email" name="email" id="email" placeholder="Enter email address" class="form-control" value="{{ old('email') }}">
+                    </div>
+
+                    <div class="mb-1">
+                        <label for="password" class="form-label"><strong>Password:</strong></label>
+                        <input type="password" name="password" id="password" placeholder="Enter a strong password" class="form-control">
+                    </div>
+
+                    <div class="mb-1">
+                        <label for="roles" class="form-label"><strong>Role:</strong></label>
+                        <select name="roles[]" id="roles" class="form-control" multiple="multiple">
+                            @foreach ($roles as $value => $label)
+                                <option value="{{ $value }}">{{ $label }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="d-flex justify-content-center mt-2">
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            <i class="fa-solid fa-floppy-disk"></i> Save
+                        </button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 </div>
 
-@if (count($errors) > 0)
-    <div class="alert alert-danger">
-      <strong>Whoops!</strong> There were some problems with your input.<br><br>
-      <ul>
-         @foreach ($errors->all() as $error)
-           <li>{{ $error }}</li>
-         @endforeach
-      </ul>
-    </div>
-@endif
-
-<form method="POST" action="{{ route('users.store') }}">
-    @csrf
-    <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Name:</strong>
-                <input type="text" name="name" placeholder="Name" class="form-control">
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Email:</strong>
-                <input type="email" name="email" placeholder="Email" class="form-control">
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Password:</strong>
-                <input type="password" name="password" placeholder="Password" class="form-control">
-            </div>
-        </div>
-
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Role:</strong>
-                <select name="roles[]" class="form-control" multiple="multiple">
-                    @foreach ($roles as $value => $label)
-                        <option value="{{ $value }}">
-                            {{ $label }}
-                        </option>
-                     @endforeach
-                </select>
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-            <button type="submit" class="btn btn-primary btn-sm mt-2 mb-3"><i class="fa-solid fa-floppy-disk"></i> Save</button>
-        </div>
-    </div>
-</form>
-
 @endsection
+

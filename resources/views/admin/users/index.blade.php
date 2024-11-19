@@ -113,7 +113,6 @@
             @endif
         </td>
         <td>
-            @can('role-edit')
                 <a class="btn btn-info btn-sm" href="{{ route('users.show', $user->id) }}"><i class="fa-solid fa-list"></i> Show</a>
                 <a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning btn-sm">Edit</a>
 
@@ -122,7 +121,6 @@
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this user?')">Delete</button>
                 </form>
-            @endcan
         </td>
     </tr>
    @endforeach

@@ -77,28 +77,23 @@ public function export3()
             $image->move(public_path('productImage'), $image_rename);
         }
 
-        try {
-            $product = Product::create([
-                'name' => $request->name,
-                'category_id' => $request->category_id,
-                'brand_id' => $request->brand_id,
-                'price' => $request->price,
-                'cost' => $request->cost,
-                'code' => $request->code,
-                'unit' => $request->unit,
-                'details' => $request->details,
-                'img_url' => $image_rename,
-                'creator' => Auth::user()->id,
-                'slug' => uniqid() . rand(10000, 10000000),
-                'status' => $request->status,
-            ]);
+        $product = new Product();
+        $product->name = $request->name;
+        $product->category_id = $request->category_id;
+        $product->brand_id = $request->brand_id;
+        $product->price = $request->price;
+        $product->cost = $request->cost;
+        $product->code = $request->code;
+        $product->unit = $request->unit;
+        $product->details = $request->details;
+        $product->img_url = $image_rename;
+        $product->status = $request->status;
+        $product->creator = auth()->id();
+        $product->slug = Str::random(10);
+        $product->save();
 
-            session()->flash('success', 'Product added successfully.');
-            return redirect()->back();
 
-        } catch (\Exception $e) {
-            return back()->with('fail', 'Failed to add product: ' . $e->getMessage());
-        }
+        return redirect()->back()->with('success', 'Product added successfully.');
     }
 
    //product list for api in invoice

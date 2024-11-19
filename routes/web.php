@@ -2,10 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MailController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\BackupController;
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\BackupController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
@@ -144,6 +145,9 @@ Route::middleware('auth')->group(function () {
 
 
 Route::middleware('auth')->group(function () {
+Route::resource('roles', RoleController::class);
+Route::get('/role', [RoleController::class, 'create']);
+
 Route::get('/backup', [BackupController::class, 'createBackup'])->name('backup.create');
 
 });

@@ -56,7 +56,8 @@
    @endforeach
 </table>
 
-<!-- Use $data for pagination links -->
+
+
 {{ $data->links() }}
 
 @endsection

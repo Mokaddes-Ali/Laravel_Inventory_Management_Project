@@ -98,15 +98,11 @@ Route::get('/products/{id}', [ProductController::class, 'dataShow'])->name('prod
 
 //for product list in use invoice
 Route::get('/productlist', [ProductController::class, 'ProductList']);
-//search product
-Route::get('/search-products', [ProductController::class, 'searchProducts']);
 
  //export
  Route::get('/product-export1', [ProductController::class, 'export1']);
  Route::get('/product-export2', [ProductController::class, 'export2']);
  Route::get('/product-export3', [ProductController::class, 'export3']);
-
-
 
 });
 

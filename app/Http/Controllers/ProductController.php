@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Exports\ProductsExport;
 use App\Models\Brand;
 use App\Models\Product;
 use App\Models\Category;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Exports\ProductsExport;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -105,21 +106,14 @@ public function export3()
     return response()->json($products);
 }
 
-    //search product for api in invoice
-    // Controller method
-    public function searchProducts(Request $request)
-    {
-        $search = $request->query('search');
-        $products = Product::where('name', 'LIKE', "%{$search}%")->get(); // Case-insensitive match
-        return response()->json($products);
-    }
+
 
     // edit product form
 
     public function edit($id){
         $product = Product::find($id);
         $categories = Category::all();
-        $brands = Brands::all();
+        $brands = Brand::all();
         return view('admin.product.edit', compact('product', 'categories', 'brands'));
     }
 

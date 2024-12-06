@@ -95,6 +95,8 @@ public function export3()
     return Excel::download(new InvoicesExport, 'invoices.pdf');
 }
 
+
+
     public function destroy($id)
     {
         try {
@@ -112,4 +114,5 @@ public function export3()
             return redirect()->back()->with('error', 'An error occurred while deleting the invoice: ' . $e->getMessage());
         }
     }
+
 }

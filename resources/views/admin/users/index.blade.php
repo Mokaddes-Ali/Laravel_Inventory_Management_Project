@@ -26,9 +26,7 @@
        <th>Name</th>
        <th>Email</th>
        <th>Roles</th>
-       @can('role-edit')
            <th width="280px">Action</th>
-       @endcan
    </tr>
    @foreach ($data as $key => $user)
     <tr>

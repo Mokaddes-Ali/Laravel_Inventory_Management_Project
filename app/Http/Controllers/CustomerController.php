@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Flasher\Prime\FlasherInterface;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Str;
+use Carbon\Carbon;
 
 class CustomerController extends Controller
 {
@@ -32,6 +34,7 @@ class CustomerController extends Controller
             'email' => 'required',
             'number' => 'required',
             'address' => 'required',
+            'slug' => 'required|unique exists:customers,slug',
             'pic' => 'required|image|mimes:jpeg,png,gif|max:2048',
         ]);
 
@@ -63,6 +66,57 @@ class CustomerController extends Controller
             return back()->with('fail', 'Data insertion failed');
         }
     }
+
+
+
+// public function create(Request $request, FlasherInterface $flasher) {
+//     dd($request->all());
+
+//     $request->validate([
+//         'name' => 'required|max:40',
+//         'email' => 'required|email|unique:customers,email',
+//         'slug' => 'required|unique:customers,slug',
+//         'number' => 'required',
+//         'address' => 'required',
+//         'pic' => 'required|image|mimes:jpeg,png,gif|max:2048',
+//         // 'status' => 'required|in:0,1',
+//     ]);
+
+//    // Slug Generate
+//    $randomLetters = Str::upper(Str::random(1)) . Str::lower(Str::random(1)) . Str::upper(Str::random(1));
+//    $datePart = Carbon::now()->format('dmy');
+//    $slug = '#' . $randomLetters . $datePart;
+
+
+//     $image_rename = '';
+//     if ($request->hasFile('pic')) {
+//         $image = $request->file('pic');
+//         $ext = $image->getClientOriginalExtension();
+//         $image_rename = time() . '_' . rand(100000, 10000000) . '.' . $ext;
+//         $image->move(public_path('images'), $image_rename);
+//     }
+
+//     $insert = Customer::create([
+//         'name' => $request->name,
+//         'email' => $request->email,
+//         'number' => $request->number,
+//         'address' => $request->address,
+//         'pic' => $image_rename,
+//         'slug' => $slug,
+//         // 'status' => $request->status,
+//     ]);
+
+//     if ($insert) {
+//         $flasher->addSuccess('Data Inserted Successfully.', [
+//             'position' => 'top-center',
+//             'timeout' => 3000,
+//         ]);
+//         return redirect()->back();
+//     } else {
+//         return back()->with('fail', 'Data insertion failed');
+//     }
+// }
+
 
     // Edit customer form
     public function edit($id){

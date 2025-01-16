@@ -19,11 +19,12 @@
     <thead>
       <tr>
         <th scope="col">Id</th>
+        <th scope="col">Image</th>
         <th scope="col">Name</th>
         <th scope="col">Email</th>
         <th scope="col">Number</th>
         <th scope="col">Address</th>
-        <th scope="col">Image</th>
+        <th scope="col">Slug</th>
         <th scope="col">Action</th>
       </tr>
     </thead>
@@ -31,13 +32,14 @@
         @foreach ($all as $row)
       <tr>
         <th scope="row">{{ $row['id'] }}</th>
+        <td>
+            <img src="{{ asset('images/'.$row['pic']) }}" alt="img" width="50" height="50">
+        </td>
         <td>{{ $row['name'] }}</td>
         <td>{{ $row['email'] }}</td>
         <td>{{ $row['number'] }}</td>
         <td>{{ $row['address'] }}</td>
-        <td>
-            <img src="{{ asset('images/'.$row['pic']) }}" alt="img" width="50" height="50">
-        </td>
+        <td>{{ $row['slug'] }}</td>
         <td>
             @can('customer-edit')
             <!-- Edit Button -->

@@ -13,6 +13,8 @@ class Customer extends Model
         'name', 'email', 'number', 'address', 'pic', 'creator', 'editor', 'slug', 'status'
     ];
 
+    public $timestamps = true;
+
     public function creatorUser()
     {
         return $this->belongsTo(User::class, 'creator');

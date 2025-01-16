@@ -297,18 +297,15 @@
         .customer-section {
             width: 50%;
         }
-
         h2 {
             font-size: 1.2em;
             color: #333;
         }
-
         .summary {
             font-size: 1.1em;
             margin-top: 15px;
             color: #555;
         }
-
         .summary span {
             font-size: 1.2em;
             font-weight: bold;

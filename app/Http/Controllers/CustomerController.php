@@ -182,7 +182,7 @@ public function create(Request $request, FlasherInterface $flasher){
   // paginated customer list
 public function customerList()
 {
-    $customers = Customer::get();
+    $customers = Customer::orderBy('id', 'desc')->get();
 
     return response()->json( $customers);
 }

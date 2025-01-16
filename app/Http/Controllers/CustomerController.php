@@ -26,46 +26,104 @@ class CustomerController extends Controller
     }
 
      // Insert customer data
-    public function create(Request $request, FlasherInterface $flasher){
-          //dd($request->all());
+//     public function create(Request $request, FlasherInterface $flasher){
+//         //   dd($request->all());
 
-            $request->validate([
-            'name' => 'required|max:40',
-            'email' => 'required',
-            'number' => 'required',
-            'address' => 'required',
-            'slug' => 'required|unique exists:customers,slug',
-            'pic' => 'required|image|mimes:jpeg,png,gif|max:2048',
-        ]);
+//             $request->validate([
+//             'name' => 'required|max:40',
+//             'email' => 'required|email|unique:customers,email',
+//             // 'slug' => 'required|unique:customers,slug',
+//             'number' => 'required',
+//             'address' => 'required',
+//             // 'slug' => 'required|unique exists:customers,slug',
+//             'pic' => 'required|image|mimes:jpeg,png,gif|max:2048',
+//         ]);
 
-        $image_rename = '';
-        if ($request->hasFile('pic')) {
-            $image = $request->file('pic');
-            $ext = $image->getClientOriginalExtension();
-            $image_rename = time() . '_' . rand(100000, 10000000) . '.' . $ext;
-            $image->move(public_path('images'), $image_rename);
-        }
 
-        $insert = Customer::insertGetId([
-            'name' => $request['name'],
-            'email' => $request['email'],
-            'number' => $request['number'],
-            'address' => $request['address'],
-            'pic' => $image_rename ,
-        ]);
+// //        // Slug Generate
+// //   $randomLetters = Str::upper(Str::random(1)) . Str::lower(Str::random(1)) . Str::upper(Str::random(1));
+// //    $datePart = Carbon::now()->format('dmy');
+// //     $slug = '#' . $randomLetters . $datePart;
 
-        if ($insert) {
-            $flasher->addSuccess('Data Inserted Successfully.', [
-                'position' => 'top-center',
-                'timeout' => 3000,
-                ]
-            );
-            return redirect()->back();
+//         $image_rename = '';
+//         if ($request->hasFile('pic')) {
+//             $image = $request->file('pic');
+//             $ext = $image->getClientOriginalExtension();
+//             $image_rename = time() . '_' . rand(100000, 10000000) . '.' . $ext;
+//             $image->move(public_path('images'), $image_rename);
+//         }
 
-        } else {
-            return back()->with('fail', 'Data insertion failed');
-        }
+//         $insert = Customer::insertGetId([
+//             'name' => $request['name'],
+//             'email' => $request['email'],
+//             'number' => $request['number'],
+//             'address' => $request['address'],
+//             'pic' => $image_rename ,
+//             // 'slug' => $slug,
+//         ]);
+
+//         // dd($insert);
+
+//         if ($insert) {
+//             $flasher->addSuccess('Data Inserted Successfully.', [
+//                 'position' => 'top-center',
+//                 'timeout' => 3000,
+//                 ]
+//             );
+//             return redirect()->back();
+
+//         } else {
+//             return back()->with('fail', 'Data insertion failed');
+//         }
+//     }
+
+
+public function create(Request $request, FlasherInterface $flasher){
+    $request->validate([
+        'name' => 'required|max:40',
+        'email' => 'required|email|unique:customers,email',
+        'number' => 'required',
+        'address' => 'required',
+        'pic' => 'required|image|mimes:jpeg,png,gif|max:2048',
+        'status' => 'required|in:0,1',
+    ]);
+
+    // Generate random slug and ensure its uniqueness
+    do {
+
+       // Slug Generate
+   $randomLetters = Str::upper(Str::random(1)) . Str::lower(Str::random(1)) . Str::upper(Str::random(1));
+   $datePart = Carbon::now()->format('dmy');
+   $randomSlug = '#' . $randomLetters . $datePart;
+    } while (Customer::where('slug', $randomSlug)->exists()); // Ensure the slug is unique
+
+    $image_rename = '';
+    if ($request->hasFile('pic')) {
+        $image = $request->file('pic');
+        $ext = $image->getClientOriginalExtension();
+        $image_rename = time() . '_' . rand(100000, 10000000) . '.' . $ext;
+        $image->move(public_path('images'), $image_rename);
     }
+
+    $insert = Customer::insertGetId([
+        'name' => $request['name'],
+        'email' => $request['email'],
+        'number' => $request['number'],
+        'address' => $request['address'],
+        'pic' => $image_rename,
+        'slug' => $randomSlug,
+    ]);
+
+    if ($insert) {
+        $flasher->addSuccess('Data Inserted Successfully.', [
+            'position' => 'top-center',
+            'timeout' => 3000,
+        ]);
+        return redirect()->back();
+    } else {
+        return back()->with('fail', 'Data insertion failed');
+    }
+}
 
 
 

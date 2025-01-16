@@ -10,7 +10,7 @@
     <div class="card-body px-4 py-3">
         <form id="customerForm" method="POST" action="{{ url('/customer/submit') }}" enctype="multipart/form-data">
             @csrf
-
+        <div class="d-flex flex-wrap">
             <!-- Name Input -->
             <div class="form-group mb-1">
                 <label for="name" class="form-label">Name</label>
@@ -22,6 +22,18 @@
                     </div>
                 @enderror
             </div>
+              <!-- Status -->
+              <div class="form-group col-md-6 mb-2">
+                <label for="status">Status</label>
+                <select name="status" class="form-control">
+                    <option value="0" {{ old('status') == '0' ? 'selected' : '' }}>Active</option>
+                    <option value="1" {{ old('status') == '1' ? 'selected' : '' }}>Inactive</option>
+                </select>
+                @error('status')
+                    <small class="text-danger">{{ $message }}</small>
+                @enderror
+            </div>
+        </div>
 
             <!-- Email Input -->
             <div class="form-group mb-1">

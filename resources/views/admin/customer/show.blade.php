@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-<div class="card ">
+<div class="">
     <div class="card-header d-flex w-36 h-11 ">
         <div class="mx-5 mt-2">
        @can('customer-create')
@@ -15,7 +15,7 @@
             <a href="{{ url('/customer-export2') }}" class="mt-3 mx-2"><button type="button" class="btn btn-success display-4">CSV</button></a>
             <a href="{{ url('/customer-export3') }}" class="mt-3 mx-2"><button type="button" class="btn btn-success display-4">PDF</button></a>
     </div>
-<table class="table table-striped table-responsive table-dark">
+<table class="table  table-responsive">
     <thead>
       <tr>
         <th scope="col">Id</th>
@@ -25,6 +25,7 @@
         <th scope="col">Number</th>
         <th scope="col">Address</th>
         <th scope="col">Slug</th>
+        <th scope="col">Status</th>
         <th scope="col">Action</th>
       </tr>
     </thead>
@@ -40,6 +41,13 @@
         <td>{{ $row['number'] }}</td>
         <td>{{ $row['address'] }}</td>
         <td>{{ $row['slug'] }}</td>
+        <td>
+            <span style="color: {{ $row['status'] == 0 ? '#38a169' : '#e53e3e' }}; background-color: {{ $row['status'] == 0 ? '#c6f6d5' : '#fed7d7' }};">
+                {{ $row['status'] == 0 ? 'Active' : 'Inactive' }}
+            </span>
+        </td>
+
+
         <td>
             @can('customer-edit')
             <!-- Edit Button -->

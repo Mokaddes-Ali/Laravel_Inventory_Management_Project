@@ -88,14 +88,10 @@ public function create(Request $request, FlasherInterface $flasher){
         'status' => 'required|in:0,1',
     ]);
 
-    // Generate random slug and ensure its uniqueness
-    do {
 
-       // Slug Generate
    $randomLetters = Str::upper(Str::random(1)) . Str::lower(Str::random(1)) . Str::upper(Str::random(1));
    $datePart = Carbon::now()->format('dmy');
    $randomSlug = '#' . $randomLetters . $datePart;
-    } while (Customer::where('slug', $randomSlug)->exists()); // Ensure the slug is unique
 
     $image_rename = '';
     if ($request->hasFile('pic')) {

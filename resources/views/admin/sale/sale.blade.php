@@ -318,17 +318,53 @@
                 updateCart();
             }
 
-            // Select customer
-            function selectCustomer(customerName, address, phone, id) {
-                selectedCustomer = { name: customerName, address: address, phone: phone, id: id };
-                document.getElementById('cart-customer').innerHTML = `
-                    <p>Customer: ${customerName}</p>
-                    <p>Address: ${address}</p>
-                    <p>Phone: ${phone}</p>
-                    <p id="CID">${id}</p>
-                `;
-                updateCart();
-            }
+            // // Select customer
+            // function selectCustomer(customerName, address, phone, id, email, slug,status, image,) {
+            //     selectedCustomer = { name: customerName, address: address, phone: phone, id: id, email: email, slug: slug, status: status, image: image };
+            //     document.getElementById('cart-customer').innerHTML = `
+            //         <p>Customer: ${customerName}</p>
+            //         <p>Email: ${email}</p>
+            //         <p>Slug: ${status}</p>
+            //         <p>Image: ${image}</p>
+            //         <p>Address: ${address}</p>
+            //         <p>Phone: ${phone}</p>
+            //         <p id="CID">${id}</p>
+            //         <p>Status: ${status}</p>
+            //     `;
+            //     updateCart();
+            // }
+
+            function selectCustomer(customerName, address, phone, id, email, slug, status, image) {
+    // Assuming 'image' contains the image name or path relative to the public folder
+    const imageUrl = `/images/${image}`; // Public folder reference
+
+    // Determine status (0 = Active, 1 = Inactive)
+    const statusText = status === '0' ? 'Active' : 'Inactive';
+
+    selectedCustomer = {
+        name: customerName,
+        address: address,
+        phone: phone,
+        id: id,
+        email: email,
+        slug: slug,
+        status: statusText,
+        image: imageUrl
+    };
+
+    document.getElementById('cart-customer').innerHTML = `
+        <p>Customer: ${customerName}</p>
+        <p>Email: ${email}</p>
+        <p>Slug: ${slug}</p>
+        <p>Status: ${statusText}</p>
+        <p>Image: <img src="${imageUrl}" alt="${customerName}" style="width: 100px; height: 100px; object-fit: cover;"></p>
+        <p>Address: ${address}</p>
+        <p>Phone: ${phone}</p>
+        <p id="CID">${id}</p>
+    `;
+    updateCart();
+}
+
 
             // Open and close payment modal
             function openPaymentModal() {
@@ -427,18 +463,39 @@ if (amountReceived >= total) {
                 displayCustomers(data);
             }
 
+            // function displayCustomers(data) {
+            //     let customerList = document.getElementById('customerList');
+            //     customerList.innerHTML = '';
+            //     data.forEach(item => {
+            //         customerList.innerHTML += `
+            //             <tr>
+            //                 <td>${item.name}</td>
+            //                 <td><button class="btn btn-dark" onclick="selectCustomer('${item.name}',
+            //                     '${item.address}', '${item.number}',
+            //                     '${item.id}','${item.email}', '${item.status}','${item.slug}','${item.image}')">ADD</button></td>
+            //             </tr>
+            //         `;
+            //     });
+            // }
+
             function displayCustomers(data) {
-                let customerList = document.getElementById('customerList');
-                customerList.innerHTML = '';
-                data.forEach(item => {
-                    customerList.innerHTML += `
-                        <tr>
-                            <td>${item.name}</td>
-                            <td><button class="btn btn-dark" onclick="selectCustomer('${item.name}', '${item.address}', '${item.number}', '${item.id}')">ADD</button></td>
-                        </tr>
-                    `;
-                });
-            }
+    let customerList = document.getElementById('customerList');
+    customerList.innerHTML = ''; // Clear the previous list
+    data.forEach(item => {
+        const imageUrl = `/images/${item.image}`; // Public folder reference
+
+        // Determine status (0 = Active, 1 = Inactive)
+        const statusText = item.status === '0' ? 'Active' : 'Inactive';
+
+        customerList.innerHTML += `
+            <tr>
+                <td>${item.name}</td>
+                <td><button class="btn btn-dark" onclick="selectCustomer('${item.name}', '${item.address}', '${item.number}', '${item.id}', '${item.email}', '${item.slug}', '${item.status}', '${item.image}')">ADD</button></td>
+            </tr>
+        `;
+    });
+}
+
 
             async function Productlist() {
                 let response = await fetch('/productlist');

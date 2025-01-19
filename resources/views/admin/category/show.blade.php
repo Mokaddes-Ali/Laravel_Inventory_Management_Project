@@ -123,6 +123,7 @@
                                     <th class="border">ID</th>
                                     <th class="border">Name</th>
                                     <th class="border ">Remarks</th>
+                                    <th class="border">Slug</th>
                                     <th class="border  ">Status</th>
                                     <th class="border ">Actions</th>
                                     {{-- <th class="border ">View</th> --}}
@@ -136,6 +137,7 @@
                                  <td class="border ">{{ $category->id }}</td>
                                  <td class="border  px-2 py-1">{{ $category->name }}</td>
                                  <td class="border  px-2 py-1">{{ $category->remarks }}</td>
+                                 <td class="border px-2 py-1">{{ $category->slug}}</td>
                                  <td class="border border-gray-300 px-2 py-1">{{ $category->status ? 'Active' : 'Inactive' }}</td>
                                  <td>
                                     <ul class="action-list d-flex gap-2">

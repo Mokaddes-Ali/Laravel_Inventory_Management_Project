@@ -76,58 +76,53 @@ use Maatwebsite\Excel\Concerns\WithEvents;
 class CustomersExport implements FromCollection, WithHeadings, WithStyles, WithColumnWidths, WithEvents
 {
     /**
-     * এক্সেল ডেটার জন্য Collection ফেরত দিবে।
-     *
      * @return \Illuminate\Support\Collection
      */
     public function collection()
     {
-        return Customer::select('name', 'email', 'number', 'address')->get();
+        return Customer::select('id','name', 'email', 'number', 'address','slug')->get();
     }
 
     /**
-     * এক্সেলের শিরোনাম কলাম সেট করে।
-     *
      * @return array
      */
     public function headings(): array
     {
         return [
+            'Id',
             'Name',
             'Email',
             'Number',
             'Address',
+            'Slug',
         ];
     }
 
     /**
-     * এক্সেল ফাইলের কলামের প্রস্থ (width) সেট করা।
-     *
      * @return array
      */
     public function columnWidths(): array
     {
         return [
-            'A' => 15,
-            'B' => 20,
+            'A' => 10,
+            'B' => 15,
             'C' => 15,
-            'D' => 30,
+            'D' => 15,
+            'E' => 20,
+            'F' => 15,
         ];
     }
 
     /**
-     * এক্সেল ফাইলের স্টাইল সেট করা।
-     *
      * @return array
      */
     public function styles(Worksheet $sheet)
     {
         return [
-            // শিরোনাম কলামের ফন্ট বড় এবং বোল্ড করা
-            1 => ['font' => ['bold' => true, 'size' => 12]],
+            1 => ['font' => ['bold' => true, 'size' => 10]],
 
-            // সমস্ত কলামের টেক্সট সেন্টার করা
-            'A:D' => ['alignment' => ['horizontal' => 'center']],
+            'A:F' => ['alignment' => ['horizontal' => 'center']],
+            'A:F' => ['alignment' => ['vertical' =>'center']],
         ];
     }
 
@@ -140,13 +135,13 @@ class CustomersExport implements FromCollection, WithHeadings, WithStyles, WithC
             AfterSheet::class => function(AfterSheet $event) {
                 $sheet = $event->sheet;
 
-                // প্রতিটি রো-এর উচ্চতা সেট করা (padding-এর মতো)
+
                 for ($i = 1; $i <= 100; $i++) {
-                    $sheet->getRowDimension($i)->setRowHeight(25);
+                    $sheet->getRowDimension($i)->setRowHeight(20);
                 }
 
                 // কলামের টেক্সট অটো-সাইজ করা
-                foreach (range('A', 'D') as $col) {
+                foreach (range('A', 'F') as $col) {
                     $sheet->getColumnDimension($col)->setAutoSize(true);
                 }
             }

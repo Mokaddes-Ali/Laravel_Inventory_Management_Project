@@ -2,7 +2,7 @@
 
 namespace App\Exports;
 
-use App\Models\Brands;
+use App\Models\Brand;
 use Maatwebsite\Excel\Concerns\FromCollection;
 
 class BrandsExport implements FromCollection
@@ -12,6 +12,6 @@ class BrandsExport implements FromCollection
     */
     public function collection()
     {
-        return Brands::all();
+        return Brand::select('name', 'email', 'number', 'address')->get();
     }
 }

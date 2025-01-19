@@ -593,19 +593,12 @@
         updateCart();
     }
 
-    function selectCustomer(customerName, address, phone, id, email, slug, status, image) {
-    const imageUrl = `/images/${image}`;
-    const statusText = status === '0' ? 'Active' : 'Inactive';
+    function selectCustomer(customerName,id) {
 
     selectedCustomer = {
         name: customerName,
-        address: address,
-        phone: phone,
         id: id,
-        email: email,
-        slug: slug,
-        status: statusText,
-        image: imageUrl
+
     };
 
     document.getElementById('cart-customer').innerHTML = `
@@ -616,31 +609,19 @@
                  <div class="col-md-6"><div>Customer Id: ${id}</div></div>
             </div>
 
-            <!-- Row 2 -->
-            <div class="row g-3 mt-1">
-                <div class="col-md-6"><div>Slug: ${slug}</div></div>
-                <div class="col-md-6"><div>Status: ${statusText}</div></div>
-            </div>
 
-            <!-- Row 3 -->
-            <div class="row g-3 mt-1">
-                <div class="col-md-6"><div>Address: ${address}</div></div>
-                <div class="col-md-6"><div>Phone: ${phone}</div></div>
-            </div>
-
-            <!-- Row 4 -->
-            <div class="row g-3 mt-1">
-                    <div class="col-md-6"><div>Email: ${email}</div></div>
-                <div class="col-md-6">
-                    <div>Image: <img src="${imageUrl}" alt="${customerName}" class="img-fluid rounded" style="width: 50px; height: 50px; object-fit: cover;"></div>
-                </div>
-            </div>
         </div>
     `;
 
     updateCart();
 }
 
+
+// <!-- Row 2 -->
+//             <div class="row g-3 mt-1">
+//                 <div class="col-md-6"><div>Email: ${email}</div></div>
+//                 <div class="col-md-6"><div>Phone: ${phone}</div></div>
+//             </div>
 
 
 
@@ -745,13 +726,11 @@ submitInvoice();
 let customerList = document.getElementById('customerList');
 customerList.innerHTML = '';
 data.forEach(item => {
-const imageUrl = `/images/${item.pic}`;
-const statusText = item.status === '0' ? 'Active' : 'Inactive';
 
 customerList.innerHTML += `
     <tr>
         <td>${item.name}</td>
-        <td><button class="btn btn-dark" onclick="selectCustomer('${item.name}', '${item.address}', '${item.number}', '${item.id}', '${item.email}', '${item.slug}', '${item.status}', '${item.pic}')">ADD</button></td>
+        <td><button class="btn btn-dark" onclick="selectCustomer('${item.name}', '${item.id}',)">ADD</button></td>
     </tr>
 `;
 });

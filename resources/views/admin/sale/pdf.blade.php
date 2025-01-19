@@ -12,12 +12,11 @@
         }
 
         .invoice {
-            width: 800px;
+            width: 600px;
             margin: 20px auto;
             border: 1px solid #ccc;
             padding: 20px;
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-            background-image: url('{{ asset('bgimge.jpg') }}'); /* Replace with your image path */
             background-size: cover;
             background-repeat: no-repeat;
         }
@@ -27,22 +26,24 @@
             justify-content: space-between;
             margin-bottom: 20px;
         }
-
         .invoice-header h2 {
             text-align: center;
             margin-bottom: 20px;
         }
 
-        .invoice-details {
+
+        .invoice-details{
             display: flex;
+            justify-items: center;
+            justify-content: space-between;
+
         }
 
-        .invoice-details .left,
-        .invoice-details .right {
-            width: 50%;
+        .invoice-details-left{
+            width: 300px;
         }
-
-        .invoice-details .right {
+        .invoice-details-right {
+            width: 200px;
             text-align: right;
         }
 
@@ -69,6 +70,23 @@
         .total {
             font-weight: bold;
         }
+
+        .tableSection{
+            border: none;
+            width: 100%;
+        }
+        .invoiceTo{
+            width: 50%;
+            text-align: left;
+            padding-left: 100px;
+
+        }
+        .invoiceFrom{
+            width: 50%;
+            text-align: left;
+
+
+        }
     </style>
 </head>
 <body>
@@ -79,23 +97,25 @@
             <p>Invoice Date: 20 May, 2024</p>
             <p>Due Date: 20 June, 2024</p>
         </div>
+                    <table class="tableSection">
+                        <tr>
+                            <td class="invoiceFrom">
+                                <h4>Invoice From</h4>
+                                <p>William Peter</p>
+                                <p>ABC Company</p>
+                                <p>info@abccompany.com</p>
+                                <p>456 Main Street</p>
+                            </td>
+                            <td class="invoiceTo">
+                                <h4>Invoice To</h4>
+                                <p>Roger Y. Will</p>
+                                <p>XYZ Company</p>
+                                <p>info@xyzcompany.com</p>
+                                <p>123 Main Street</p>
+                            </td>
+                        </tr>
+                    </table>
 
-        <div class="invoice-details">
-            <div class="left">
-                <h4>Invoice To</h4>
-                <p>Roger Y. Will</p>
-                <p>XYZ Company</p>
-                <p>info@xyzcompany.com</p>
-                <p>123 Main Street</p>
-            </div>
-            <div class="right">
-                <h4>Invoice From</h4>
-                <p>William Peter</p>
-                <p>ABC Company</p>
-                <p>info@abccompany.com</p>
-                <p>456 Main Street</p>
-            </div>
-        </div>
 
         <table class="invoice-table">
             <thead>

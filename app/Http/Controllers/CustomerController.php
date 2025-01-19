@@ -89,7 +89,7 @@ public function create(Request $request, FlasherInterface $flasher){
     ]);
 
 
-   $randomLetters = Str::upper(Str::random(1)) . Str::lower(Str::random(1)) . Str::upper(Str::random(1));
+   $randomLetters = Str::upper(Str::random(1)) . Str::lower(Str::random(2)) . Str::upper(Str::random(2));
    $datePart = Carbon::now()->format('dmy');
    $randomSlug = '#' . $randomLetters . $datePart;
 
@@ -258,6 +258,10 @@ public function export3()
                 $image_rename=$oldimg['pic'];
             }
 
+            $randomLetters = Str::upper(Str::random(1)) . Str::lower(Str::random(2)) . Str::upper(Str::random(2));
+          $datePart = Carbon::now()->format('dmy');
+          $randomSlug = '#' . $randomLetters . $datePart;
+
         $update = Customer::where('id',$id)->update([
             'name' => $request->name,
             'email' => $request->email,
@@ -265,7 +269,7 @@ public function export3()
             'address' => $request->address,
             'pic' => $image_rename,
             'creator' => Auth::user()->id,
-            'slug' => uniqid().rand(10000, 10000000),
+            'slug' => $randomSlug,
         ]);
 
         if ($update) {

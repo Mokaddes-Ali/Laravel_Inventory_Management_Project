@@ -10,7 +10,7 @@ class Category extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'remarks', 'creator', 'editor', 'status'
+        'name', 'remarks', 'creator', 'editor', 'status','slug'
     ];
 
     public function creatorUser()
